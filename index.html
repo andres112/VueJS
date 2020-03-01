@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueJS</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="app" class="container mt-2">
+      <!-- Alert -->
+      <div class="alert alert-warning" role="alert" v-if="timeWarning">
+        You are very busy, remember to sleep! zzz
+      </div>
+
+      <!-- Title -->
+      <h1>{{title}}: {{time}} </h1>
+
+      <!-- Time part -->
+      <input v-model="time" @keyup.esc ="stop" @keyup.enter = "getTime"> </input>
+      <button class="btn-primary" @click="getTime">Resume</button>
+      <button class="btn-danger" @click="stop">Pause</button>
+
+      <hr>
+
+      <!-- Week part  selectable-->
+      <div class="input-group" :class="'mb-2'">
+        <select class="custom-select" name="daySelect" id="daySelect" v-model="selectedDay.day"
+         @change="change_busy">
+            <option v-for="day in days">
+              {{day.day}}
+            </option>       
+        </select>
+        <div class="input-group-append">
+          <input type="number" name="dayFree" id="dayFree" v-model.number="selectedDay.busy"
+          @change="set_busy"/> 
+        </div>
+      </div>
+
+      <!-- Week part list-->
+      <div class="input-group">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" v-for="day in days" :class="[{'font-weight-bolder': validateDay(day.day)},{'bg-light': validateDay(day.day)}]" >
+                <button class="btn-danger" @click="day.busy++">+</button>
+                <button class="btn-info"@click="day.busy--">-</button>
+                {{verifyHours}}
+                div{{day.day}}: {{day.busy}}
+                <span :class="['font-weight-bolder', getStatusDay(day.busy)[0]]"> <strong>{{getStatusDay(day.busy)[1]}}</strong></span>
+            </li>
+        </ul>
+      </div>
+
+      <!-- Progress Bar -->
+      <label for="busy_status" class="font-weight-bolder">Week Status</label>
+      <div class="progress" id= "busy_status">        
+        <div class="progress-bar" :class = "[sumatoryHoursBusy.color]" role="progressbar" :style="{width: sumatoryHoursBusy.value+'%'}" 
+        aria-valuenow="sumatoryHoursBusy.value" aria-valuemin="0" aria-valuemax="100">{{sumatoryHoursBusy.value}}%</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/function.js"></script>
+  </body>
+</html>
