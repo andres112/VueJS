@@ -16,12 +16,6 @@ const app = new Vue({
       { day: "Samstag", busy: 0 }
     ]
   },
-  mounted() {
-    this.interval = setInterval(() => {
-      let d = new Date();
-      this.time = d.toLocaleTimeString();
-    }, 1000);
-  },
   methods: {
     getTime() {
       if (!this.interval) {
@@ -65,6 +59,10 @@ const app = new Vue({
       } else {
         return ["text-dark", "Normal"];
       }
+    },
+
+    destroy(){
+      this.$destroy();
     }
   },
   computed: {
@@ -103,5 +101,36 @@ const app = new Vue({
         }
       };
     }
-  }
+  },
+  beforeCreate() {
+    // first method call after the instance creation
+  },
+  created() {
+    // read all the methods and data of the application, but not el
+    // Is not posible access to the DOM
+  },
+  beforeMount() {
+    // This is executed before of the DOM inserted 
+  },
+  mounted() {
+    // Is executed when DOM is inserted  
+    this.interval = setInterval(() => {
+      let d = new Date();
+      this.time = d.toLocaleTimeString();
+    }, 1000);
+  },
+  beforeUpdate() {
+    // When a change is detected
+  },
+  updated(){
+    // after a change is done
+  },
+  beforeDestroy() {
+    // Before destroy the instance
+    console.log("Preparing to kill the instance")
+  },
+  destroyed() {
+    // for detroy the instance
+    console.log("The instance is killed")
+  },
 });

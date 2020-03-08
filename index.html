@@ -15,7 +15,11 @@
       </div>
 
       <!-- Title -->
-      <h1>{{title}}: {{time}} </h1>
+      <h1>{{title}}: {{time}} 
+        <button class="btn-danger" @click="destroy">
+          Auto Destroy
+        </button>
+      </h1>
 
       <!-- Time part -->
       <input v-model="time" @keyup.esc ="stop" @keyup.enter = "getTime"> </input>
@@ -26,9 +30,9 @@
 
       <!-- Week part  selectable-->
       <div class="input-group" :class="'mb-2'">
-        <select class="custom-select" name="daySelect" id="daySelect" v-model="selectedDay.day"
-         @change="change_busy">
-            <option v-for="day in days">
+        {{change_busy}}
+        <select class="custom-select" name="daySelect" id="daySelect" v-model="selectedDay.day">
+            <option v-for="day in days" :value="day.day">
               {{day.day}}
             </option>       
         </select>
@@ -45,7 +49,7 @@
                 <button class="btn-danger" @click="day.busy++">+</button>
                 <button class="btn-info"@click="day.busy--">-</button>
                 {{verifyHours}}
-                div{{day.day}}: {{day.busy}}
+                {{day.day}}: {{day.busy}}
                 <span :class="['font-weight-bolder', getStatusDay(day.busy)[0]]"> <strong>{{getStatusDay(day.busy)[1]}}</strong></span>
             </li>
         </ul>
@@ -59,6 +63,7 @@
       </div>
     </div>
 
+    <!-- CDN for vuejs -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/function.js"></script>
   </body>
