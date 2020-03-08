@@ -1,7 +1,7 @@
 const app = new Vue({
   el: "#app",
   data: {
-    title: "Hello again",
+    title: "Hello Andrés",
     time: "",
     interval: "",
     selectedDay: { day: "", busy: 0 },

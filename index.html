@@ -15,11 +15,18 @@
       </div>
 
       <!-- Title -->
-      <h1>{{title}}: {{time}} 
-        <button class="btn-danger" @click="destroy">
-          Auto Destroy
-        </button>
-      </h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h1>{{title}}: {{time}} </h1>
+          </div>
+          <div class="col-sm">
+            <button class="btn-danger" @click="destroy" v-if="false">
+              Auto Destroy
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- Time part -->
       <input v-model="time" @keyup.esc ="stop" @keyup.enter = "getTime"> </input>
