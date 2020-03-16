@@ -1,5 +1,5 @@
 Vue.component('titulo', {
-  template:
+  template: /*html*/
   `
     <div class="container">
         <div class="row">
@@ -11,7 +11,7 @@ Vue.component('titulo', {
           </div>
         </div>
     </div>
-    `,
+  `,
   // data is a function here in the component
   data() {
     return {

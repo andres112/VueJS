@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CDN for vuejs -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- CDN for Vuex after Vuejs-->
+    <script src="https://unpkg.com/vuex@3.1.3/dist/vuex.js"></script>
+
+    <!-- Own scripts -->
     <script src="Components/titulo.js"></script>
+    <script src="Components/father.js"></script>
+    <script src="Components/child.js"></script>
+
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
@@ -16,14 +23,33 @@
     <title>Vuejs</title>
   </head>
   <body>
-      <div id="app">
-        <titulo></titulo>
-      </div>
-      
-      <script>
-          new Vue({
-              el: '#app'
-          });
-      </script>
+    <div id="app" class="container">
+      <titulo></titulo>
+      <father></father>
+    </div>
+
+    <!-- Script that contains the Vue instance -->
+    <script>
+      const store = new Vuex.Store({
+        state:{
+          message:"",
+          response: false,
+          emotion:""
+        },
+        mutations:{
+          response(state, resp){
+            state.response = resp
+            state.emotion = resp ? ":)" : ":("
+          },
+          setMessage(state, message){
+            state.message = message
+          }
+        }
+      });
+      new Vue({
+        el: "#app",
+        store
+      });
+    </script>
   </body>
 </html>
