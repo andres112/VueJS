@@ -31,21 +31,22 @@
     <!-- Script that contains the Vue instance -->
     <script>
       const store = new Vuex.Store({
-        state:{
-          message:"",
+        state: {
+          message: "",
           response: false,
-          emotion:""
+          emotion: ""
         },
-        mutations:{
-          response(state, resp){
-            state.response = resp
-            state.emotion = resp ? ":)" : ":("
+        mutations: {
+          setResponse(state, resp) {
+            state.response = resp;
+            state.emotion = resp ? "😀" : "😥";
           },
-          setMessage(state, message){
-            state.message = message
+          setMessage(state, message) {
+            state.message = message;
           }
         }
       });
+
       new Vue({
         el: "#app",
         store
