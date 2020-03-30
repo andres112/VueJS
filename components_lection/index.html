@@ -32,17 +32,39 @@
     <script>
       const store = new Vuex.Store({
         state: {
-          message: "",
+          message:"",
           response: false,
-          emotion: ""
+          emotion: "",
+          time: "",
+          date: "",
+          books: [],
+          book: ""
         },
         mutations: {
+          setMessage(state, message){
+            state.message = message;
+          },
           setResponse(state, resp) {
             state.response = resp;
             state.emotion = resp ? "😀" : "😥";
           },
-          setMessage(state, message) {
-            state.message = message;
+          setCurrentTime(state, d) {
+            state.time = d.toLocaleTimeString();
+            state.date = d.toLocaleDateString();
+          },
+          setBook(state, book) {
+            state.book = book;
+          },
+          fillBooks(state, booksAction) {
+            state.books = booksAction; //The modf. of the states is handle by a mutation yet
+          }
+        },
+        actions: { //Be aware of the prevent default with use of forms in html
+          getBooks: async function(context) { //Using of async await to get info from Backend  
+            url = `https://www.googleapis.com/books/v1/volumes?q=${context.state.book}`;
+            const data = await fetch(url);
+            const book_list = await data.json();
+            context.commit("fillBooks", book_list.items);
           }
         }
       });
