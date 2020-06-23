@@ -47,6 +47,7 @@
           setResponse(state, resp) {
             state.response = resp;
             state.emotion = resp ? "😀" : "😥";
+            console.log(numero(resp))
           },
           setCurrentTime(state, d) {
             state.time = d.toLocaleTimeString();
@@ -73,6 +74,11 @@
         el: "#app",
         store
       });
+
+    // External function example
+      const numero = ant =>{
+        return `Die Antwort ist ${ant}`
+      }
     </script>
   </body>
 </html>
