@@ -9,15 +9,19 @@ Vue.component("child", {
             <hr>
             <div class="input-group" v-if="books">
               <ul class="list-group list-group-flush">
-                <li v-for ="book in books">{{book.volumeInfo.title}}</li>
+                <li v-for ="book in books">
+                  <strong>{{book.volumeInfo.title}}</strong> - {{getAuthors(book.volumeInfo.authors)}}
+                  <div class="font-weight-light"> {{book.volumeInfo.subtitle}} </div>
+                </li>
               </ul>
             </div>
         </div>
     `,
   computed: {
-    ...Vuex.mapState(["emotion", "message", "books"])
+    ...Vuex.mapState(["emotion", "message", "books"]),
+    ...Vuex.mapGetters(["getAuthors"])
   },
   methods: {
-    ...Vuex.mapMutations(["setResponse"])
+    ...Vuex.mapMutations(["setResponse"])    
   }
 });

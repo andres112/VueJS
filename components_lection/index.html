@@ -58,14 +58,25 @@
           },
           fillBooks(state, booksAction) {
             state.books = booksAction; //The modf. of the states is handle by a mutation yet
+          }          
+        },
+        getters:{
+          getAuthors: state => authors => {
+            const author = typeof authors !== 'undefined' && authors.length > 0 ?  
+              (authors.length > 1  ? `${authors[0]} et al.` : authors[0] ):"Anonymous";
+            return author
           }
         },
         actions: { //Be aware of the prevent default with use of forms in html
           getBooks: async function(context) { //Using of async await to get info from Backend  
             url = `https://www.googleapis.com/books/v1/volumes?q=${context.state.book}`;
-            const data = await fetch(url);
-            const book_list = await data.json();
-            context.commit("fillBooks", book_list.items);
+            try {
+              const data = await fetch(url);
+              const book_list = await data.json();
+              context.commit("fillBooks", book_list.items);
+            } catch (error) {
+              alert(error)
+            }            
           }
         }
       });
