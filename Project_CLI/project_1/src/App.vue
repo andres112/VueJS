@@ -1,8 +1,7 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/pokeball.png">
-    <Head msg="Welcome to Pokemon Battle"/>
-    <SearchPokes/>
+  <div id="app" class="container-fluid">    
+    <Head msg="Pokemon Battles"/>
+    <SearchPokes></SearchPokes>
   </div>
 </template>
 
@@ -26,6 +25,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
