@@ -3,6 +3,9 @@ export default{
         let pokemonList = [];
         for(let i=0; i< q; i++)
             pokemonList.push(pokemons[Math.floor(Math.random() * pokemons.length)]);
-        return pokemonList[Symbol.iterator]();;
+        return pokemonList[Symbol.iterator]();
+    },
+    checkgender(gender){
+        return gender === "m" ? "👦":(gender === "f" ? "👧": "😄" );
     }
 }

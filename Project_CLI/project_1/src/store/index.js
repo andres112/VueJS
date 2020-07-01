@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     players :[
       new Player("1", "Felipe", "m", '#fa2f19'),
-      new Player("2", "Andrea", "f", '#33ff0a')
+      new Player("2", "Andrea", "f", '#b821eb')
     ],
     pokemons: [],
     numberOfPokemons: 5
@@ -19,12 +19,15 @@ export default new Vuex.Store({
       state.pokemons = pokemons;
     },
     setPlayerPokemons: function(state, battlePokemon){
-      state.players[battlePokemon.pIndex].pokemonList.push(battlePokemon.details)      
+      state.players[battlePokemon.pIndex].pokemonList.push(battlePokemon)      
     },
     clearsetPlayerPokemons: function(state){
       state.players.forEach(player => {
         player.pokemonList=[];
       });
+    },
+    selectPokemon: function(state, identification) {
+      console.log(identification)
     }
   },
   actions: {
@@ -46,10 +49,8 @@ export default new Vuex.Store({
           for(let i=0; i< context.state.numberOfPokemons; i++){          
             const data = await fetch(battlePokemons.next().value.url);
             const details = await data.json();
-            let element={} 
-            element.pIndex = item;
-            element.details = details;
-            context.commit("setPlayerPokemons", element)         
+            details.pIndex = item;
+            context.commit("setPlayerPokemons", details)         
           }
         })
         
