@@ -12,22 +12,36 @@ export default new Vuex.Store({
       new Player("2", "Andrea", "f", '#b821eb')
     ],
     pokemons: [],
-    numberOfPokemons: 5
+    numberOfPokemons: 5,
+    battlePokemons: {
+      p1:{},
+      p2:{}
+    }
   },
   mutations: {
     fillPokemons: function(state, pokemons){      
       state.pokemons = pokemons;
     },
     setPlayerPokemons: function(state, battlePokemon){
-      state.players[battlePokemon.pIndex].pokemonList.push(battlePokemon)      
+      state.players[battlePokemon.pIndex].pokemonList.push(battlePokemon)           
     },
     clearsetPlayerPokemons: function(state){
       state.players.forEach(player => {
-        player.pokemonList=[];
+        player.pokemonList=[]
+      });
+      
+      Object.keys(state.battlePokemons).forEach(key => {
+        state.battlePokemons[key] = {}
       });
     },
     selectPokemon: function(state, identification) {
-      console.log(identification)
+      if( identification.pIndex === 0){
+        state.battlePokemons.p1 = identification
+      }
+      else{
+        state.battlePokemons.p2 = identification
+      }
+      
     }
   },
   actions: {
