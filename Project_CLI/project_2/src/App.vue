@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/battle">Battle</router-link> |
+      <!-- <router-link to="/battle">Battle</router-link> | -->
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
@@ -19,7 +19,7 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 20px;
 }
 
 #nav a {
@@ -32,6 +32,8 @@
 }
 
 .img404{
-  height: 300px;
+  height: auto;
+  width: 300px;
+  position: relative;
 }  
 </style>

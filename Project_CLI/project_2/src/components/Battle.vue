@@ -1,11 +1,8 @@
 <template>
-  <div class="search">
-    <div class="img_button">
-      <img src="@/assets/pokeball.png" @click="getDetails" />
-    </div>
+  <div class="battle">
     <div class="container">
       <div class="row justify-content-between">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
           <h3 v-bind:style="[{ color: players[0].colorTeam }]">
             {{ players[0].name }} - {{ checkgender(players[0].gender) }}
           </h3>
@@ -42,13 +39,20 @@
                     :src="checkImage(pokemon.sprites.front_default)"
                     :alt="pokemon.name"
                     class="imgPokSize"
+                    height= "auto"
+                    width="75"
                   />
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-2">
+          <div class="img_button">
+            <img src="@/assets/pokeball.png" @click="getDetails" />
+          </div>
+        </div>
+        <div class="col-sm-5">
           <h3 v-bind:style="[{ color: players[1].colorTeam }]">
             {{ players[1].name }} - {{ checkgender(players[1].gender) }}
           </h3>
@@ -85,6 +89,8 @@
                     :src="checkImage(pokemon.sprites.front_default)"
                     :alt="pokemon.name"
                     class="imgPokSize"
+                    height= "auto"
+                    width="75"
                   />
                 </td>
               </tr>
@@ -101,7 +107,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import support from "@/assets/scripts/functions.js";
 
 export default {
-  name: "SearchPokes",
+  name: "Battle",
   computed: {
     ...mapState(["players", "battlePokemons"]),
   },
@@ -126,12 +132,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.container{
+  margin-top: 20px;
+}
 .img_button img {
   -webkit-transform: rotate(30deg) scale(0.5);
   transform: rotate(30deg) scale(0.5);
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
-  width: 10%;
+  width: 80%;
   height: auto;
   cursor: pointer;
 }
@@ -147,7 +156,12 @@ export default {
   border-bottom: none; /*disappears*/
 }
 .imgPokSize {
-  height: 75px;
-  width: auto;
+  padding-top: 100%;
+  margin: 0;
+  padding: 0;
+}
+.table td{
+  padding-top: 0;
+  padding-bottom: 0;
 }
 </style>

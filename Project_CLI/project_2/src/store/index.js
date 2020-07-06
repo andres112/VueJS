@@ -10,7 +10,7 @@ export default new Vuex.Store({
   state: {
     players :[
       new Player("1", "Felipe", "m", '#fa2f19'),
-      new Player("2", "Andrea", "f", '#b821eb')
+      new Player("2", "Andrea", "f", '#a9f12b')
     ],
     pokemons: [],
     numberOfPokemons: 5,
