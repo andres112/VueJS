@@ -9,8 +9,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     players :[
-      new Player("1", "Felipe", "m", '#fa2f19'),
-      new Player("2", "Andrea", "f", '#a9f12b')
+      new Player("1", "Felipe", "m", '#C0382B'),
+      new Player("2", "Andrea", "f", '#3398DB')
     ],
     pokemons: [],
     numberOfPokemons: 5,

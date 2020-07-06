@@ -20,6 +20,7 @@ export default{
             const data = await fetch(battlePokemons.next().value.url);
             const details = await data.json();
             details.pIndex = item;
+            details.isSelected = false;
             context.commit("setPlayerPokemons", details)         
           }
         })

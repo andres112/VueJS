@@ -1,102 +1,100 @@
 <template>
-  <div class="battle">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-sm-5">
-          <h3 v-bind:style="[{ color: players[0].colorTeam }]">
-            {{ players[0].name }} - {{ checkgender(players[0].gender) }}
-          </h3>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext font-weight-bold text-capitalize"
-            v-model="battlePokemons.p1.name"
-          />
-          <table class="table table-sm table-striped table-dark table-hover">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Name</th>
-                <th scope="col">Avatar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="pokemon of players[0].pokemonList"
-                v-bind:key="pokemon.name"
-              >
-                <td class="text-center align-middle">
-                  <input
-                    type="radio"
-                    name="Player1_Pokemon"
-                    :value="pokemon.name"
-                    @click="selectPokemon(pokemon)"
-                  />
-                </td>
-                <td class="text-center align-middle">{{ pokemon.name }}</td>
-                <td>
-                  <img
-                    :src="checkImage(pokemon.sprites.front_default)"
-                    :alt="pokemon.name"
-                    class="imgPokSize"
-                    height= "auto"
-                    width="75"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  <div class="battle container">
+    <div class="row justify-content-between">
+      <div class="col-sm-5">
+        <h3 v-bind:style="[{ color: players[0].colorTeam }]">
+          {{ players[0].name }} - {{ checkgender(players[0].gender) }}
+        </h3>
+        <input
+          type="text"
+          readonly
+          class="form-control-plaintext font-weight-bold text-capitalize text-center"
+          v-model="battlePokemons.p1.name"
+        />
+        <table class="table table-sm table-striped table-dark table-hover">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Name</th>
+              <th scope="col">Avatar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="pokemon of players[0].pokemonList"
+              v-bind:key="pokemon.name"              
+            >
+              <td class="text-center align-middle">
+                <input
+                  type="radio"
+                  name="Player1_Pokemon"
+                  @click="selectPokemon(pokemon)"
+                  :checked="pokemon.isSelected"
+                />
+              </td>
+              <td class="text-center align-middle">{{ pokemon.name }}</td>
+              <td @click="pokemonDetails(pokemon.name)">
+                <img
+                  :src="checkImage(pokemon.sprites.front_default)"
+                  :alt="pokemon.name"
+                  class="imgPokSize"
+                  height="auto"
+                  width="75"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-2">
+        <div class="img_button">
+          <img src="@/assets/pokeball.png" @click="getDetails" />
         </div>
-        <div class="col-sm-2">
-          <div class="img_button">
-            <img src="@/assets/pokeball.png" @click="getDetails" />
-          </div>
-        </div>
-        <div class="col-sm-5">
-          <h3 v-bind:style="[{ color: players[1].colorTeam }]">
-            {{ players[1].name }} - {{ checkgender(players[1].gender) }}
-          </h3>
-          <input
-            type="text"
-            readonly
-            class="form-control-plaintext font-weight-bold text-capitalize"
-            v-model="battlePokemons.p2.name"
-          />
-          <table class="table table-sm table-striped table-dark table-hover">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Name</th>
-                <th scope="col">Avatar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="pokemon in players[1].pokemonList"
-                v-bind:key="pokemon.name"
-              >
-                <td class="text-center align-middle">
-                  <input
-                    type="radio"
-                    name="Player2_Pokemon"
-                    :value="pokemon.name"
-                    @click="selectPokemon(pokemon)"
-                  />
-                </td>
-                <td class="text-center align-middle">{{ pokemon.name }}</td>
-                <td>
-                  <img
-                    :src="checkImage(pokemon.sprites.front_default)"
-                    :alt="pokemon.name"
-                    class="imgPokSize"
-                    height= "auto"
-                    width="75"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      </div>
+      <div class="col-sm-5">
+        <h3 v-bind:style="[{ color: players[1].colorTeam }]">
+          {{ players[1].name }} - {{ checkgender(players[1].gender) }}
+        </h3>
+        <input
+          type="text"
+          readonly
+          class="form-control-plaintext font-weight-bold text-capitalize text-center"
+          v-model="battlePokemons.p2.name"
+        />
+        <table class="table table-sm table-striped table-dark table-hover">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Name</th>
+              <th scope="col">Avatar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="pokemon in players[1].pokemonList"
+              v-bind:key="pokemon.name"
+            >
+              <td class="text-center align-middle">
+                <input
+                  type="radio"
+                  name="Player2_Pokemon"
+                  :checked="pokemon.isSelected"
+                  @click="selectPokemon(pokemon)"
+                />
+              </td>
+              <td class="text-center align-middle">{{ pokemon.name }}</td>
+              <td @click="pokemonDetails(pokemon.name)">
+                <img
+                  :src="checkImage(pokemon.sprites.front_default)"
+                  :alt="pokemon.name"
+                  class="imgPokSize"
+                  height="auto"
+                  width="75"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -123,6 +121,9 @@ export default {
     checkgender(gender) {
       return support.checkgender(gender);
     },
+    pokemonDetails(name){
+      this.$router.push({ name: 'Pokemon', params: { id: name } });
+    }
   },
   mounted() {
     this.$store.dispatch("getPokemons");
@@ -132,7 +133,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container{
+.container {
   margin-top: 20px;
 }
 .img_button img {
@@ -159,8 +160,9 @@ export default {
   padding-top: 100%;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
-.table td{
+.table td {
   padding-top: 0;
   padding-bottom: 0;
 }

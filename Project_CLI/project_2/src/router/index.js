@@ -20,6 +20,11 @@ Vue.use(VueRouter)
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/pokemon/:id',
+    name: 'Pokemon',
+    component: () => import(/* webpackChunkName: "photo" */ '../views/Photo.vue')
   }
 ]
 

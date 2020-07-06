@@ -1,8 +1,19 @@
 <template>
   <div class="home">
-    <h1>The Home page is under construction</h1>
-    <img class="img404" alt="working" src="@/assets/snorlax.png" />
-    <br />
-    <router-link to="/battle" tag="button" class="btn btn-danger">Battle</router-link>
+    <Head msg="Pokemon Battle Configuration"/>
+    <PlayersConfig></PlayersConfig>
+    <router-link to="/battle" tag="button" class="btn btn-danger btn-lg">Battle</router-link>
   </div>
 </template>
+<script>
+import Head from "@/components/Head.vue";
+import PlayersConfig from "@/components/PlayersConfig.vue";
+
+export default {
+  name: 'Home',
+  components:{
+    Head,
+    PlayersConfig
+  },
+}
+</script>

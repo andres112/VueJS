@@ -24,7 +24,15 @@ export default {
     if (identification.pIndex === 0) {
       state.battlePokemons.p1 = identification;
     } else {
-      state.battlePokemons.p2 = identification;
+      state.battlePokemons.p2 = identification;      
     }
+
+    // Set the is selected as true only for selected pokemon
+    state.players[identification.pIndex].pokemonList.forEach((pokemon) => {
+      pokemon.isSelected = false;
+      if (pokemon.name === identification.name) {
+        pokemon.isSelected = true;
+      }
+    });
   },
 };
