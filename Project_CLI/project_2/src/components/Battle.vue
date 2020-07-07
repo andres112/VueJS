@@ -114,14 +114,13 @@ export default {
     ...mapActions(["getPokemons", "getDetails"]),
 
     checkImage(image) {
-      return image == null
-        ? "https://www.cybercomplaint.in/assets/img/mailbox/NoImage.png"
-        : image;
+      return support.checkImage(image)
     },
     checkgender(gender) {
       return support.checkgender(gender);
     },
     pokemonDetails(name){
+      // push the dynamic route to the router
       this.$router.push({ name: 'Pokemon', params: { id: name } });
     }
   },

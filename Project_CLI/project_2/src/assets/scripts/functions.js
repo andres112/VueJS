@@ -9,6 +9,11 @@ export default {
     }
     return pokemonList[Symbol.iterator]();
   },
+  checkImage(image) {
+    return image == null
+      ? "https://www.cybercomplaint.in/assets/img/mailbox/NoImage.png"
+      : image;
+  },
   checkgender(gender) {
     return gender === "m" ? "👦" : gender === "f" ? "👧" : "😄";
   },

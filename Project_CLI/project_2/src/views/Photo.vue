@@ -1,6 +1,5 @@
 <template>
   <div class="photo">
-    <h1>This is an Photo page</h1>
     <Photo></Photo>
     <br />
     <router-link to="/battle" tag="button" class="btn btn-danger">Battle</router-link>
