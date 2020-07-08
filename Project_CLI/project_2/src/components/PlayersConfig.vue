@@ -24,6 +24,7 @@
                 </select>
               </td>
               <td class="text-center align-middle">
+                <!-- This is used to the color picker -->
                 <v-swatches
                   v-model="players[0].colorTeam"
                   popover-x="left"
