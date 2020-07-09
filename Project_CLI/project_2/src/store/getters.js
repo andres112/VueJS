@@ -6,6 +6,7 @@ export default {
     state.players.forEach(element => {
       if(element.pokemonList.some(x => x.name === name)){
         pokemon = element.pokemonList.find(x => x.name === name);
+        // if not image in sprites parameter 
         pokemon.sprites.front_default = support.checkImage(pokemon.sprites.front_default);
       }
     });    

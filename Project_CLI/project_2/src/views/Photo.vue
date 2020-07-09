@@ -2,7 +2,6 @@
   <div class="photo">
     <Photo></Photo>
     <br />
-    <router-link to="/battle" tag="button" class="btn btn-danger">Battle</router-link>
   </div>
 </template>
 
