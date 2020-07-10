@@ -79,7 +79,7 @@ export default {
   components: { VSwatches },
   computed: {
     ...mapState(["players"]),
-  }
+  } 
 };
 </script>
 <style scoped>

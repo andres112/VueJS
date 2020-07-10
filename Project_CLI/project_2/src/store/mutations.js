@@ -1,3 +1,5 @@
+import Player from '@/assets/scripts/Player.js'
+
 export default {
   fillPokemons: function(state, pokemons) {
     state.pokemons = pokemons;
@@ -20,6 +22,12 @@ export default {
     Object.keys(state.battlePokemons).forEach((key) => {
       state.battlePokemons[key] = {};
     });
+  },
+  setDefaultPlayers: function(state) {
+    state.players = [
+      new Player("1", "Player 1", "n", '#C0382B'),
+      new Player("2", "Player 2", "n", '#3398DB')
+    ]
   },
   selectPokemon: function(state, identification) {
     if (identification.pIndex === 0) {

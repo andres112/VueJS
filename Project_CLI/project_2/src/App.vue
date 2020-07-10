@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <!-- the router links in nav bar -->
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Menu</router-link> |
       <!-- <router-link to="/battle">Battle</router-link> | -->
       <router-link to="/about">About</router-link>
     </div>
