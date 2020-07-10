@@ -7,6 +7,7 @@ import 'vue-swatches/dist/vue-swatches.css'
 
 Vue.config.productionTip = false
 
+// Vue instance creation including router and store
 new Vue({
   router,
   store,

@@ -19,7 +19,9 @@ export default{
           for(let i=0; i < context.state.numberOfPokemons; i++){          
             const data = await fetch(battlePokemons.next().value.url);
             const details = await data.json();
+            // pIndex identfies the player who belongs this pokemn
             details.pIndex = item;
+            // isSelected identfies if the pokemon is going to be used to the battle
             details.isSelected = false;
             context.commit("setPlayerPokemons", details)         
           }

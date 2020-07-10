@@ -16,6 +16,7 @@ export default {
       player.pokemonList = [];
     });
 
+    // Initialize the pokemons used in battle
     Object.keys(state.battlePokemons).forEach((key) => {
       state.battlePokemons[key] = {};
     });

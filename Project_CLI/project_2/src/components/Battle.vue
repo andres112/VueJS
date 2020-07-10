@@ -113,6 +113,7 @@ export default {
     ...mapMutations(["selectPokemon"]),
     ...mapActions(["getPokemons", "getDetails"]),
 
+    // Parcular functions to this component
     checkImage(image) {
       return support.checkImage(image)
     },
@@ -120,11 +121,12 @@ export default {
       return support.checkgender(gender);
     },
     pokemonDetails(name){
-      // push the dynamic route to the router
+      // push the dynamic route to the router, trigger a route
       this.$router.push({ name: 'Pokemon', params: { id: name } });
     }
   },
   mounted() {
+    // this allows to dispatch an action just when DOM is loaded
     this.$store.dispatch("getPokemons");
   },
 };
