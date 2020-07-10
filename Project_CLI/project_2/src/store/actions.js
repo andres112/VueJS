@@ -1,4 +1,5 @@
 import support from '@/assets/scripts/functions.js'
+import { db } from "@/firebase";
 
 export default{
     getPokemons: async function (context) {
@@ -30,5 +31,13 @@ export default{
       } catch (error) {
         console.error(error)
       }
+    },
+    getPlayers: async function ({commit}) {
+      // An async call to the database collection players in firebase 
+      const data = await db.collection('players').get();
+      data.forEach(x=>{
+        console.log("id from firebase: "+ x.id)
+        console.log(x.data())
+      })     
     }
   }

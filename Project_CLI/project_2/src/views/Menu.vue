@@ -5,7 +5,7 @@
     <br>
     <div class="btn-group-vertical">
         <button class="btn btn-primary" @click="newGame">New Battle</button>
-        <router-link to="/battle" tag="button" class="btn btn-primary">Continue Battle</router-link>    
+        <button class="btn btn-primary" @click="loadGame">Continue Battle</button>  
     </div>
   </div>
 </template>
@@ -20,11 +20,18 @@ export default {
   },
   methods: {
     newGame() {
+      // clear states
       this.$store.commit("setDefaultPlayers");
+      this.$store.commit("clearsetPlayerPokemons");
       // after that push a route
       this.$router.push({ name: "Home" });
     },
-  },  
+    async loadGame(){
+      await this.$store.dispatch('getPlayers')
+      // after that push a route
+      await this.$router.push({ name: "Battle" });
+    }
+  }
 }
 </script>
 
