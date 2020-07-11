@@ -2,7 +2,7 @@
   <div class="battle container">
     <div class="row justify-content-between">
       <div class="col-sm-5">
-        <h3 v-bind:style="[{ color: players[0].colorTeam }]">
+        <h3 v-bind:style="[{ color: players[0].color }]">
           {{ players[0].name }} - {{ checkgender(players[0].gender) }}
         </h3>
         <input
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="col-sm-5">
-        <h3 v-bind:style="[{ color: players[1].colorTeam }]">
+        <h3 v-bind:style="[{ color: players[1].color }]">
           {{ players[1].name }} - {{ checkgender(players[1].gender) }}
         </h3>
         <input

@@ -26,7 +26,7 @@
               <td class="text-center align-middle">
                 <!-- This is used to the color picker -->
                 <v-swatches
-                  v-model="players[0].colorTeam"
+                  v-model="players[0].color"
                   popover-x="left"
                 ></v-swatches>
               </td>
@@ -58,7 +58,7 @@
               </td>
               <td class="text-center align-middle">
                 <v-swatches
-                  v-model="players[1].colorTeam"
+                  v-model="players[1].color"
                   popover-x="left"
                 ></v-swatches>
               </td>

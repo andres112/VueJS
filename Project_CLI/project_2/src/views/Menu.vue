@@ -27,6 +27,9 @@ export default {
       this.$router.push({ name: "Home" });
     },
     async loadGame(){
+      // first initialize players instances
+      this.$store.commit("setDefaultPlayers");
+      // Then load players in database
       await this.$store.dispatch('getPlayers')
       // after that push a route
       await this.$router.push({ name: "Battle" });

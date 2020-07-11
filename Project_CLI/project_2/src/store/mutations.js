@@ -1,4 +1,4 @@
-import Player from '@/assets/scripts/Player.js'
+import Player from "@/assets/scripts/Player.js";
 
 export default {
   fillPokemons: function(state, pokemons) {
@@ -23,17 +23,11 @@ export default {
       state.battlePokemons[key] = {};
     });
   },
-  setDefaultPlayers: function(state) {
-    state.players = [
-      new Player("1", "Player 1", "n", '#C0382B'),
-      new Player("2", "Player 2", "n", '#3398DB')
-    ]
-  },
   selectPokemon: function(state, identification) {
     if (identification.pIndex === 0) {
       state.battlePokemons.p1 = identification;
     } else {
-      state.battlePokemons.p2 = identification;      
+      state.battlePokemons.p2 = identification;
     }
 
     // Set the is selected as true only for selected pokemon
@@ -41,6 +35,22 @@ export default {
       pokemon.isSelected = false;
       if (pokemon.name === identification.name) {
         pokemon.isSelected = true;
+      }
+    });
+  },
+  setDefaultPlayers: function(state) {
+    state.players = [
+      new Player("0", "Player 1", "n", "#C0382B"),
+      new Player("2", "Player 2", "n", "#3398DB"),
+    ];
+  },
+  setLoadPlayers: function(state, payload) {
+    // receive the payload from database in payload
+    state.players.forEach((player) => {
+      if (player.id === payload.id) {
+        for (const [key, value] of Object.entries(payload)) {
+          player[key] = value
+        }
       }
     });
   },
