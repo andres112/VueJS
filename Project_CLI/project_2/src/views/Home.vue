@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <Head msg="Pokemon Battle Configuration"/>
-    <PlayersConfig></PlayersConfig>
-    <router-link to="/battle" tag="button" class="btn btn-danger btn-lg">Battle</router-link>
+    <PlayersConfig></PlayersConfig>    
   </div>
 </template>
 <script>

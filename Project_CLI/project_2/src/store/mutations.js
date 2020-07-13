@@ -37,19 +37,35 @@ export default {
         pokemon.isSelected = true;
       }
     });
+    // every time than a pokemon is selected the database is updated
+    this.dispatch("setPlayersDB"); 
   },
   setDefaultPlayers: function(state) {
+    // Initialize player information
     state.players = [
-      new Player("0", "Player 1", "n", "#C0382B"),
-      new Player("2", "Player 2", "n", "#3398DB"),
+      new Player(
+        "1",
+        "Player 1",
+        "n",
+        "#C0382B",
+        state.players[0] ? state.players[0].remoteId : ""
+      ),
+      new Player(
+        "2",
+        "Player 2",
+        "n",
+        "#3398DB",
+        state.players[1] ? state.players[1].remoteId : ""
+      ),
     ];
   },
   setLoadPlayers: function(state, payload) {
     // receive the payload from database in payload
     state.players.forEach((player) => {
-      if (player.id === payload.id) {
-        for (const [key, value] of Object.entries(payload)) {
-          player[key] = value
+      if (player.id === payload.data.id) {
+        player.remoteId = payload.id;
+        for (const [key, value] of Object.entries(payload.data)) {
+          player[key] = value;
         }
       }
     });

@@ -22,7 +22,7 @@
           <tbody>
             <tr
               v-for="pokemon of players[0].pokemonList"
-              v-bind:key="pokemon.name"              
+              v-bind:key="pokemon.name"
             >
               <td class="text-center align-middle">
                 <input
@@ -111,19 +111,19 @@ export default {
   },
   methods: {
     ...mapMutations(["selectPokemon"]),
-    ...mapActions(["getPokemons", "getDetails"]),
+    ...mapActions(["getPokemons", "getDetails", "setPlayersDB"]),
 
     // Parcular functions to this component
     checkImage(image) {
-      return support.checkImage(image)
+      return support.checkImage(image);
     },
     checkgender(gender) {
       return support.checkgender(gender);
     },
-    pokemonDetails(name){
+    pokemonDetails(name) {
       // push the dynamic route to the router, trigger a route
-      this.$router.push({ name: 'Pokemon', params: { id: name } });
-    }
+      this.$router.push({ name: "Pokemon", params: { id: name } });
+    },
   },
   mounted() {
     // this allows to dispatch an action just when DOM is loaded

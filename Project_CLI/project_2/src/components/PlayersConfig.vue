@@ -67,11 +67,12 @@
         </table>
       </div>
     </div>
+    <button class="btn btn-primary" @click.prevent="startBattle">Battle</button>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import VSwatches from "vue-swatches";
 
 export default {
@@ -79,7 +80,15 @@ export default {
   components: { VSwatches },
   computed: {
     ...mapState(["players"]),
-  } 
+  },
+  methods: {
+    ...mapActions(["setPlayersDB"]),
+    startBattle() {
+      // update database when players data is changed
+      this.setPlayersDB();
+      this.$router.push({ name: "Battle" });
+    },
+  },
 };
 </script>
 <style scoped>

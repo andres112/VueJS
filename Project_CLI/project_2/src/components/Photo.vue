@@ -79,7 +79,7 @@ export default {
     ...mapMutations(["selectPokemon"]),
     selectLocal() {
       // function required first to modify with mutations the select state of a pokemon
-      this.$store.commit("selectPokemon", this.pokemon);
+      this.selectPokemon(this.pokemon)
       // after that push a route
       this.$router.push({ name: "Battle" });
     },

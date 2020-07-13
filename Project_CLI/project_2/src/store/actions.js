@@ -38,8 +38,23 @@ export default {
     // An async call to the database collection players in firebase
     const data = await db.collection("players").get();
     data.forEach((x) => {
+      let payload = { id: x.id, data: x.data() };
       // commit the data from database to mutation
-      commit("setLoadPlayers", x.data());
+      commit("setLoadPlayers", payload);
+    });
+  },
+  setPlayersDB: function({ state }) {
+    // Update the documents in firestore
+    state.players.forEach(async (player) => {
+      await db
+        .collection("players")
+        .doc(player.remoteId)
+        .update({
+          name: player.name,
+          gender: player.gender,
+          color: player.color,
+          pokemonList: player.pokemonList
+        });
     });
   },
 };
