@@ -5,7 +5,7 @@
     <br />
     <div class="btn-group-vertical">
       <button class="btn btn-primary" @click="newGame">New Battle</button>
-      <button class="btn btn-primary" @click="loadGame">Continue Battle</button>
+      <router-link tag="button" class="btn btn-primary" to="/battle">Continue Battle</router-link>
     </div>
   </div>
 </template>
@@ -25,11 +25,7 @@ export default {
       this.$store.commit("clearsetPlayerPokemons");
       // after that push a route
       this.$router.push({ name: "Home" });
-    },
-    loadGame() {
-      // after that push a route
-      this.$router.push({ name: "Battle" });
-    },
+    }
   },
   created() {
     // first initialize players instances

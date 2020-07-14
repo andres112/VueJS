@@ -5,12 +5,6 @@
         <h3 v-bind:style="[{ color: players[0].color }]">
           {{ players[0].name }} - {{ checkgender(players[0].gender) }}
         </h3>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext font-weight-bold text-capitalize text-center"
-          v-model="battlePokemons.p1.name"
-        />
         <table class="table table-sm table-striped table-dark table-hover">
           <thead>
             <tr>
@@ -55,12 +49,6 @@
         <h3 v-bind:style="[{ color: players[1].color }]">
           {{ players[1].name }} - {{ checkgender(players[1].gender) }}
         </h3>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext font-weight-bold text-capitalize text-center"
-          v-model="battlePokemons.p2.name"
-        />
         <table class="table table-sm table-striped table-dark table-hover">
           <thead>
             <tr>
@@ -107,7 +95,7 @@ import support from "@/assets/scripts/functions.js";
 export default {
   name: "Battle",
   computed: {
-    ...mapState(["players", "battlePokemons"]),
+    ...mapState(["players"]),
   },
   methods: {
     ...mapMutations(["selectPokemon"]),
@@ -162,6 +150,9 @@ export default {
   margin: 0;
   padding: 0;
   cursor: pointer;
+}
+.table{
+  margin-top: 10px;
 }
 .table td {
   padding-top: 0;

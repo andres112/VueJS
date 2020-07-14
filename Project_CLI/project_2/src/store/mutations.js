@@ -17,19 +17,8 @@ export default {
     state.players.forEach((player) => {
       player.pokemonList = [];
     });
-
-    // Initialize the pokemons used in battle
-    Object.keys(state.battlePokemons).forEach((key) => {
-      state.battlePokemons[key] = {};
-    });
   },
   selectPokemon: function(state, identification) {
-    if (identification.pIndex === 0) {
-      state.battlePokemons.p1 = identification;
-    } else {
-      state.battlePokemons.p2 = identification;
-    }
-
     // Set the is selected as true only for selected pokemon
     state.players[identification.pIndex].pokemonList.forEach((pokemon) => {
       pokemon.isSelected = false;

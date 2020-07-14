@@ -12,10 +12,6 @@ export default new Vuex.Store({
     players :[],
     pokemons: [],
     numberOfPokemons: 5,
-    battlePokemons: {
-      p1:{},
-      p2:{}
-    }
   },
   getters,
   mutations,
