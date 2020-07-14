@@ -1,3 +1,5 @@
+import firebase from 'firebase/app' // Import firebase 
+
 export default {
   getRandomPokemonList(pokemons, q) {
     let pokemonList = [];
@@ -17,4 +19,10 @@ export default {
   checkgender(gender) {
     return gender === "m" ? "👦" : gender === "f" ? "👧" : "😄";
   },
+  getTimestamp(){
+    return firebase.firestore.Timestamp.fromDate(new Date());
+  },
+  convertTime(timestamp){
+    return timestamp.toLocaleString();
+  }
 };

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Menu from '../views/Menu.vue'
 import Battle from '@/views/Battle.vue'
 import Home from '@/views/Home.vue'
+import BattleHistory from '@/views/History.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
     path: '/battle',
     name: 'Battle',
     component: Battle
+  },
+  {
+    path: '/history',
+    name: 'History',
+    component: BattleHistory
   },
   {
     path: '/about',

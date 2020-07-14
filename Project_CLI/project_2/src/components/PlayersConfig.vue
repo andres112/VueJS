@@ -82,10 +82,11 @@ export default {
     ...mapState(["players"]),
   },
   methods: {
-    ...mapActions(["setPlayersDB"]),
+    ...mapActions(["setPlayersDB", "addBattleDB"]),
     startBattle() {
       // update database when players data is changed
       this.setPlayersDB();
+      this.addBattleDB();
       this.$router.push({ name: "Battle" });
     },
   },

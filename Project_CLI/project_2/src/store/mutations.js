@@ -59,4 +59,7 @@ export default {
       }
     });
   },
+  setHistory: function (state, payload) {
+    state.history = payload    
+  }
 };
