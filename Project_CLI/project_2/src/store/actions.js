@@ -42,14 +42,17 @@ export default {
   //# Database section #
   //####################
   getPlayers: async function({ commit }) {
+    const remotePlayers = [];
     try {
       // An async call to the database collection players in firebase
       const data = await db.collection("players").get();
       data.forEach((x) => {
-        let payload = { id: x.id, data: x.data() };
-        // commit the data from database to mutation
-        commit("setLoadPlayers", payload);
+        let remoteplayer = x.data();
+        remoteplayer.remoteId = x.id;
+        remotePlayers.push(remoteplayer);
       });
+      // commit the data from database to mutation
+      commit("setLoadPlayers", remotePlayers);
     } catch (error) {
       console.error(error);
     }
@@ -72,6 +75,7 @@ export default {
       console.error(error);
     }
   },
+  // add elements to battles collection
   addBattleDB: async function({ state }) {
     try {
       await db.collection("battles").add({
@@ -91,16 +95,36 @@ export default {
       console.error(error);
     }
   },
+  // get all elements of battles collection
   getHistory: async function({ commit }) {
     const battleList = [];
     try {
-      const data = await db.collection("battles").get();
+      const data = await db
+        .collection("battles")
+        .orderBy("timestamp")
+        .limit(10)
+        .get();
       data.forEach((item) => {
         let battle = item.data();
         battle.id = item.id;
         battleList.push(battle);
       });
       commit("setHistory", battleList);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  // remove element from battles collection
+  removeBattleDB: async function({ commit, dispatch }, idBattle) {
+    try {
+      await db
+        .collection("battles")
+        .doc(idBattle)
+        .delete();
+      // To refresh the list we can get history from databse but is not recommendable
+      // dispatch('getHistory');
+      // is better with a mutation in state
+      commit("updateHistory", idBattle);
     } catch (error) {
       console.error(error);
     }

@@ -5,7 +5,7 @@
     <br />
     <div class="btn-group-vertical">
       <button class="btn btn-primary" @click="newGame">New Battle</button>
-      <router-link tag="button" class="btn btn-primary" to="/battle">Continue Battle</router-link>
+      <button class="btn btn-primary" @click="loadGame">Continue Battle</button>
     </div>
   </div>
 </template>
@@ -25,6 +25,10 @@ export default {
       this.$store.commit("clearsetPlayerPokemons");
       // after that push a route
       this.$router.push({ name: "Home" });
+    },
+    loadGame(){
+      this.$store.commit('setRemoteToLocalPlayers');
+      this.$router.push({ name: "Battle" });
     }
   },
   created() {

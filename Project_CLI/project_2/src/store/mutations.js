@@ -27,7 +27,7 @@ export default {
       }
     });
     // every time than a pokemon is selected the database is updated
-    this.dispatch("setPlayersDB"); 
+    this.dispatch("setPlayersDB");
   },
   setDefaultPlayers: function(state) {
     // Initialize player information
@@ -48,18 +48,24 @@ export default {
       ),
     ];
   },
+  setRemoteToLocalPlayers: function (state) {
+    state.players = state.remotePlayers;
+  },
   setLoadPlayers: function(state, payload) {
     // receive the payload from database in payload
-    state.players.forEach((player) => {
-      if (player.id === payload.data.id) {
-        player.remoteId = payload.id;
-        for (const [key, value] of Object.entries(payload.data)) {
-          player[key] = value;
-        }
-      }
-    });
+    state.remotePlayers = payload;
+    state.players[0].remoteId = payload.some((x) => x.id == 1)
+      ? payload.find((x) => x.id == 1).remoteId
+      : "";
+    state.players[1].remoteId = payload.some((x) => x.id == 2)
+      ? payload.find((x) => x.id == 2).remoteId
+      : "";
   },
-  setHistory: function (state, payload) {
-    state.history = payload    
-  }
+  // mutations for history list state modifications
+  setHistory: function(state, payload) {
+    state.history = payload;
+  },
+  updateHistory: function(state, idBattle) {
+    state.history = state.history.filter((x) => x.id != idBattle);
+  },
 };

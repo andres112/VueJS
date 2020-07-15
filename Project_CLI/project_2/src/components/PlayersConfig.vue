@@ -67,7 +67,9 @@
         </table>
       </div>
     </div>
-    <button class="btn btn-primary" @click.prevent="startBattle">Battle</button>
+    <button class="btn btn-success btn-lg" @click.prevent="startBattle">
+      <i class="fa fa-fire"></i>Battle
+    </button>
   </div>
 </template>
 

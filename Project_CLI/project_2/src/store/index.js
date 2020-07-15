@@ -13,6 +13,7 @@ export default new Vuex.Store({
     pokemons: [],
     numberOfPokemons: 5,
     history: [],
+    remotePlayers: [],
   },
   getters,
   mutations,
