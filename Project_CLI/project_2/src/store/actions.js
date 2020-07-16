@@ -101,7 +101,7 @@ export default {
     try {
       const data = await db
         .collection("battles")
-        .orderBy("timestamp")
+        .orderBy("timestamp", "desc")
         .limit(10)
         .get();
       data.forEach((item) => {
