@@ -3,10 +3,29 @@
     <div id="nav">
       <!-- the router links in nav bar -->
       <router-link to="/">Menu</router-link> |
-      <router-link to="/history">Previous Battles</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/history">Previous Battles</router-link>
+      <div class="topnav-right">
+        <button
+          class="btn btn-outline-success mr-2"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Log in"
+        >
+          <i class="fa fa-sign-in"></i>
+        </button>
+        <router-link to="/register">
+          <button
+            class="btn btn-outline-success"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Register"
+          >
+            <i class="fa fa-user-plus"></i>
+          </button>
+        </router-link>
+      </div>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -31,10 +50,14 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.topnav-right {
+  float: right;
+}
 
-.img404{
+.img404 {
   height: auto;
   width: 300px;
   position: relative;
-}  
+}
+
 </style>

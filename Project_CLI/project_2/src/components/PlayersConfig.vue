@@ -28,6 +28,7 @@
                 <v-swatches
                   v-model="players[0].color"
                   popover-x="left"
+                  swatches="text-advanced"
                 ></v-swatches>
               </td>
             </tr>
@@ -60,6 +61,7 @@
                 <v-swatches
                   v-model="players[1].color"
                   popover-x="left"
+                  swatches="text-advanced"
                 ></v-swatches>
               </td>
             </tr>

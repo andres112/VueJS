@@ -4,6 +4,7 @@ import Menu from '../views/Menu.vue'
 import Battle from '@/views/Battle.vue'
 import Home from '@/views/Home.vue'
 import BattleHistory from '@/views/History.vue'
+import Register from '@/views/Register.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Menu',
     component: Menu
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/home',
@@ -27,11 +33,6 @@ Vue.use(VueRouter)
     path: '/history',
     name: 'History',
     component: BattleHistory
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/pokemon/:id',
