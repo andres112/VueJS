@@ -1,5 +1,5 @@
 import support from "@/assets/scripts/functions.js";
-import { db } from "@/firebase";
+import { db, auth } from "@/firebase";
 
 export default {
   //####################
@@ -127,6 +127,24 @@ export default {
       commit("updateHistory", idBattle);
     } catch (error) {
       console.error(error);
+    }
+  },
+
+  //####################
+  //#   User section   #
+  //####################
+  createUser: async function({ commit }, user) {
+    commit("setError", null); // Clean error
+    try {
+      const res = await auth.createUserWithEmailAndPassword(
+        user.email,
+        user.password
+      );
+      const user_res = { email: res.user.email, uid: res.user.uid };
+      commit("setUser", user_res);
+    } catch (error) {
+      console.error(error);
+      commit("setError", error);
     }
   },
 };

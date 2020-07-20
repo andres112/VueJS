@@ -48,6 +48,8 @@ export default {
       ),
     ];
   },
+
+  // Mutations that use database queries
   setRemoteToLocalPlayers: function (state) {
     state.players = state.remotePlayers;
   },
@@ -68,4 +70,12 @@ export default {
   updateHistory: function(state, idBattle) {
     state.history = state.history.filter((x) => x.id != idBattle);
   },
+
+  // Mutations for User register and login
+  setUser: function(state, payload){
+    state.user = payload;
+  },
+  setError: function (state, payload) {
+    state.error = payload;
+  }
 };

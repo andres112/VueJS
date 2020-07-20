@@ -1,10 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- navbar-expand-sm allows to put the elements in nav inline -->
+    <div id="nav" class="navbar navbar-expand-sm">
       <!-- the router links in nav bar -->
-      <router-link to="/">Menu</router-link> |
-      <router-link to="/history">Previous Battles</router-link>
-      <div class="topnav-right">
+      <!-- The mr-auto class split the elements inside the nav-bar -->
+      <ul class="navbar-nav mr-auto mt-2 ">
+        <li class="nav-item">
+          <router-link to="/" class="nav-link">Menu</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/history" class="nav-link"
+            >Previous Battles</router-link
+          >
+        </li>
+      </ul>
+      <div>
         <button
           class="btn btn-outline-success mr-2"
           data-toggle="tooltip"
@@ -40,6 +50,7 @@
 
 #nav {
   padding: 20px;
+  overflow: hidden;
 }
 
 #nav a {
@@ -50,14 +61,10 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-.topnav-right {
-  float: right;
-}
 
 .img404 {
   height: auto;
   width: 300px;
   position: relative;
 }
-
 </style>

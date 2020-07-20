@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Player from "@/assets/scripts/Player.js";
 import actions from "./actions.js";
 import mutations from "./mutations.js";
 import getters from "./getters.js";
@@ -14,6 +13,9 @@ export default new Vuex.Store({
     numberOfPokemons: 5,
     history: [],
     remotePlayers: [],
+
+    user: null,
+    error: null,
   },
   getters,
   mutations,

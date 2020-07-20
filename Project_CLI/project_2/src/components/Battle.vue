@@ -115,7 +115,7 @@ export default {
   },
   mounted() {
     // this allows to dispatch an action just when DOM is loaded
-    this.$store.dispatch("getPokemons");
+    this.getPokemons();
   },
 };
 </script>
