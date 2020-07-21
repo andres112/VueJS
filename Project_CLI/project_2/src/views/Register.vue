@@ -35,7 +35,7 @@
           id="pass"
           placeholder="password"
           v-model="pass"
-          class="border "
+          class="border"
         />
       </div>
       <div class="form-group">
@@ -79,13 +79,17 @@ export default {
     ...mapActions(["createUser"]),
     closeAlert() {
       this.$store.state.error = null;
-    },    
+    },
   },
   computed: {
     ...mapState(["error"]),
     // function to validate if password and repeat passwor are similar and different of empty
     deactivate() {
-      return this.pass === this.r_pass && this.pass.trim() !=='';
+      return (
+        this.pass === this.r_pass &&
+        this.pass.trim() !== "" &&
+        this.pass.length > 5
+      );
     },
   },
   created() {},

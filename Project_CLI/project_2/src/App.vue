@@ -13,31 +13,22 @@
             >Previous Battles</router-link
           >
         </li>
-      </ul>
-      <div>
-        <button
-          class="btn btn-outline-success mr-2"
-          data-toggle="tooltip"
-          data-placement="bottom"
-          title="Log in"
-        >
-          <i class="fa fa-sign-in"></i>
-        </button>
-        <router-link to="/register">
-          <button
-            class="btn btn-outline-success"
-            data-toggle="tooltip"
-            data-placement="bottom"
-            title="Register"
-          >
-            <i class="fa fa-user-plus"></i>
-          </button>
-        </router-link>
-      </div>
+      </ul> 
+      <!-- The login part was separated and build in a component -->
+      <Login></Login>     
     </div>
     <router-view />
   </div>
 </template>
+<script>
+import Login from "@/components/Login.vue";
+
+export default {
+  components:{
+    Login
+  }
+}
+</script>
 
 <style>
 #app {
@@ -55,6 +46,7 @@
 
 #nav a {
   font-weight: bold;
+  font-size: large;
   color: #2c3e50;
 }
 

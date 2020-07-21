@@ -12,6 +12,8 @@
 
 <script>
 import Head from "@/components/Head.vue";
+import { mapMutations } from "vuex";
+import router from "@/router";
 
 export default {
   name: "Menu",
@@ -19,17 +21,19 @@ export default {
     Head,
   },
   methods: {
+    ...mapMutations(["setDefaultPlayers", "clearsetPlayerPokemons"]),
     newGame() {
       // first initialize players instances
-      this.$store.commit("setDefaultPlayers");
-      this.$store.commit("clearsetPlayerPokemons");
+      this.setDefaultPlayers();
+      this.clearsetPlayerPokemons();
       // after that push a route
-      this.$router.push({ name: "Home" });
+      router.push({ name: "Home" });
     },
-    loadGame(){
-      this.$store.commit('setRemoteToLocalPlayers');
+    loadGame() {
+      // This is another version how to call a mutation and a route
+      this.$store.commit("setRemoteToLocalPlayers");
       this.$router.push({ name: "Battle" });
-    }
+    },
   },
   created() {
     // first initialize players instances

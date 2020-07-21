@@ -91,6 +91,7 @@
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 import support from "@/assets/scripts/functions.js";
+import router from "@/router";
 
 export default {
   name: "Battle",
@@ -110,7 +111,8 @@ export default {
     },
     pokemonDetails(name) {
       // push the dynamic route to the router, trigger a route
-      this.$router.push({ name: "Pokemon", params: { id: name } });
+      // this.$router.push({ name: "Pokemon", params: { id: name } });
+      router.push({ name: "Pokemon", params: { id: name } });
     },
   },
   mounted() {
@@ -151,7 +153,7 @@ export default {
   padding: 0;
   cursor: pointer;
 }
-.table{
+.table {
   margin-top: 10px;
 }
 .table td {

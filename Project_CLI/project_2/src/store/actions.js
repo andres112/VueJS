@@ -1,6 +1,9 @@
 import support from "@/assets/scripts/functions.js";
 import { db, auth } from "@/firebase";
 
+// import the router to use it here; automatically reads index.js
+import router from "@/router"; 
+
 export default {
   //####################
   //#    Api section   #
@@ -142,6 +145,7 @@ export default {
       );
       const user_res = { email: res.user.email, uid: res.user.uid };
       commit("setUser", user_res);
+      router.push('/'); // Go to the main route "Menu"
     } catch (error) {
       console.error(error);
       commit("setError", error);

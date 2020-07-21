@@ -59,6 +59,7 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import router from "@/router";
 
 export default {
   name: "Photo",
@@ -81,10 +82,10 @@ export default {
       // function required first to modify with mutations the select state of a pokemon
       this.selectPokemon(this.pokemon)
       // after that push a route
-      this.$router.push({ name: "Battle" });
+      router.push('/battle');
     },
     loadData() {
-      // This function is executed from beforemount() stage in vuejs
+      // This function is executed from created() stage in vuejs
       this.pokemon = this.$store.getters.getPokemon(this.$route.params.id);
 
       let arrayStats = Object.values(this.pokemon.stats);
@@ -99,7 +100,7 @@ export default {
       this.image = this.pokemon.sprites.front_default;
     },
   },
-  beforeMount() {
+  created() {
     // The data is assigned before DOM is inserted and this funcitonality is just used in this component
     this.loadData();
   },

@@ -78,6 +78,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import VSwatches from "vue-swatches";
+import router from "@/router";
 
 export default {
   name: "PlayersConfig",
@@ -91,7 +92,7 @@ export default {
       // update database when players data is changed
       this.setPlayersDB();
       this.addBattleDB();
-      this.$router.push({ name: "Battle" });
+      router.push({ name: "Battle" });
     },
   },
 };
