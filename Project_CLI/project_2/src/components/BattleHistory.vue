@@ -9,7 +9,9 @@
         {{ convertTime(item.timestamp.toDate()) }}: {{ item.player_1.name }} vs
         {{ item.player_2.name }}
         <button class="btn btn-danger btn-sm" @click.prevent = "removeBattleDB(item.id)">
-          <i class="fa fa-trash-o"></i> Remove
+          <!-- This hide the word Remove for small screens -->
+          <div class="d-none d-md-block"><i class="fa fa-trash-o"></i> Remove</div>
+          <div class="d-block d-md-none"><i class="fa fa-trash-o"></i></div>
         </button>
       </li>
     </ul>

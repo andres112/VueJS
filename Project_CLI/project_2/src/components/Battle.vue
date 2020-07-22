@@ -10,7 +10,7 @@
             <tr>
               <th scope="col"></th>
               <th scope="col">Name</th>
-              <th scope="col">Avatar</th>
+              <th scope="col" class="d-none d-md-block">Avatar</th>
             </tr>
           </thead>
           <tbody>
@@ -26,12 +26,18 @@
                   :checked="pokemon.isSelected"
                 />
               </td>
-              <td class="text-center align-middle">{{ pokemon.name }}</td>
-              <td @click="pokemonDetails(pokemon.name)">
+              <td
+                class="text-center align-middle"
+                @click="pokemonDetails(pokemon.name)"
+              >
+                {{ pokemon.name }}
+              </td>
+              <!-- This class="d-none d-md-block" hide the image and column for image when screen is smaller than md -->
+              <td @click="pokemonDetails(pokemon.name)" class="d-none d-md-block">
                 <img
                   :src="checkImage(pokemon.sprites.front_default)"
                   :alt="pokemon.name"
-                  class="imgPokSize"
+                  class="img-responsive"
                   height="auto"
                   width="75"
                 />
@@ -54,7 +60,7 @@
             <tr>
               <th scope="col"></th>
               <th scope="col">Name</th>
-              <th scope="col">Avatar</th>
+              <th scope="col" class="d-none d-md-block">Avatar</th>
             </tr>
           </thead>
           <tbody>
@@ -70,12 +76,20 @@
                   @click="selectPokemon(pokemon)"
                 />
               </td>
-              <td class="text-center align-middle">{{ pokemon.name }}</td>
-              <td @click="pokemonDetails(pokemon.name)">
+              <td
+                class="text-center align-middle"
+                @click="pokemonDetails(pokemon.name)"
+              >
+                {{ pokemon.name }}
+              </td>
+              <td
+                @click="pokemonDetails(pokemon.name)"
+                class="d-none d-md-block"
+              >
                 <img
                   :src="checkImage(pokemon.sprites.front_default)"
                   :alt="pokemon.name"
-                  class="imgPokSize"
+                  class="img-responsive"
                   height="auto"
                   width="75"
                 />
@@ -146,12 +160,6 @@ export default {
   -webkit-transform: translateY(10px);
   transform: translateY(10px); /*Move down*/
   border-bottom: none; /*disappears*/
-}
-.imgPokSize {
-  padding-top: 100%;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
 }
 .table {
   margin-top: 10px;
