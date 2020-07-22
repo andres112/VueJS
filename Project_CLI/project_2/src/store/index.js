@@ -16,6 +16,7 @@ export default new Vuex.Store({
 
     user: null,
     error: null,
+    isSession: false,
   },
   getters,
   mutations,

@@ -33,7 +33,10 @@
                 {{ pokemon.name }}
               </td>
               <!-- This class="d-none d-md-block" hide the image and column for image when screen is smaller than md -->
-              <td @click="pokemonDetails(pokemon.name)" class="d-none d-md-block">
+              <td
+                @click="pokemonDetails(pokemon.name)"
+                class="d-none d-md-block"
+              >
                 <img
                   :src="checkImage(pokemon.sprites.front_default)"
                   :alt="pokemon.name"
@@ -167,5 +170,6 @@ export default {
 .table td {
   padding-top: 0;
   padding-bottom: 0;
+  font-family: "Baloo Da 2", cursive;
 }
 </style>

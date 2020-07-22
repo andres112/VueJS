@@ -77,5 +77,8 @@ export default {
   },
   setError: function (state, payload) {
     state.error = payload;
+  },
+  setSession:function (state, sesionFlag) {
+    state.isSession = sesionFlag;
   }
 };

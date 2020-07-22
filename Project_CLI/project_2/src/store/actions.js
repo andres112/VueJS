@@ -2,7 +2,7 @@ import support from "@/assets/scripts/functions.js";
 import { db, auth } from "@/firebase";
 
 // import the router to use it here; automatically reads index.js
-import router from "@/router"; 
+import router from "@/router";
 
 export default {
   //####################
@@ -134,8 +134,9 @@ export default {
   },
 
   //####################
-  //#   User section   #
+  //# Authentincation  #
   //####################
+  // create new user in firebase
   createUser: async function({ commit }, user) {
     commit("setError", null); // Clean error
     try {
@@ -145,10 +146,38 @@ export default {
       );
       const user_res = { email: res.user.email, uid: res.user.uid };
       commit("setUser", user_res);
-      router.push('/'); // Go to the main route "Menu"
+      router.push("/"); // Go to the main route "Menu"
     } catch (error) {
-      console.error(error);
       commit("setError", error);
+    }
+  },
+  // login with existent user
+  loginUser: async function({ commit }, payload) {
+    commit("setError", null); // Clean error
+    try {
+      const res = await auth.signInWithEmailAndPassword(
+        payload.email,
+        payload.password
+      );
+      const user_res = {
+        email: res.user.email,
+        uid: res.user.uid,
+      };
+      commit("setUser", user_res);
+      commit("setSession", true);
+      router.push("/"); // Go to the main route "Menu"
+    } catch (error) {
+      commit("setError", error);
+    }
+  },
+  // close sesion
+  unloginUser: async function({ commit }) {
+    try {
+      auth.signOut();
+      commit("setSession", false);
+      router.push("/"); // Go to the main route "Menu"
+    } catch (error) {
+      console.log(error);
     }
   },
 };
