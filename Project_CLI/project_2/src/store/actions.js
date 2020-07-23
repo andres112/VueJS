@@ -29,9 +29,9 @@ export default {
         for (let i = 0; i < context.state.numberOfPokemons; i++) {
           const data = await fetch(battlePokemons.next().value.url);
           const details = await data.json();
-          // pIndex identfies the player who belongs this pokemn
+          // pIndex identfies the player who belongs this pokemon
           details.pIndex = item;
-          // isSelected identfies if the pokemon is going to be used to the battle
+          // isSelected identifies if the pokemon is going to be used to the battle
           details.isSelected = false;
           context.commit("setPlayerPokemons", details);
         }
@@ -137,7 +137,7 @@ export default {
   //# Authentincation  #
   //####################
   // create new user in firebase
-  createUser: async function({ commit }, user) {
+  createUser: async function({ commit, dispatch }, user) {
     commit("setError", null); // Clean error
     try {
       const res = await auth.createUserWithEmailAndPassword(
@@ -147,8 +147,18 @@ export default {
       const user_res = { email: res.user.email, uid: res.user.uid };
       commit("setUser", user_res);
       router.push("/"); // Go to the main route "Menu"
+      dispatch("sendEmailVerification");
     } catch (error) {
       commit("setError", error);
+    }
+  },
+  // send email verificaaition for account
+  sendEmailVerification: async function() {
+    try {
+      const user = auth.currentUser;
+      await user.sendEmailVerification();
+    } catch (error) {
+      console.log(error);
     }
   },
   // login with existent user
@@ -175,9 +185,16 @@ export default {
     try {
       auth.signOut();
       commit("setSession", false);
+      commit("clearHistory");
+      commit("setDefaultPlayers")
       router.push("/"); // Go to the main route "Menu"
     } catch (error) {
       console.log(error);
     }
+  },
+  // Detect if user is active when load page
+  detectUser: function({ commit }, payload) {
+    commit("setUser", payload.user);
+    commit("setSession", payload.isSession);
   },
 };

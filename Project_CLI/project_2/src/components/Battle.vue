@@ -132,7 +132,7 @@ export default {
       router.push({ name: "Pokemon", params: { id: name } });
     },
   },
-  mounted() {
+  created() {
     // this allows to dispatch an action just when DOM is loaded
     this.getPokemons();
   },

@@ -8,31 +8,35 @@
         <li class="nav-item">
           <router-link to="/" class="nav-link">Menu</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" :hidden="!isSession">
           <router-link to="/history" class="nav-link"
             >Previous Battles</router-link
           >
         </li>
-      </ul> 
+      </ul>
       <!-- The login part was separated and build in a component -->
-      <Login></Login>     
+      <Login></Login>
     </div>
     <router-view />
   </div>
 </template>
 <script>
 import Login from "@/components/Login.vue";
+import { mapState } from "vuex";
 
 export default {
-  components:{
-    Login
-  }
-}
+  components: {
+    Login,
+  },
+  computed: {
+    ...mapState(["isSession"]),
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: "Gloria Hallelujah", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -61,7 +61,7 @@
 
 <script>
 import Head from "@/components/Head.vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 
 export default {
   name: "Register",
@@ -77,8 +77,9 @@ export default {
   },
   methods: {
     ...mapActions(["createUser"]),
+    ...mapMutations(["setError"]),
     closeAlert() {
-      this.$store.state.error = null;
+      this.setError(null); // Clean error
     },
   },
   computed: {

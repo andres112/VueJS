@@ -18,6 +18,10 @@ export default {
       player.pokemonList = [];
     });
   },
+  // Clear the history state
+  clearHistory: function(state) {
+    state.history = [];
+  },
   selectPokemon: function(state, identification) {
     // Set the is selected as true only for selected pokemon
     state.players[identification.pIndex].pokemonList.forEach((pokemon) => {
@@ -50,7 +54,7 @@ export default {
   },
 
   // Mutations that use database queries
-  setRemoteToLocalPlayers: function (state) {
+  setRemoteToLocalPlayers: function(state) {
     state.players = state.remotePlayers;
   },
   setLoadPlayers: function(state, payload) {
@@ -72,13 +76,13 @@ export default {
   },
 
   // Mutations for User register and login
-  setUser: function(state, payload){
+  setUser: function(state, payload) {
     state.user = payload;
   },
-  setError: function (state, payload) {
+  setError: function(state, payload) {
     state.error = payload;
   },
-  setSession:function (state, sesionFlag) {
+  setSession: function(state, sesionFlag) {
     state.isSession = sesionFlag;
-  }
+  },
 };

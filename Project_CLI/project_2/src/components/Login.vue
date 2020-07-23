@@ -74,8 +74,8 @@
         <span class="error-text " v-show="error">{{ error }}</span>
       </div>
     </div>
-    <div v-show="isSession">
-      {{ email }}
+    <div v-if="isSession">
+      {{ user.email }}
       <button class="btn btn-outline-danger btn-sm" @click.prevent="signOut">
         <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
       </button>
@@ -96,7 +96,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["error", "isSession"]),
+    ...mapState(["error", "isSession", "user"]),
   },
   methods: {
     ...mapActions(["loginUser", "unloginUser"]),

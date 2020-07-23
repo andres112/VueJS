@@ -4,21 +4,24 @@
     <img alt="working" src="@/assets/pokeball.png" />
     <br />
     <div class="btn-group-vertical">
-      <button class="btn btn-primary" @click="newGame">New Battle</button>
-      <button class="btn btn-primary" @click="loadGame">Continue Battle</button>
+      <button class="btn btn-primary" :disabled="!isSession" @click="newGame">New Battle</button>
+      <button class="btn btn-primary" :disabled="!isSession" @click="loadGame">Continue Battle</button>
     </div>
   </div>
 </template>
 
 <script>
 import Head from "@/components/Head.vue";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import router from "@/router";
 
 export default {
   name: "Menu",
   components: {
     Head,
+  },
+  computed: {
+    ...mapState(["isSession"]),
   },
   methods: {
     ...mapMutations(["setDefaultPlayers", "clearsetPlayerPokemons"]),
