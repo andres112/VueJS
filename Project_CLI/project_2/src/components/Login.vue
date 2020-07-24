@@ -75,9 +75,15 @@
       </div>
     </div>
     <div v-if="isSessionOn">
-      {{ user.email }}
+      <span class="col-8">{{ user.email.split("@")[0] }}</span>
+      
       <button class="btn btn-outline-danger btn-sm" @click.prevent="signOut">
-        <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+        <div class="d-none d-sm-block">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+        </div>
+        <div class="d-block d-sm-none">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </div>
       </button>
     </div>
   </div>
@@ -97,7 +103,7 @@ export default {
   },
   computed: {
     ...mapState(["error", "user"]),
-    ...mapGetters(["isSessionOn"])
+    ...mapGetters(["isSessionOn"]),
   },
   methods: {
     ...mapActions(["loginUser", "unloginUser"]),
@@ -114,7 +120,7 @@ export default {
       this.unloginUser();
       this.email = "";
       this.pass = "";
-      this.isLogin= false;
+      this.isLogin = false;
     },
   },
 };

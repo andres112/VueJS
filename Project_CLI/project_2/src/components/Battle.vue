@@ -38,7 +38,7 @@
               <!-- This class="d-none d-md-block" hide the image and column for image when screen is smaller than md -->
               <td
                 @click="pokemonDetails(pokemon.name)"
-                class="d-none d-md-block"
+                class="d-none d-sm-block"
               >
                 <img
                   :src="checkImage(pokemon.sprites.front_default)"
@@ -66,7 +66,7 @@
             <tr>
               <th scope="col"></th>
               <th scope="col">Name</th>
-              <th scope="col" class="d-none d-md-block">Avatar</th>
+              <th scope="col" class="d-none d-sm-block">Avatar</th>
             </tr>
           </thead>
           <tbody>
@@ -94,7 +94,7 @@
               </td>
               <td
                 @click="pokemonDetails(pokemon.name)"
-                class="d-none d-md-block"
+                class="d-none d-sm-block"
               >
                 <img
                   :src="checkImage(pokemon.sprites.front_default)"
@@ -156,7 +156,7 @@ export default {
   transform: rotate(30deg) scale(0.5);
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
-  width: 80%;
+  width: 50%;
   height: auto;
   cursor: pointer;
 }

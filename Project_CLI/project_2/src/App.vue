@@ -10,7 +10,7 @@
         </li>
         <li class="nav-item" v-if="isSessionOn">
           <router-link to="/history" class="nav-link"
-            >Previous Battles</router-link
+            >History</router-link
           >
         </li>
       </ul>
