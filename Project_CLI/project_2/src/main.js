@@ -3,9 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import "vue-swatches/dist/vue-swatches.css";
+import "vue-swatches/dist/vue-swatches.css"; // For color picker
+import PrettyCheckbox from 'pretty-checkbox-vue'; // For Check boxes and radio buttons style
+import 'pretty-checkbox/src/pretty-checkbox.scss'; // scss for prety checkboxes
 
 Vue.config.productionTip = false;
+Vue.use(PrettyCheckbox)
 
 import { auth } from "./firebase";
 

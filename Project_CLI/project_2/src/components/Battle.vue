@@ -19,12 +19,15 @@
               v-bind:key="pokemon.name"
             >
               <td class="text-center align-middle">
-                <input
-                  type="radio"
+                <p-radio
+                  class="p-icon p-round p-tada ml-2"
                   name="Player1_Pokemon"
-                  @click="selectPokemon(pokemon)"
+                  color="success"
                   :checked="pokemon.isSelected"
-                />
+                  @click="selectPokemon(pokemon)"
+                >
+                  <i slot="extra" class="icon fa fa-check"></i>
+                </p-radio>
               </td>
               <td
                 class="text-center align-middle"
@@ -72,12 +75,16 @@
               v-bind:key="pokemon.name"
             >
               <td class="text-center align-middle">
-                <input
-                  type="radio"
-                  name="Player2_Pokemon"
-                  :checked="pokemon.isSelected"
-                  @click="selectPokemon(pokemon)"
-                />
+                <div @click="selectPokemon(pokemon)">
+                  <p-radio
+                    class="p-icon p-round p-tada ml-2"
+                    name="Player2_Pokemon"
+                    color="success"
+                    :checked="pokemon.isSelected"
+                  >
+                    <i slot="extra" class="icon fa fa-check"></i>
+                  </p-radio>
+                </div>
               </td>
               <td
                 class="text-center align-middle"

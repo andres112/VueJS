@@ -4,8 +4,12 @@
     <img alt="working" src="@/assets/pokeball.png" />
     <br />
     <div class="btn-group-vertical">
-      <button class="btn btn-primary" :disabled="!isSession" @click="newGame">New Battle</button>
-      <button class="btn btn-primary" :disabled="!isSession" @click="loadGame">Continue Battle</button>
+      <button class="btn btn-primary" :disabled="!isSession" @click="newGame">
+        New Battle
+      </button>
+      <button class="btn btn-primary" :disabled="!isSession" @click="loadGame">
+        Continue Battle
+      </button>
     </div>
   </div>
 </template>

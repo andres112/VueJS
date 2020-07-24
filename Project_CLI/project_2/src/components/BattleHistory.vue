@@ -12,7 +12,7 @@
           {{ item.player_2.name }}</span>
           
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-right">
           <button
             class="btn btn-danger btn-sm"
             @click.prevent="removeBattleDB(item.id)"
