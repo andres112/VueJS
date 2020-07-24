@@ -174,7 +174,6 @@ export default {
         uid: res.user.uid,
       };
       commit("setUser", user_res);
-      commit("setSession", true);
       router.push("/"); // Go to the main route "Menu"
     } catch (error) {
       commit("setError", error);
@@ -184,7 +183,6 @@ export default {
   unloginUser: async function({ commit }) {
     try {
       auth.signOut();
-      commit("setSession", false);
       commit("clearHistory");
       commit("setDefaultPlayers")
       router.push("/"); // Go to the main route "Menu"
@@ -194,7 +192,6 @@ export default {
   },
   // Detect if user is active when load page
   detectUser: function({ commit }, payload) {
-    commit("setUser", payload.user);
-    commit("setSession", payload.isSession);
+    commit("setUser", payload);
   },
 };

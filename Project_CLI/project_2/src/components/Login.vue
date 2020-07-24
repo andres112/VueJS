@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- If sesion is on the buttons for login disapear -->
-    <div v-show="!isSession">
+    <div v-if="!isSessionOn">
       <!-- buttons section -->
       <div :hidden="isLogin">
         <button
@@ -74,7 +74,7 @@
         <span class="error-text " v-show="error">{{ error }}</span>
       </div>
     </div>
-    <div v-if="isSession">
+    <div v-if="isSessionOn">
       {{ user.email }}
       <button class="btn btn-outline-danger btn-sm" @click.prevent="signOut">
         <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapMutations } from "vuex";
+import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "Login",
@@ -96,7 +96,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(["error", "isSession", "user"]),
+    ...mapState(["error", "user"]),
+    ...mapGetters(["isSessionOn"])
   },
   methods: {
     ...mapActions(["loginUser", "unloginUser"]),

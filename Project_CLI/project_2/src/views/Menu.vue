@@ -4,10 +4,10 @@
     <img alt="working" src="@/assets/pokeball.png" />
     <br />
     <div class="btn-group-vertical">
-      <button class="btn btn-primary" :disabled="!isSession" @click="newGame">
+      <button class="btn btn-primary" :disabled="!isSessionOn" @click="newGame">
         New Battle
       </button>
-      <button class="btn btn-primary" :disabled="!isSession" @click="loadGame">
+      <button class="btn btn-primary" :disabled="!isSessionOn" @click="loadGame">
         Continue Battle
       </button>
     </div>
@@ -16,7 +16,7 @@
 
 <script>
 import Head from "@/components/Head.vue";
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import router from "@/router";
 
 export default {
@@ -25,7 +25,7 @@ export default {
     Head,
   },
   computed: {
-    ...mapState(["isSession"]),
+    ...mapGetters(["isSessionOn"]),
   },
   methods: {
     ...mapMutations(["setDefaultPlayers", "clearsetPlayerPokemons"]),

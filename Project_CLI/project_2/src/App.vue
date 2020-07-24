@@ -8,7 +8,7 @@
         <li class="nav-item">
           <router-link to="/" class="nav-link">Menu</router-link>
         </li>
-        <li class="nav-item" :hidden="!isSession">
+        <li class="nav-item" v-if="isSessionOn">
           <router-link to="/history" class="nav-link"
             >Previous Battles</router-link
           >
@@ -22,14 +22,14 @@
 </template>
 <script>
 import Login from "@/components/Login.vue";
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
     Login,
   },
   computed: {
-    ...mapState(["isSession"]),
+    ...mapGetters(["isSessionOn"]),
   },
 };
 </script>
