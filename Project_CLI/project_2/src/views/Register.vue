@@ -3,6 +3,7 @@
     <Head msg="Pokemon Battle" />
     <!-- This alert shows the error message, and close with closeAlert function -->
     <div class="alert alert-danger alert-dismissible" v-show="error">
+      <i class="fa fa-exclamation-triangle"></i>
       {{ error }}
       <button
         type="button"
