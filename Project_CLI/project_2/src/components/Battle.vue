@@ -19,15 +19,16 @@
               v-bind:key="pokemon.name"
             >
               <td class="text-center align-middle">
-                <p-radio
-                  class="p-icon p-round p-tada ml-2"
-                  name="Player1_Pokemon"
-                  color="success"
-                  :checked="pokemon.isSelected"
-                  @click="selectPokemon(pokemon)"
-                >
-                  <i slot="extra" class="icon fa fa-check"></i>
-                </p-radio>
+                <div @click="selectPokemon(pokemon)">
+                  <p-radio
+                    class="p-icon p-round p-tada ml-2"
+                    name="Player1_Pokemon"
+                    color="success"
+                    :checked="pokemon.isSelected"
+                  >
+                    <i slot="extra" class="icon fa fa-check"></i>
+                  </p-radio>
+                </div>
               </td>
               <td
                 class="text-center align-middle"
@@ -54,7 +55,10 @@
       </div>
       <div class="col-sm-2">
         <div class="img_button">
-          <img src="@/assets/pokeball.png" @click="getDetails" />
+          <img
+            src="@/assets/pokeball.png"
+            @click="getDetails"
+          />
         </div>
       </div>
       <div class="col-sm-5">
@@ -124,7 +128,7 @@ export default {
   },
   methods: {
     ...mapMutations(["selectPokemon"]),
-    ...mapActions(["getPokemons", "getDetails", "setPlayersDB"]),
+    ...mapActions(["getPokemons", "getDetails"]),
 
     // Parcular functions to this component
     checkImage(image) {

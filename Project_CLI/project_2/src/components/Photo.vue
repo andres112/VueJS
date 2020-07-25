@@ -86,7 +86,7 @@ export default {
     },
     loadData() {
       // This function is executed from created() stage in vuejs
-      this.pokemon = this.$store.getters.getPokemon(this.$route.params.id);
+      this.pokemon = this.getPokemon(this.$route.params.id);
 
       let arrayStats = Object.values(this.pokemon.stats);
       arrayStats.forEach((item) => {

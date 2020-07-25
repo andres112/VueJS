@@ -7,16 +7,18 @@
       <button class="btn btn-primary" :disabled="!isSessionOn" @click="newGame">
         New Battle
       </button>
-      <button class="btn btn-primary" :disabled="!isSessionOn" @click="loadGame">
-        Continue Battle
-      </button>
+      <router-link to="/battle">
+        <button class="btn btn-primary" :disabled="!isSessionOn">
+          Continue Battle
+        </button>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
 import Head from "@/components/Head.vue";
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapGetters, mapActions } from "vuex";
 import router from "@/router";
 
 export default {
@@ -29,6 +31,7 @@ export default {
   },
   methods: {
     ...mapMutations(["setDefaultPlayers", "clearsetPlayerPokemons"]),
+    ...mapActions(["getBattles"]),
     newGame() {
       // first initialize players instances
       this.setDefaultPlayers();
@@ -36,17 +39,14 @@ export default {
       // after that push a route
       router.push({ name: "Home" });
     },
-    loadGame() {
-      // This is another version how to call a mutation and a route
-      this.$store.commit("setRemoteToLocalPlayers");
-      this.$router.push({ name: "Battle" });
-    },
   },
   created() {
     // first initialize players instances
-    this.$store.commit("setDefaultPlayers");
-    // Then load players in database
-    this.$store.dispatch("getPlayers");
+    // this.$store.commit("setDefaultPlayers");
+    // Then load players from database
+    if (this.isSessionOn) {
+      this.getBattles();
+    }
   },
 };
 </script>

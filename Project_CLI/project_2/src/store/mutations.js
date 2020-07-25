@@ -36,36 +36,14 @@ export default {
   setDefaultPlayers: function(state) {
     // Initialize player information
     state.players = [
-      new Player(
-        "1",
-        "Player 1",
-        "n",
-        "#C0382B",
-        state.players[0] ? state.players[0].remoteId : ""
-      ),
-      new Player(
-        "2",
-        "Player 2",
-        "n",
-        "#3398DB",
-        state.players[1] ? state.players[1].remoteId : ""
-      ),
+      new Player("1", "Player 1", "n", "#C0382B"),
+      new Player("2", "Player 2", "n", "#3398DB"),
     ];
   },
-
-  // Mutations that use database queries
-  setRemoteToLocalPlayers: function(state) {
-    state.players = state.remotePlayers;
-  },
   setLoadPlayers: function(state, payload) {
-    // receive the payload from database in payload
-    state.remotePlayers = payload;
-    state.players[0].remoteId = payload.some((x) => x.id == 1)
-      ? payload.find((x) => x.id == 1).remoteId
-      : "";
-    state.players[1].remoteId = payload.some((x) => x.id == 2)
-      ? payload.find((x) => x.id == 2).remoteId
-      : "";
+    state.players[0] = payload.player_1;
+    state.players[1] = payload.player_2;
+    state.currentBattleId = payload.id;
   },
   // mutations for history list state modifications
   setHistory: function(state, payload) {

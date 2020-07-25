@@ -29,22 +29,26 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import support from "@/assets/scripts/functions.js";
 
 export default {
   name: "BattleHistory",
   computed: {
     ...mapState(["history"]),
+    ...mapGetters(["isSessionOn"]),
   },
   methods: {
-    ...mapActions(["getHistory", "removeBattleDB"]),
+    ...mapActions(["removeBattleDB", "getBattles"]),
     convertTime(timestamp) {
       return support.convertTime(timestamp);
     },
   },
   created() {
-    this.getHistory();
+    // Then load players from database
+    if(this.isSessionOn){
+      this.getBattles();
+    } 
   },
 };
 </script>

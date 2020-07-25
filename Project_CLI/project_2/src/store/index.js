@@ -9,10 +9,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     players: [],
+    currentBattleId :null,
     pokemons: [],
     numberOfPokemons: 5,
     history: [],
-    remotePlayers: [],
 
     user: null,
     error: null,
