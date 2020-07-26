@@ -42,7 +42,7 @@
                 class="d-none d-sm-block"
               >
                 <img
-                  :src="checkImage(pokemon.sprites.front_default)"
+                  :src="checkImage(pokemon.photo)"
                   :alt="pokemon.name"
                   class="img-responsive"
                   height="auto"
@@ -55,10 +55,7 @@
       </div>
       <div class="col-sm-2">
         <div class="img_button">
-          <img
-            src="@/assets/pokeball.png"
-            @click="getDetails"
-          />
+          <img src="@/assets/pokeball.png" @click.prevent="getDetails" />
         </div>
       </div>
       <div class="col-sm-5">
@@ -101,7 +98,7 @@
                 class="d-none d-sm-block"
               >
                 <img
-                  :src="checkImage(pokemon.sprites.front_default)"
+                  :src="checkImage(pokemon.photo)"
                   :alt="pokemon.name"
                   class="img-responsive"
                   height="auto"
@@ -117,7 +114,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions, mapMutations} from "vuex";
 import support from "@/assets/scripts/functions.js";
 import router from "@/router";
 
@@ -145,7 +142,7 @@ export default {
   },
   created() {
     // this allows to dispatch an action just when DOM is loaded
-    this.getPokemons();
+    this.getPokemons();    
   },
 };
 </script>

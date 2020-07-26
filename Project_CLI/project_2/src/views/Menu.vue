@@ -41,8 +41,6 @@ export default {
     },
   },
   created() {
-    // first initialize players instances
-    // this.$store.commit("setDefaultPlayers");
     // Then load players from database
     if (this.isSessionOn) {
       this.getBattles();

@@ -7,10 +7,10 @@ export default {
   setPlayerPokemons: function(state, battlePokemon) {
     // This validation avoid get more pokemons than allowed
     if (
-      state.players[battlePokemon.pIndex].pokemonList.length <
+      state.players[battlePokemon.owner].pokemonList.length <
       state.numberOfPokemons
     ) {
-      state.players[battlePokemon.pIndex].pokemonList.push(battlePokemon);
+      state.players[battlePokemon.owner].pokemonList.push(battlePokemon);
     }
   },
   clearsetPlayerPokemons: function(state) {
@@ -24,7 +24,7 @@ export default {
   },
   selectPokemon: function(state, identification) {
     // Set the is selected as true only for selected pokemon
-    state.players[identification.pIndex].pokemonList.forEach((pokemon) => {
+    state.players[identification.owner].pokemonList.forEach((pokemon) => {
       pokemon.isSelected = false;
       if (pokemon.name === identification.name) {
         pokemon.isSelected = true;
@@ -42,8 +42,10 @@ export default {
   },
   setLoadPlayers: function(state, payload) {
     state.players[0] = payload.player_1;
-    state.players[1] = payload.player_2;
-    state.currentBattleId = payload.id;
+    state.players[1] = payload.player_2;    
+  },
+  setCurrentBattleId: function (state, id) {
+    state.currentBattleId = id;
   },
   // mutations for history list state modifications
   setHistory: function(state, payload) {

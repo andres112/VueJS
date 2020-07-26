@@ -28,12 +28,17 @@ export default {
       context.state.players.forEach(async (player, item) => {
         for (let i = 0; i < context.state.numberOfPokemons; i++) {
           const data = await fetch(battlePokemons.next().value.url);
-          const details = await data.json();
-          // pIndex identfies the player who belongs this pokemon
-          details.pIndex = item;
-          // isSelected identifies if the pokemon is going to be used to the battle
-          details.isSelected = false;
-          context.commit("setPlayerPokemons", details);
+          const element = await data.json();
+          // Extract useful data only and set js object
+          const pokemon = {
+            name: element.name,
+            types: element.types,
+            stats: element.stats,
+            photo: element.sprites.front_default,
+            owner: item,
+            isSelected: false,
+          };
+          context.commit("setPlayerPokemons", pokemon);
         }
       });
     } catch (error) {
@@ -60,7 +65,8 @@ export default {
       });
       // commit the data from database to mutation
       if (battleList.length > 0) {
-        commit("setLoadPlayers", battleList[battleList.length-1]);
+        commit("setLoadPlayers", battleList[0]);
+        commit("setCurrentBattleId", battleList[0].id);
         commit("setHistory", battleList);
       }
     } catch (error) {
@@ -68,7 +74,7 @@ export default {
     }
   },
   setPlayersDB: async function({ state }) {
-    // Update the documents in firestore
+    // Update the documents in firestore, just the dynamic data PokemonList
     try {
       const p1 = state.players[0];
       const p2 = state.players[1];
@@ -76,52 +82,41 @@ export default {
         .collection(state.user.email)
         .doc(state.currentBattleId)
         .update({
-          player_1: {
-            name: p1.name,
-            gender: p1.gender,
-            color: p1.color,
-            pokemonList: p1.pokemonList,
-            id: p1.id,
-          },
-          player_2: {
-            name: p2.name,
-            gender: p2.gender,
-            color: p2.color,
-            pokemonList: p2.pokemonList,
-            id: p2.id,
-          },
+          "player_1.pokemonList": p1.pokemonList,
+          "player_2.pokemonList": p2.pokemonList,
         });
     } catch (error) {
       console.error(error);
     }
   },
   // add elements to battles collection
-  addBattleDB: async function({ state }) {
+  addBattleDB: async function({ commit, state }) {
     try {
-      await db.collection(state.user.email).add({
+      const res = await db.collection(state.user.email).add({
         timestamp: support.getTimestamp(),
         player_1: {
-          id:"1",
+          id: "1",
           name: state.players[0].name,
           gender: state.players[0].gender,
           color: state.players[0].color,
           pokemonList: [],
         },
         player_2: {
-          id:"2",
+          id: "2",
           name: state.players[1].name,
           gender: state.players[1].gender,
           color: state.players[1].color,
           pokemonList: [],
         },
       });
+      commit("setCurrentBattleId", res.id);
     } catch (error) {
       console.error(error);
     }
   },
 
   // remove element from battles collection
-  removeBattleDB: async function({ commit, dispatch }, idBattle) {
+  removeBattleDB: async function({ commit, state }, idBattle) {
     try {
       await db
         .collection(state.user.email)
@@ -150,24 +145,7 @@ export default {
       const user_res = { email: res.user.email, uid: res.user.uid };
 
       // For each new user created, It is created a new collection with email as name
-      await db.collection(res.user.email).add({
-        timestamp: support.getTimestamp(),
-        first: true,
-        player_1: {
-          name: "",
-          gender: "n",
-          color: "#C0382B",
-          pokemonList: [],
-          id: "1",
-        },
-        player_2: {
-          name: "",
-          gender: "n",
-          color: "#3398DB",
-          pokemonList: [],
-          id: "2",
-        },
-      });
+      await db.collection(res.user.email).doc();
       commit("setUser", user_res);
       router.push("/"); // Go to the main route "Menu"
       dispatch("sendEmailVerification");

@@ -97,7 +97,7 @@ export default {
       this.types = arrayType.map((x) => x.type.name);
 
       this.name = this.pokemon.name;
-      this.image = this.pokemon.sprites.front_default;
+      this.image = this.pokemon.photo;
     },
   },
   created() {
