@@ -44,6 +44,7 @@ export default {
     state.players[0] = payload.player_1;
     state.players[1] = payload.player_2;    
   },
+  //set current battle id
   setCurrentBattleId: function (state, id) {
     state.currentBattleId = id;
   },

@@ -29,7 +29,7 @@ export default {
         for (let i = 0; i < context.state.numberOfPokemons; i++) {
           const data = await fetch(battlePokemons.next().value.url);
           const element = await data.json();
-          // Extract useful data only and set js object
+          // Extract useful data only and set js object, decrease amount of data to storage
           const pokemon = {
             name: element.name,
             types: element.types,
@@ -78,6 +78,7 @@ export default {
     try {
       const p1 = state.players[0];
       const p2 = state.players[1];
+      // update in firebase
       await db
         .collection(state.user.email)
         .doc(state.currentBattleId)
@@ -92,6 +93,7 @@ export default {
   // add elements to battles collection
   addBattleDB: async function({ commit, state }) {
     try {
+      // add an empty doc in firbase
       const res = await db.collection(state.user.email).add({
         timestamp: support.getTimestamp(),
         player_1: {
@@ -109,6 +111,7 @@ export default {
           pokemonList: [],
         },
       });
+      // after create the new doc in firebase, set the state for battle id with new one
       commit("setCurrentBattleId", res.id);
     } catch (error) {
       console.error(error);
@@ -122,9 +125,6 @@ export default {
         .collection(state.user.email)
         .doc(idBattle)
         .delete();
-      // To refresh the list we can get history from databse but is not recommendable
-      // dispatch('getHistory');
-      // is better with a mutation in state
       commit("updateHistory", idBattle);
     } catch (error) {
       console.error(error);
