@@ -41,7 +41,7 @@
         <label for="types" class="font-weight-bold col-form-label">Types</label>
         <ul class="list-group list-group-flush">
           <li
-            class="list-group-item"
+            class="list-group-item text-capitalize"
             v-for="(type, index) in types"
             v-bind:key="index"
           >
@@ -90,11 +90,10 @@ export default {
 
       let arrayStats = Object.values(this.pokemon.stats);
       arrayStats.forEach((item) => {
-        this.stats[item.stat.name] = item.base_stat;
+        this.stats[item.name] = item.value;
       });
 
-      let arrayType = Object.values(this.pokemon.types);
-      this.types = arrayType.map((x) => x.type.name);
+      this.types = Object.values(this.pokemon.types);
 
       this.name = this.pokemon.name;
       this.image = this.pokemon.photo;

@@ -5,11 +5,12 @@
         <h3 v-bind:style="[{ color: players[0].color }]">
           {{ players[0].name }} - {{ checkgender(players[0].gender) }}
         </h3>
-        <table class="table table-sm table-striped table-dark table-hover">
+        <table class="table table-sm table-striped table-dark table-hover ">
           <thead>
             <tr>
               <th scope="col"></th>
               <th scope="col">Name</th>
+              <th scope="col">St.</th>
               <th scope="col" class="d-none d-md-block">Avatar</th>
             </tr>
           </thead>
@@ -36,10 +37,21 @@
               >
                 {{ pokemon.name }}
               </td>
+              <td
+                class="text-center align-middle"
+                @click="pokemonDetails(pokemon.name)"
+              >
+                <span class="badge badge-danger badge-pill">{{
+                  pokemon.stats.find((x) => x.name == "attack").value
+                }}</span>
+                <span class="badge badge-success badge-pill ml-1">{{
+                  pokemon.stats.find((x) => x.name == "defense").value
+                }}</span>
+              </td>
               <!-- This class="d-none d-md-block" hide the image and column for image when screen is smaller than md -->
               <td
                 @click="pokemonDetails(pokemon.name)"
-                class="d-none d-sm-block"
+                class="d-none d-md-block"
               >
                 <img
                   :src="checkImage(pokemon.photo)"
@@ -55,7 +67,11 @@
       </div>
       <div class="col-sm-2">
         <div class="img_button">
-          <img src="@/assets/pokeball.png" @click.prevent="getDetails" />
+          <img
+            class="img-responsive"
+            src="@/assets/pokeball.png"
+            @click.prevent="getDetails"
+          />
         </div>
       </div>
       <div class="col-sm-5">
@@ -67,7 +83,8 @@
             <tr>
               <th scope="col"></th>
               <th scope="col">Name</th>
-              <th scope="col" class="d-none d-sm-block">Avatar</th>
+              <th scope="col">St</th>
+              <th scope="col" class="d-none d-md-block">Avatar</th>
             </tr>
           </thead>
           <tbody>
@@ -94,8 +111,19 @@
                 {{ pokemon.name }}
               </td>
               <td
+                class="text-center align-middle"
                 @click="pokemonDetails(pokemon.name)"
-                class="d-none d-sm-block"
+              >
+                <span class="badge badge-danger badge-pill">{{
+                  pokemon.stats.find((x) => x.name == "attack").value
+                }}</span>
+                <span class="badge badge-success badge-pill ml-1">{{
+                  pokemon.stats.find((x) => x.name == "defense").value
+                }}</span>
+              </td>
+              <td
+                @click="pokemonDetails(pokemon.name)"
+                class="d-none d-md-block"
               >
                 <img
                   :src="checkImage(pokemon.photo)"
@@ -114,7 +142,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations} from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 import support from "@/assets/scripts/functions.js";
 import router from "@/router";
 
@@ -142,7 +170,7 @@ export default {
   },
   created() {
     // this allows to dispatch an action just when DOM is loaded
-    this.getPokemons();    
+    this.getPokemons();
   },
 };
 </script>
@@ -157,11 +185,11 @@ export default {
   transform: rotate(30deg) scale(0.5);
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
-  width: 50%;
+  width: 75%;
   height: auto;
   cursor: pointer;
 }
-.img_button img:hover {
+.img_button-sm img .img_button img:hover {
   -webkit-transform: rotate(0) scale(0.7);
   transform: rotate(0) scale(0.7);
 }

@@ -32,8 +32,11 @@ export default {
           // Extract useful data only and set js object, decrease amount of data to storage
           const pokemon = {
             name: element.name,
-            types: element.types,
-            stats: element.stats,
+            types: element.types.map((x) => x.type.name),
+            stats: element.stats.map((x) => ({
+              name: x.stat.name,
+              value: x.base_stat,
+            })),
             photo: element.sprites.front_default,
             owner: item,
             isSelected: false,
@@ -184,8 +187,11 @@ export default {
   unloginUser: async function({ commit }) {
     try {
       auth.signOut();
+      // After close user session all states are cleaned
+      commit("setUser", null);
       commit("clearHistory");
       commit("setDefaultPlayers");
+      commit("clearCurrentBattleId")
       router.push("/"); // Go to the main route "Menu"
     } catch (error) {
       console.log(error);

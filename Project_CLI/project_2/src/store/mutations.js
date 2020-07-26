@@ -17,11 +17,7 @@ export default {
     state.players.forEach((player) => {
       player.pokemonList = [];
     });
-  },
-  // Clear the history state
-  clearHistory: function(state) {
-    state.history = [];
-  },
+  },  
   selectPokemon: function(state, identification) {
     // Set the is selected as true only for selected pokemon
     state.players[identification.owner].pokemonList.forEach((pokemon) => {
@@ -40,6 +36,7 @@ export default {
       new Player("2", "Player 2", "n", "#3398DB"),
     ];
   },
+  // Set players retrieved form DB
   setLoadPlayers: function(state, payload) {
     state.players[0] = payload.player_1;
     state.players[1] = payload.player_2;    
@@ -48,15 +45,28 @@ export default {
   setCurrentBattleId: function (state, id) {
     state.currentBattleId = id;
   },
-  // mutations for history list state modifications
+  //clear current battle id
+  clearCurrentBattleId: function (state, id) {
+    state.currentBattleId = null;
+  },
+  
+  //####################
+  //# History section #
+  //####################
   setHistory: function(state, payload) {
     state.history = payload;
   },
   updateHistory: function(state, idBattle) {
     state.history = state.history.filter((x) => x.id != idBattle);
   },
+  // Clear the history state
+  clearHistory: function(state) {
+    state.history = [];
+  },
 
-  // Mutations for User register and login
+  //####################
+  //# user mng section #
+  //####################
   setUser: function(state, payload) {
     state.user = payload;
   },
