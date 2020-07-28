@@ -12,6 +12,9 @@ export default {
     });
     return pokemon;
   },
+  checkBattle: (state) => (battleId) => {
+    return state.currentBattleId === battleId;
+  },
   isSessionOn(state) {
     if (!state.user) {
       return false;

@@ -1,17 +1,26 @@
 <template>
   <div class="battle container">
+    <div class="d-block d-md-none row justify-content-center">
+        <div class="img_button">
+          <img
+            class="img-responsive"
+            src="@/assets/pokeball.png"
+            @click.prevent="getDetails"
+          />
+        </div>
+      </div>
     <div class="row justify-content-between">
       <div class="col-sm-5">
         <h3 v-bind:style="[{ color: players[0].color }]">
           {{ players[0].name }} - {{ checkgender(players[0].gender) }}
-        </h3>
+        </h3>        
         <table class="table table-sm table-striped table-dark table-hover ">
           <thead>
             <tr>
               <th scope="col"></th>
               <th scope="col">Name</th>
               <th scope="col">St.</th>
-              <th scope="col" class="d-none d-md-block">Avatar</th>
+              <th scope="col" class="d-none d-sm-block">Avatar</th>
             </tr>
           </thead>
           <tbody>
@@ -51,7 +60,7 @@
               <!-- This class="d-none d-md-block" hide the image and column for image when screen is smaller than md -->
               <td
                 @click="pokemonDetails(pokemon.name)"
-                class="d-none d-md-block"
+                class="d-none d-sm-block"
               >
                 <img
                   :src="checkImage(pokemon.photo)"
@@ -65,7 +74,7 @@
           </tbody>
         </table>
       </div>
-      <div class="col-sm-2">
+      <div class="d-none d-md-block col-md-2">
         <div class="img_button">
           <img
             class="img-responsive"
@@ -84,7 +93,7 @@
               <th scope="col"></th>
               <th scope="col">Name</th>
               <th scope="col">St</th>
-              <th scope="col" class="d-none d-md-block">Avatar</th>
+              <th scope="col" class="d-none d-sm-block">Avatar</th>
             </tr>
           </thead>
           <tbody>
@@ -123,7 +132,7 @@
               </td>
               <td
                 @click="pokemonDetails(pokemon.name)"
-                class="d-none d-md-block"
+                class="d-none d-sm-block"
               >
                 <img
                   :src="checkImage(pokemon.photo)"
@@ -186,12 +195,9 @@ export default {
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
   width: 75%;
+  max-width: 100px;
   height: auto;
   cursor: pointer;
-}
-.img_button-sm img .img_button img:hover {
-  -webkit-transform: rotate(0) scale(0.7);
-  transform: rotate(0) scale(0.7);
 }
 .img_button img:active {
   /*on Click*/

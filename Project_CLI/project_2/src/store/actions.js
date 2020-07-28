@@ -68,9 +68,13 @@ export default {
       });
       // commit the data from database to mutation
       if (battleList.length > 0) {
-        commit("setLoadPlayers", battleList[0]);
-        commit("setCurrentBattleId", battleList[0].id);
         commit("setHistory", battleList);
+        // if already exist a battle id this is mantained for current battle and assigned to index
+        let index = state.currentBattleId
+          ? state.history.findIndex((x) => x.id === state.currentBattleId)
+          : 0;
+        commit("setLoadPlayers", battleList[index]);
+        commit("setCurrentBattleId", battleList[index].id);
       }
     } catch (error) {
       console.error(error);
@@ -191,7 +195,7 @@ export default {
       commit("setUser", null);
       commit("clearHistory");
       commit("setDefaultPlayers");
-      commit("clearCurrentBattleId")
+      commit("clearCurrentBattleId");
       router.push("/"); // Go to the main route "Menu"
     } catch (error) {
       console.log(error);
