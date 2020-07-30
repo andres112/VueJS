@@ -18,4 +18,4 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(); // const used to work with tables in firestore
 const auth = firebase.auth(); // const used to work with auth in firestore
 
-export { db, auth };
+export { db, auth, firebase };

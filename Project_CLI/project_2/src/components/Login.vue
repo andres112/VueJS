@@ -4,24 +4,23 @@
     <div v-if="!isSessionOn">
       <!-- buttons section -->
       <div :hidden="isLogin">
-        <button
-          class="btn btn-outline-success mr-2"
-          data-toggle="tooltip"
-          data-placement="bottom"
-          title="Log in"
-          @click="enterLogin"
-        >
-          <i class="fa fa-sign-in"></i> Sign in
-        </button>
+        <b-button variant="outline-light" size="sm" @click="enterLogin">
+          <!-- This hide the word Remove for small screens -->
+          <div class="d-none d-md-block">
+            <b-icon icon="box-arrow-right" class="mb-1"></b-icon> Sign in
+          </div>
+          <b-icon icon="box-arrow-right" class="d-block d-md-none"></b-icon>
+        </b-button>
         <router-link to="/register">
-          <button
-            class="btn btn-outline-success"
-            data-toggle="tooltip"
+          <b-button variant="outline-light" size="sm" class="ml-2" data-toggle="tooltip"
             data-placement="bottom"
-            title="Register"
-          >
-            <i class="fa fa-user-plus"></i> Sign up
-          </button>
+            title="Register">
+            <!-- This hide the word Remove for small screens -->
+            <div class="d-none d-md-block">
+              <b-icon icon="person-plus-fill" class="mb-1"></b-icon> Sign up
+            </div>
+            <b-icon icon="person-plus-fill" class="d-block d-md-none"></b-icon>
+          </b-button>
         </router-link>
       </div>
       <!-- form section -->
@@ -54,7 +53,7 @@
             />
           </div>
           <button
-            class="btn btn-outline-success mr-1 btn-sm"
+            class="btn btn-outline-light mr-1 btn-sm"
             data-toggle="tooltip"
             data-placement="bottom"
             title="login"
@@ -62,7 +61,7 @@
             <i class="fa fa-paper-plane-o"></i>
           </button>
           <button
-            class="btn btn-outline-danger btn-sm"
+            class="btn btn-outline-light btn-sm"
             data-toggle="tooltip"
             data-placement="bottom"
             title="cancel"
@@ -75,16 +74,19 @@
       </div>
     </div>
     <div v-if="isSessionOn">
-      <span class="col-8">{{ user.email.split("@")[0] }}</span>
-      
-      <button class="btn btn-outline-danger btn-sm" @click.prevent="signOut">
-        <div class="d-none d-sm-block">
-          <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+      <b-nav-text><p class="text-light">{{ user.email.split("@")[0] }}</p></b-nav-text>
+      <b-button
+        variant="outline-light"
+        size="sm"
+        @click.prevent="signOut"
+        class="ml-2"
+      >
+        <!-- This hide the word Remove for small screens -->
+        <div class="d-none d-md-block">
+          <b-icon icon="box-arrow-left" class="mb-1"></b-icon> Sign out
         </div>
-        <div class="d-block d-sm-none">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
-        </div>
-      </button>
+        <b-icon icon="box-arrow-left" class="d-block d-md-none"></b-icon>
+      </b-button>
     </div>
   </div>
 </template>
@@ -129,7 +131,10 @@ export default {
 .error-text {
   font-family: "Baloo Da 2", cursive;
   font-size: small;
-  color: red;
+  color: rgb(255, 255, 255);
   float: left;
+}
+.custom-color{
+  color:whitesmoke
 }
 </style>

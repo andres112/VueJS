@@ -1,5 +1,5 @@
 import support from "@/assets/scripts/functions.js";
-import { db, auth } from "@/firebase";
+import { db, auth, firebase } from "@/firebase";
 
 // import the router to use it here; automatically reads index.js
 import router from "@/router";
@@ -72,6 +72,8 @@ export default {
         // if already exist a battle id this is mantained for current battle and assigned to index
         let index = state.currentBattleId
           ? state.history.findIndex((x) => x.id === state.currentBattleId)
+          : battleList.some((x) => x.isCurrent)
+          ? state.history.findIndex((x) => x.isCurrent)
           : 0;
         commit("setLoadPlayers", battleList[index]);
         commit("setCurrentBattleId", battleList[index].id);
@@ -103,6 +105,7 @@ export default {
       // add an empty doc in firbase
       const res = await db.collection(state.user.email).add({
         timestamp: support.getTimestamp(),
+        isCurrent: true,
         player_1: {
           id: "1",
           name: state.players[0].name,
@@ -120,6 +123,26 @@ export default {
       });
       // after create the new doc in firebase, set the state for battle id with new one
       commit("setCurrentBattleId", res.id);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  updateCurrentBattle: function({ state }, battleId) {
+    try {
+      // update in firebase: clean first all docs isCurrent Battle in firebase
+      state.history.forEach(async (battle) => {
+        let current = false;
+        if (battle.id === battleId) {
+          current = true;
+        }
+        await db
+          .collection(state.user.email)
+          .doc(battle.id)
+          .update({
+            isCurrent: current,
+          });
+      });
     } catch (error) {
       console.error(error);
     }
@@ -173,6 +196,8 @@ export default {
   loginUser: async function({ commit }, payload) {
     commit("setError", null); // Clean error
     try {
+      // Apply this persitence to mantain the session status only for window opened
+      await auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
       const res = await auth.signInWithEmailAndPassword(
         payload.email,
         payload.password

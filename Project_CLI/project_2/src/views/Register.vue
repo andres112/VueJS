@@ -2,19 +2,9 @@
   <div>
     <Head msg="Pokemon Battle" />
     <!-- This alert shows the error message, and close with closeAlert function -->
-    <div class="alert alert-danger alert-dismissible" v-show="error">
-      <i class="fa fa-exclamation-triangle"></i>
-      {{ error }}
-      <button
-        type="button"
-        class="close"
-        data-dismiss="alert"
-        aria-label="Close"
-        @click="closeAlert"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+    <b-alert variant="danger" :show="error!=null" dismissible fade>
+      <b-icon icon="error"></b-icon>{{ error }}
+    </b-alert>
     <h2 class="mt-5">User Register</h2>
     <form
       @submit.prevent="createUser({ email: email, password: pass })"

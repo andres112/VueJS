@@ -1,22 +1,25 @@
 <template>
   <div id="app">
+    
     <!-- navbar-expand-sm allows to put the elements in nav inline -->
-    <div id="nav" class="navbar navbar-expand-sm">
-      <!-- the router links in nav bar -->
-      <!-- The mr-auto class split the elements inside the nav-bar -->
-      <ul class="navbar-nav mr-auto mt-2 ">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link">Menu</router-link>
-        </li>
-        <li class="nav-item" v-if="isSessionOn">
-          <router-link to="/history" class="nav-link"
-            >History</router-link
-          >
-        </li>
-      </ul>
-      <!-- The login part was separated and build in a component -->
+    <b-navbar toggleable="md" type="dark" variant="danger" class="align-center">
+      <b-container>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse is-nav id="nav-collapse">
+        <b-navbar-nav class="text-left">
+          <b-nav-item :to="{ name: 'Menu' }" exact
+            ><strong>Menu</strong>
+          </b-nav-item>
+          <b-nav-item :to="{ name: 'History' }" v-if="isSessionOn"
+            ><strong>History</strong>
+          </b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
       <Login></Login>
-    </div>
+      </b-container>
+    </b-navbar>
+    
+    <br />
     <router-view />
   </div>
 </template>
@@ -41,21 +44,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 20px;
-  overflow: hidden;
-}
-
-#nav a {
-  font-weight: bold;
-  font-size: large;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 
 .img404 {

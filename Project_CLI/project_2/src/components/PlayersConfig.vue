@@ -69,9 +69,9 @@
         </table>
       </div>
     </div>
-    <button class="btn btn-success btn-lg" @click.prevent="startBattle">
-      <i class="fa fa-fire"></i>Battle
-    </button>
+    <b-button variant="success" size="lg" @click.prevent="startBattle">
+      <b-icon icon="lightning-fill" class="mb-1"></b-icon> Start
+    </b-button>
   </div>
 </template>
 

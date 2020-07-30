@@ -1,47 +1,55 @@
 <template>
   <div class="history">
+    <b-container>
     <ul class="list-group list-group-flush">
       <li
         class="list-group-item d-inline-flex justify-content-between justify-content-sm-center align-items-center"
         v-for="item in history"
         :key="item.id"
       >
-      <!-- The v-bind here is to use a class with css dynamic -->
-        <div class="col-sm-5 text-left" v-bind:class="{'text-success': checkBattle(item.id)}">
+        <!-- The v-bind here is to use a class with css dynamic -->
+        <div
+          class="col-sm-5 text-left"
+          v-bind:class="{ 'text-success': checkBattle(item.id) }"
+        >
           <span class="head-time"
             >{{ convertTime(item.timestamp.toDate()) }}:</span
           >
           <span> {{ item.player_1.name }} vs {{ item.player_2.name }}</span>
           <span class="ml-2" v-show="checkBattle(item.id)">
-          <i class="fa fa-gamepad"></i>
-        </span>
+            <b-icon icon="controller" font-scale="1.2"></b-icon>
+          </span>
         </div>
         <div class="col-sm-5 text-right">
           <!-- Select button -->
-          <button
-            class="btn btn-success btn-sm"
+          <b-button
+            variant="success"
+            size="sm"
             @click.prevent="selectBattle(item.id)"
           >
             <!-- This hide the word Remove for small screens -->
             <div class="d-none d-md-block">
-              <i class="fa fa-fire"></i> Select
+              <b-icon icon="lightning-fill" class="mb-1"></b-icon> Battle
             </div>
-            <div class="d-block d-md-none"><i class="fa fa-fire"></i></div>
-          </button>
+            <b-icon icon="lightning-fill" class="d-block d-md-none"></b-icon>
+          </b-button>
           <!-- Remove button -->
-          <button
-            class="btn btn-danger btn-sm ml-1"
+          <b-button
+            variant="danger"
+            size="sm"
+            class="ml-1 "
             @click.prevent="removeBattleDB(item.id)"
           >
             <!-- This hide the word Remove for small screens -->
             <div class="d-none d-md-block">
-              <i class="fa fa-trash-o"></i> Remove
+              <b-icon icon="trash" class="mb-1"></b-icon> Remove
             </div>
-            <div class="d-block d-md-none"><i class="fa fa-trash-o"></i></div>
-          </button>
+            <b-icon icon="trash" class="d-block d-md-none"></b-icon>
+          </b-button>
         </div>
       </li>
     </ul>
+    </b-container>
   </div>
 </template>
 <script>
@@ -56,7 +64,7 @@ export default {
     ...mapGetters(["isSessionOn", "checkBattle"]),
   },
   methods: {
-    ...mapActions(["removeBattleDB", "getBattles"]),
+    ...mapActions(["removeBattleDB", "getBattles", "updateCurrentBattle"]),
     ...mapMutations(["setLoadPlayers", "setCurrentBattleId"]),
     convertTime(timestamp) {
       return support.convertTime(timestamp);
@@ -67,6 +75,8 @@ export default {
       );
       this.setCurrentBattleId(battle_id);
       router.push("/battle");
+
+      this.updateCurrentBattle(battle_id);
     },
   },
   created() {
