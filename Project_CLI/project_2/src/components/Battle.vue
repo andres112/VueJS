@@ -1,19 +1,19 @@
 <template>
   <div class="battle container">
     <div class="d-block d-md-none row justify-content-center">
-        <div class="img_button">
-          <img
-            class="img-responsive"
-            src="@/assets/pokeball.png"
-            @click.prevent="getDetails"
-          />
-        </div>
+      <div class="img_button">
+        <img
+          class="img-responsive"
+          src="@/assets/pokeball.png"
+          @click.prevent="getDetails"
+        />
       </div>
+    </div>
     <div class="row justify-content-between">
       <div class="col-sm-5">
         <h3 v-bind:style="[{ color: players[0].color }]">
           {{ players[0].name }} - {{ checkgender(players[0].gender) }}
-        </h3>        
+        </h3>
         <table class="table table-sm table-striped table-dark table-hover ">
           <thead>
             <tr>
@@ -158,11 +158,16 @@ import router from "@/router";
 export default {
   name: "Battle",
   computed: {
-    ...mapState(["players"]),
+    ...mapState({
+      players: (state) => state.battle.players,
+    }),
   },
   methods: {
-    ...mapMutations(["selectPokemon"]),
-    ...mapActions(["getPokemons", "getDetails"]),
+    ...mapMutations({ selectPokemon: "battle/selectPokemon" }),
+    ...mapActions({
+      getPokemons: "pokemon/getPokemons",
+      getDetails: "pokemon/getDetails",
+    }),
 
     // Parcular functions to this component
     checkImage(image) {

@@ -2,7 +2,7 @@
   <div>
     <Tittle msg="Pokemon Battle" />
     <!-- This alert shows the error message, and close with closeAlert function -->
-    <b-alert variant="danger" :show="error!=null" dismissible fade>
+    <b-alert variant="danger" :show="error != null" dismissible fade>
       <b-icon icon="error"></b-icon>{{ error }}
     </b-alert>
     <h2 class="mt-5">User Register</h2>
@@ -67,14 +67,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["createUser"]),
-    ...mapMutations(["setError"]),
+    ...mapActions({ createUser: "userStore/createUser" }),
+    ...mapMutations({ setError: "userStore/setError" }),
     closeAlert() {
       this.setError(null); // Clean error
     },
   },
   computed: {
-    ...mapState(["error"]),
+    ...mapState({ error: (state) => state.userStore.error }),
     // function to validate if password and repeat passwor are similar and different of empty
     deactivate() {
       return (

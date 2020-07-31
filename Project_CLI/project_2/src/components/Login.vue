@@ -12,9 +12,14 @@
           <b-icon icon="box-arrow-right" class="d-block d-md-none"></b-icon>
         </b-button>
         <router-link to="/register">
-          <b-button variant="outline-light" size="sm" class="ml-2" data-toggle="tooltip"
+          <b-button
+            variant="outline-light"
+            size="sm"
+            class="ml-2"
+            data-toggle="tooltip"
             data-placement="bottom"
-            title="Register">
+            title="Register"
+          >
             <!-- This hide the word Remove for small screens -->
             <div class="d-none d-md-block">
               <b-icon icon="person-plus-fill" class="mb-1"></b-icon> Sign up
@@ -74,7 +79,9 @@
       </div>
     </div>
     <div v-if="isSessionOn">
-      <b-nav-text><p class="text-light">{{ user.email.split("@")[0] }}</p></b-nav-text>
+      <b-nav-text
+        ><p class="text-light">{{ user.email.split("@")[0] }}</p></b-nav-text
+      >
       <b-button
         variant="outline-light"
         size="sm"
@@ -92,6 +99,7 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
 import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
 
 export default {
@@ -104,12 +112,20 @@ export default {
     };
   },
   computed: {
-    ...mapState(["error", "user"]),
-    ...mapGetters(["isSessionOn"]),
+    ...mapState({
+      user: (state) => state.userStore.user,
+      error: (state) => state.userStore.error,
+    }),
+    ...mapGetters({ isSessionOn: "userStore/isSessionOn" }),
   },
   methods: {
-    ...mapActions(["loginUser", "unloginUser"]),
-    ...mapMutations(["setError"]),
+    ...mapActions({
+      loginUser: "userStore/loginUser",
+      unloginUser: "userStore/unloginUser",
+    }),
+    ...mapMutations({
+      setError: "userStore/setError",
+    }),
     cancel: function(params) {
       this.setError(null); // Clean error
       this.isLogin = false;
@@ -134,7 +150,7 @@ export default {
   color: rgb(255, 255, 255);
   float: left;
 }
-.custom-color{
-  color:whitesmoke
+.custom-color {
+  color: whitesmoke;
 }
 </style>

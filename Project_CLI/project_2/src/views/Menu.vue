@@ -27,11 +27,14 @@ export default {
     Tittle,
   },
   computed: {
-    ...mapGetters(["isSessionOn"]),
+    ...mapGetters({ isSessionOn: "userStore/isSessionOn" }),
   },
   methods: {
-    ...mapMutations(["setDefaultPlayers", "clearsetPlayerPokemons"]),
-    ...mapActions(["getBattles"]),
+    ...mapMutations({
+      setDefaultPlayers: "battle/setDefaultPlayers",
+      clearsetPlayerPokemons: "battle/clearsetPlayerPokemons",
+    }),
+    ...mapActions({ getBattles: "battle/getBattles" }),
     newGame() {
       // first initialize players instances
       this.setDefaultPlayers();

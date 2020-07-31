@@ -84,10 +84,12 @@ export default {
   name: "PlayersConfig",
   components: { VSwatches },
   computed: {
-    ...mapState(["players"]),
+    ...mapState({
+      players: (state) => state.battle.players,
+    }),
   },
   methods: {
-    ...mapActions(["addBattleDB"]),
+    ...mapActions({ addBattleDB: "battle/addBattleDB" }),
     startBattle() {
       // update database when players data is changed
       this.addBattleDB();

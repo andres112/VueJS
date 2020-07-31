@@ -1,24 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import actions from "./actions.js";
-import mutations from "./mutations.js";
-import getters from "./getters.js";
+import userStore from "./modules/userStore.js";
+import battle from "./modules/battle.js";
+import pokemon from "./modules/pokemon.js";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    players: [],
-    currentBattleId :null,
-    pokemons: [],
-    numberOfPokemons: 5,
-    history: [],
-
-    user: null,
-    error: null,
+  modules: {
+    userStore,
+    battle,
+    pokemon,
   },
-  getters,
-  mutations,
-  actions,
-  modules: {},
 });

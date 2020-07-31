@@ -27,7 +27,7 @@ export default {
     Login,
   },
   computed: {
-    ...mapGetters(["isSessionOn"]),
+    ...mapGetters({ isSessionOn: "userStore/isSessionOn" }),
   },
 };
 </script>

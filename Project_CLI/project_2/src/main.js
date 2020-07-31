@@ -25,9 +25,9 @@ import { auth } from "./firebase";
 auth.onAuthStateChanged((user) => {
   if (user) {
     const payload = { email: user.email, uid: user.uid };
-    store.dispatch("detectUser", payload);
+    store.dispatch("userStore/detectUser", payload);
   } else {
-    store.dispatch("detectUser", user);
+    store.dispatch("userStore/detectUser", user);
   }
 
   // Vue instance creation including router and store

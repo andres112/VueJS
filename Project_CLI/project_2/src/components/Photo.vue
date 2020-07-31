@@ -74,15 +74,17 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getPokemon"]),
+    ...mapGetters({
+      getPokemon: "battle/getPokemon",
+    }),
   },
   methods: {
-    ...mapMutations(["selectPokemon"]),
+    ...mapMutations({ selectPokemon: "battle/selectPokemon" }),
     selectLocal() {
       // function required first to modify with mutations the select state of a pokemon
-      this.selectPokemon(this.pokemon)
+      this.selectPokemon(this.pokemon);
       // after that push a route
-      router.push('/battle');
+      router.push("/battle");
     },
     loadData() {
       // This function is executed from created() stage in vuejs
