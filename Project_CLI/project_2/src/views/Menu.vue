@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <Head msg="Pokemon Battle" />
+    <Tittle msg="Pokemon Battle" />
     <img alt="working" src="@/assets/pokeball.png" />
     <br />
     <div class="btn-group-vertical">
@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import Head from "@/components/Head.vue";
+import Tittle from "@/components/Tittle.vue";
 import { mapMutations, mapGetters, mapActions } from "vuex";
 import router from "@/router";
 
 export default {
   name: "Menu",
   components: {
-    Head,
+    Tittle,
   },
   computed: {
     ...mapGetters(["isSessionOn"]),

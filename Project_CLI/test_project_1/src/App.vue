@@ -1,18 +1,18 @@
 <template>
   <div id="app" class="container-fluid">    
-    <Head msg="Pokemon Battles"/>
+    <Tittle msg="Pokemon Battles"/>
     <SearchPokes></SearchPokes>
   </div>
 </template>
 
 <script>
-import Head from './components/Head.vue'
+import Tittle from './components/Tittle.vue'
 import SearchPokes from './components/SearchPokes.vue'
 
 export default {
   name: 'App',
   components: {
-    Head,
+    Tittle,
     SearchPokes
   }
 }

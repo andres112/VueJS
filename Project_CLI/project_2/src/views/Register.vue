@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head msg="Pokemon Battle" />
+    <Tittle msg="Pokemon Battle" />
     <!-- This alert shows the error message, and close with closeAlert function -->
     <b-alert variant="danger" :show="error!=null" dismissible fade>
       <b-icon icon="error"></b-icon>{{ error }}
@@ -51,13 +51,13 @@
 </template>
 
 <script>
-import Head from "@/components/Head.vue";
+import Tittle from "@/components/Tittle.vue";
 import { mapActions, mapState, mapMutations } from "vuex";
 
 export default {
   name: "Register",
   components: {
-    Head,
+    Tittle,
   },
   data() {
     return {
