@@ -1,6 +1,5 @@
 <template>
   <div class="history">
-    <b-container>
       <ul class="list-group list-group-flush">
         <li
           class="list-group-item d-inline-flex justify-content-between justify-content-sm-center align-items-center"
@@ -49,7 +48,6 @@
           </div>
         </li>
       </ul>
-    </b-container>
   </div>
 </template>
 <script>

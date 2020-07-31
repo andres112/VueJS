@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    
     <!-- navbar-expand-sm allows to put the elements in nav inline -->
     <app-head></app-head>
     <br />
-    <router-view />
+    <b-container><router-view /></b-container>
   </div>
 </template>
 <script>
@@ -12,7 +11,7 @@ import Head from "@/components/Head.vue";
 
 export default {
   components: {
-    'app-head':Head,
+    "app-head": Head,
   },
 };
 </script>

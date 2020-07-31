@@ -1,6 +1,6 @@
 <template>
-  <div class="battle container">
-    <div class="d-block d-md-none row justify-content-center">
+  <div class="battle">
+    <b-row class="d-block d-md-none justify-content-center">
       <div class="img_button">
         <img
           class="img-responsive"
@@ -8,9 +8,9 @@
           @click.prevent="getDetails"
         />
       </div>
-    </div>
-    <div class="row justify-content-between">
-      <div class="col-sm-5">
+    </b-row>
+    <b-row class=" justify-content-between">
+      <b-col cols="12" md="5">
         <h3 v-bind:style="[{ color: players[0].color }]">
           {{ players[0].name }} - {{ checkgender(players[0].gender) }}
         </h3>
@@ -73,8 +73,8 @@
             </tr>
           </tbody>
         </table>
-      </div>
-      <div class="d-none d-md-block col-md-2">
+      </b-col>
+      <b-col cols="2" class="d-none d-md-block">
         <div class="img_button">
           <img
             class="img-responsive"
@@ -82,8 +82,8 @@
             @click.prevent="getDetails"
           />
         </div>
-      </div>
-      <div class="col-sm-5">
+      </b-col>
+      <b-col cols="12" md="5">
         <h3 v-bind:style="[{ color: players[1].color }]">
           {{ players[1].name }} - {{ checkgender(players[1].gender) }}
         </h3>
@@ -145,8 +145,8 @@
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 

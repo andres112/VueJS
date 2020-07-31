@@ -125,8 +125,8 @@ const mutations = {
   setDefaultPlayers: function(state) {
     // Initialize player information
     state.players = [
-      new Player("1", "Player 1", "n", "#C0382B"),
-      new Player("2", "Player 2", "n", "#3398DB"),
+      new Player("1", "", "n", "#C0382B"),
+      new Player("2", "", "n", "#3398DB"),
     ];
   },
   // Set players retrieved form DB

@@ -30,8 +30,8 @@
       </div>
       <!-- form section -->
       <div :hidden="!isLogin">
-        <form
-          class="form-inline"
+        <b-form
+          inline
           @submit.prevent="
             loginUser({
               email: email,
@@ -39,42 +39,45 @@
             })
           "
         >
-          <input
+          <b-form-input
             v-model="email"
             type="email"
             class="mr-sm-2 border rounded-left"
             id="email_login"
             placeholder="email"
+            size="sm"
             required
           />
-          <div class="input-group mr-sm-2">
-            <input
-              v-model="pass"
-              type="password"
-              class="border rounded-right"
-              id="inlineFormInputGroupUsername2"
-              placeholder="password"
-              required
-            />
-          </div>
-          <button
-            class="btn btn-outline-light mr-1 btn-sm"
+          <b-form-input
+            v-model="pass"
+            type="password"
+            class="border rounded-right mr-sm-2"
+            placeholder="password"
+            size="sm"
+            required
+          />
+          <b-button
+            variant="outline-light"
+            size="sm"
+            class="mr-1"
+            type="submit"
             data-toggle="tooltip"
             data-placement="bottom"
             title="login"
           >
             <i class="fa fa-paper-plane-o"></i>
-          </button>
-          <button
-            class="btn btn-outline-light btn-sm"
+          </b-button>
+          <b-button
+            variant="outline-light"
+            size="sm"
             data-toggle="tooltip"
             data-placement="bottom"
             title="cancel"
             @click.prevent="cancel"
           >
             <i class="fa fa-times"></i>
-          </button>
-        </form>
+          </b-button>
+        </b-form>
         <span class="error-text " v-show="error">{{ error }}</span>
       </div>
     </div>
