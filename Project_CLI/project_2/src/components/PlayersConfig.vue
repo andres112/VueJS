@@ -8,22 +8,28 @@
             <tbody>
               <tr>
                 <td class="text-center align-middle" colspan="2">
-                  <input
+                  <b-form-input
                     type="text"
-                    class="form-control form-control-lg font-weight-bold text-center"
+                    size="lg"
+                    :state="checkLength(players[0].name)"
+                    class="font-weight-bold text-center"
                     v-model="players[0].name"
                     placeholder="Player name"
                     required
                   />
+                  <small
+                    class="text-left"
+                    v-show="!checkLength(players[0].name)"
+                    >Max 6 characters</small
+                  >
                 </td>
               </tr>
               <tr>
                 <td class="text-center align-middle">
-                  <select class="form-control" v-model="players[0].gender">
-                    <option value="m">Male</option>
-                    <option value="f">Female</option>
-                    <option value="n">No Apply</option>
-                  </select>
+                  <b-form-select
+                    v-model="players[0].gender"
+                    :options="genderOptions"
+                  />
                 </td>
                 <td class="text-center align-middle">
                   <!-- This is used to the color picker -->
@@ -43,22 +49,28 @@
             <tbody>
               <tr>
                 <td class="text-center align-middle" colspan="2">
-                  <input
+                  <b-form-input
                     type="text"
-                    class="form-control form-control-lg font-weight-bold text-center"
+                    size="lg"
+                    :state="checkLength(players[1].name)"
+                    class="font-weight-bold text-center"
                     v-model="players[1].name"
                     placeholder="Player name"
                     required
                   />
+                  <small
+                    class="text-left"
+                    v-show="!checkLength(players[1].name)"
+                    >Max 6 characters</small
+                  >
                 </td>
               </tr>
               <tr>
                 <td class="text-center align-middle">
-                  <select class="form-control" v-model="players[1].gender">
-                    <option value="m">Male</option>
-                    <option value="f">Female</option>
-                    <option value="n">No Apply</option>
-                  </select>
+                  <b-form-select
+                    v-model="players[1].gender"
+                    :options="genderOptions"
+                  />
                 </td>
                 <td class="text-center align-middle">
                   <v-swatches
@@ -80,13 +92,26 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 import VSwatches from "vue-swatches";
 import router from "@/router";
 
 export default {
   name: "PlayersConfig",
   components: { VSwatches },
+  data() {
+    return {
+      genderOptions: [
+        { value: "m", text: "👦 Male" },
+        { value: "f", text: "👧 Female" },
+        { value: "a", text: "👽 Alien" },
+        { value: "r", text: "🤖 Robot" },
+        { value: "p", text: "👻 Phantom" },
+        { value: "s", text: "💩	 Sh*+%" },
+        { value: "n", text: "No Apply" },
+      ],
+    };
+  },
   computed: {
     ...mapState({
       players: (state) => state.battle.players,
@@ -94,11 +119,19 @@ export default {
   },
   methods: {
     ...mapActions({ addBattleDB: "battle/addBattleDB" }),
+    ...mapMutations({ setDefaultPlayers: "battle/setDefaultPlayers" }),
     startBattle() {
       // update database when players data is changed
       this.addBattleDB();
       router.push({ name: "Battle" });
     },
+    checkLength(text) {
+      const validation = text.length > 0 && text.length <= 7;
+      return validation;
+    },
+  },
+  created() {
+    this.setDefaultPlayers();
   },
 };
 </script>
