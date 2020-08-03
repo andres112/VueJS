@@ -6,10 +6,10 @@
       <div :hidden="isLogin">
         <b-button variant="outline-light" size="sm" @click="enterLogin">
           <!-- This hide the word Remove for small screens -->
-          <div class="d-none d-md-block">
+          <div class="d-none d-sm-block">
             <b-icon icon="box-arrow-right" class="mb-1"></b-icon> Sign in
           </div>
-          <b-icon icon="box-arrow-right" class="d-block d-md-none"></b-icon>
+          <b-icon icon="box-arrow-right" class="d-block d-sm-none"></b-icon>
         </b-button>
         <router-link to="/register">
           <b-button
@@ -21,10 +21,10 @@
             title="Register"
           >
             <!-- This hide the word Remove for small screens -->
-            <div class="d-none d-md-block">
+            <div class="d-none d-sm-block">
               <b-icon icon="person-plus-fill" class="mb-1"></b-icon> Sign up
             </div>
-            <b-icon icon="person-plus-fill" class="d-block d-md-none"></b-icon>
+            <b-icon icon="person-plus-fill" class="d-block d-sm-none"></b-icon>
           </b-button>
         </router-link>
       </div>
@@ -40,13 +40,13 @@
           "
         >
           <b-form-input
-            v-model="email"
+            v-model="$v.email.$model"
             type="email"
             class="mr-sm-2 border rounded-left"
+            :class="{ 'is-invalid': $v.email.$error }"
             id="email_login"
             placeholder="email"
             size="sm"
-            required
           />
           <b-form-input
             v-model="pass"
@@ -104,6 +104,7 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
+import { required, email } from "vuelidate/lib/validators";
 
 export default {
   name: "Login",
@@ -113,6 +114,9 @@ export default {
       pass: "",
       isLogin: false,
     };
+  },
+  validations: {
+    email: { required, email },
   },
   computed: {
     ...mapState({

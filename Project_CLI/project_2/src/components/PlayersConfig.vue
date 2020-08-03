@@ -18,10 +18,10 @@
                     required
                   />
                   <small
-                    class="text-left"
+                    class="text-left text-danger"
                     v-show="!checkLength(players[0].name)"
                     >Max 6 characters</small
-                  >
+                  >                
                 </td>
               </tr>
               <tr>
@@ -59,7 +59,7 @@
                     required
                   />
                   <small
-                    class="text-left"
+                    class="text-left text-danger"
                     v-show="!checkLength(players[1].name)"
                     >Max 6 characters</small
                   >
