@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Tittle msg="Pokemon Battle" />
+    <Tittle :msg="$t('register.txt-title')" />
     <Register></Register>
   </div>
 </template>

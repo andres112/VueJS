@@ -11,6 +11,14 @@
       "txt-title": "Pokemon Battle",
       "btn-new_battle": "New Battle",
       "btn-continue_battle": "Continue Battle"
+    },
+    "register": {
+      "txt-title": "Pokemon Battle",
+      "txt-subtitle": "User Registration",
+      "input_placeholder-email": "email",
+      "input_placeholder-password": "password",
+      "input_placeholder-repet_password": "repeat password",
+      "btn-register":"Register"
     }
   },
   "es": {
@@ -25,6 +33,14 @@
       "txt-title": "Batalla Pokemón",
       "btn-new_battle": "Nueva Batalla",
       "btn-continue_battle": "Seguir Batalla"
+    },
+    "register": {
+      "txt-title": "Batalla Pokemón",
+      "txt-subtitle": "Registro de Usuario",
+      "input_placeholder-email": "correo",
+      "input_placeholder-password": "contraseña",
+      "input_placeholder-repet_password": "repetir contraseña",
+      "btn-register":"Registrar"
     }
   }
 }

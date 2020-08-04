@@ -4,7 +4,7 @@
     <b-alert variant="danger" :show="error != null" dismissible fade>
       <b-icon icon="error"></b-icon>{{ error }}
     </b-alert>
-    <h2 class="mt-5">User Register</h2>
+    <h2 class="mt-5">{{ $t("register.txt-subtitle") }}</h2>
     <b-form
       @submit.prevent="createUser({ email: email, password: pass })"
       class="mt-3"
@@ -14,7 +14,7 @@
           type="email"
           id="email"
           size="lg"
-          placeholder="email"
+          :placeholder="$t('register.input_placeholder-email')"
           v-model="$v.email.$model"
           :class="{ 'is-invalid': $v.email.$error }"
           class="border rounded-top"
@@ -28,13 +28,13 @@
           type="password"
           id="pass"
           size="lg"
-          placeholder="password"
+          :placeholder="$t('register.input_placeholder-password')"
           v-model="$v.pass.$model"
           class="border"
-          :class="{'is-invalid':$v.pass.$error}"
+          :class="{ 'is-invalid': $v.pass.$error }"
         />
         <small v-if="!$v.pass.minLength" class="text-danger"
-          >Password min length: 6 characters</small
+          >Min 6 characters</small
         >
       </div>
       <div class="form-group">
@@ -42,16 +42,19 @@
           type="password"
           id="r_pass"
           size="lg"
-          placeholder="repeat password"
+          :placeholder="$t('register.input_placeholder-repet_password')"
           v-model="$v.r_pass.$model"
           class="border rounded-bottom"
-          :class="{'is-invalid':!$v.r_pass.sameAsPass}"
+          :class="{ 'is-invalid': $v.r_pass.$error }"
         />
+        <small v-if="!$v.r_pass.sameAsPass" class="text-danger"
+          >Wrong password</small
+        >
       </div>
-      
+
       <!-- This button is going to be disabled if deactivate function is false -->
-      <b-button type="submit" variant="outline-success" :disabled="!deactivate">
-        <i class="fa fa-user-plus"></i>Register
+      <b-button type="submit" variant="outline-success" :disabled="$v.$invalid">
+        <i class="fa fa-user-plus"></i> {{ $t("register.btn-register") }}
       </b-button>
     </b-form>
   </div>
@@ -83,14 +86,6 @@ export default {
   },
   computed: {
     ...mapState({ error: (state) => state.userStore.error }),
-    // function to validate if password and repeat passwor are similar and different of empty
-    deactivate() {
-      return (
-        this.pass === this.r_pass &&
-        this.pass.trim() !== "" &&
-        this.pass.length > 5
-      );
-    },
   },
   created() {},
 };
