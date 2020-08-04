@@ -1,0 +1,30 @@
+{
+  "en": {
+    "header": {
+      "nav-menu": "Menu",
+      "nav-history": "History",
+      "nav_btn-user_signout": "Sign out",
+      "nav_btn-user_signin": "Sign in",
+      "nav_btn-user_signup": "Sign up"
+    },
+    "menu": {
+      "txt-title": "Pokemon Battle",
+      "btn-new_battle": "New Battle",
+      "btn-continue_battle": "Continue Battle"
+    }
+  },
+  "es": {
+    "header": {
+      "nav-menu": "Menú",
+      "nav-history": "Histórico",
+      "nav_btn-user_signout": "Salir",
+      "nav_btn-user_signin": "Entrar",
+      "nav_btn-user_signup": "Registro"
+    },
+    "menu": {
+      "txt-title": "Batalla Pokemón",
+      "btn-new_battle": "Nueva Batalla",
+      "btn-continue_battle": "Seguir Batalla"
+    }
+  }
+}

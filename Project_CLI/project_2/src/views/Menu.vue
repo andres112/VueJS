@@ -1,16 +1,16 @@
 <template>
   <div class="menu">
     <!-- Here is possible to access to the menu-title in i18n -->
-    <Tittle :msg="$t('menu-title')" />
+    <Tittle :msg="$t('menu.txt-title')" />
     <img alt="working" src="@/assets/pokeball.png" />
     <br />
     <div class="btn-group-vertical">
       <button class="btn btn-primary" :disabled="!isSessionOn" @click="newGame">
-        New Battle
+        {{$t('menu.btn-new_battle')}}
       </button>
       <router-link to="/battle">
         <button class="btn btn-primary" :disabled="!isSessionOn">
-          Continue Battle
+          {{$t('menu.btn-continue_battle')}}
         </button>
       </router-link>
     </div>

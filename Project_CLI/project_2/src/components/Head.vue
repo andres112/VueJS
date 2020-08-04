@@ -6,10 +6,10 @@
         <b-collapse is-nav id="nav-collapse">
           <b-navbar-nav class="text-left">
             <b-nav-item :to="{ name: 'Menu' }" exact
-              ><strong>Menu</strong>
+              ><strong>{{$t('header.nav-menu')}}</strong>
             </b-nav-item>
             <b-nav-item :to="{ name: 'History' }" v-if="isSessionOn"
-              ><strong>History</strong>
+              ><strong>{{$t('header.nav-history')}}</strong>
             </b-nav-item>
             <!-- dropdown to change the $i18n.locale tag -->
             <b-nav-item-dropdown

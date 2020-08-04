@@ -7,7 +7,7 @@
         <b-button variant="outline-light" size="sm" @click="enterLogin">
           <!-- This hide the word Remove for small screens -->
           <div class="d-none d-sm-block">
-            <b-icon icon="box-arrow-right" class="mb-1"></b-icon> Sign in
+            <b-icon icon="box-arrow-right" class="mb-1"></b-icon> {{ $t("header.nav_btn-user_signin") }}
           </div>
           <b-icon icon="box-arrow-right" class="d-block d-sm-none"></b-icon>
         </b-button>
@@ -22,7 +22,7 @@
           >
             <!-- This hide the word Remove for small screens -->
             <div class="d-none d-sm-block">
-              <b-icon icon="person-plus-fill" class="mb-1"></b-icon> Sign up
+              <b-icon icon="person-plus-fill" class="mb-1"></b-icon> {{ $t("header.nav_btn-user_signup") }}
             </div>
             <b-icon icon="person-plus-fill" class="d-block d-sm-none"></b-icon>
           </b-button>
@@ -93,7 +93,8 @@
       >
         <!-- This hide the word Remove for small screens -->
         <div class="d-none d-md-block">
-          <b-icon icon="box-arrow-left" class="mb-1"></b-icon> Sign out
+          <b-icon icon="box-arrow-left" class="mb-1"></b-icon>
+          {{ $t("header.nav_btn-user_signout") }}
         </div>
         <b-icon icon="box-arrow-left" class="d-block d-md-none"></b-icon>
       </b-button>
