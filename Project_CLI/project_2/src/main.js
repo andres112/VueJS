@@ -2,15 +2,18 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import { i18n } from "./i18n";
 
 // Boostrap libraries and CSS files
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+
 // Validations dependecy
 import Vuelidate from "vuelidate";
 
-import "vue-swatches/dist/vue-swatches.css"; // For color picker
+// For color picker
+import "vue-swatches/dist/vue-swatches.css";
 import PrettyCheckbox from "pretty-checkbox-vue"; // For Check boxes and radio buttons style
 import "pretty-checkbox/src/pretty-checkbox.scss"; // scss for prety checkboxes
 
@@ -39,6 +42,7 @@ auth.onAuthStateChanged((user) => {
   new Vue({
     router,
     store,
+    i18n,
     render: (h) => h(App),
   }).$mount("#app");
 });

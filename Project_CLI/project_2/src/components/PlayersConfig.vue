@@ -21,7 +21,7 @@
                     class="text-left text-danger"
                     v-show="!checkLength(players[0].name)"
                     >Max 6 characters</small
-                  >                
+                  >
                 </td>
               </tr>
               <tr>
@@ -37,6 +37,7 @@
                     v-model="players[0].color"
                     popover-x="left"
                     swatches="text-advanced"
+                    shapes="circles"
                   ></v-swatches>
                 </td>
               </tr>
@@ -77,6 +78,7 @@
                     v-model="players[1].color"
                     popover-x="left"
                     swatches="text-advanced"
+                    shapes="circles"
                   ></v-swatches>
                 </td>
               </tr>

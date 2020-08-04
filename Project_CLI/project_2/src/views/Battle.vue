@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container-fluid">    
-    <Tittle msg="Pokemon Battle Stadium"/>
+    <Tittle msg="Pokemon Battle Arena"/>
     <Battle></Battle>
   </div>
 </template>

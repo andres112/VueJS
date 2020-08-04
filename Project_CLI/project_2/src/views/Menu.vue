@@ -1,6 +1,7 @@
 <template>
   <div class="menu">
-    <Tittle msg="Pokemon Battle" />
+    <!-- Here is possible to access to the menu-title in i18n -->
+    <Tittle :msg="$t('menu-title')" />
     <img alt="working" src="@/assets/pokeball.png" />
     <br />
     <div class="btn-group-vertical">
