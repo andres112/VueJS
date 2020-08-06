@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="register">
     <!-- This alert shows the error message, and close with closeAlert function -->
     <b-alert variant="danger" :show="error != null" dismissible fade>
       <b-icon icon="error"></b-icon>{{ error }}
@@ -30,7 +30,7 @@
           size="lg"
           :placeholder="$t('register.input_placeholder-password')"
           v-model="$v.pass.$model"
-          class="border"
+          class="border "
           :class="{ 'is-invalid': $v.pass.$error }"
         />
         <small v-if="!$v.pass.minLength" class="text-danger"
@@ -90,3 +90,14 @@ export default {
   created() {},
 };
 </script>
+
+<style scoped>
+.transparent-input {
+  background-color: transparent !important;
+  border: none !important;
+}
+.edit-input {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+}
+</style>

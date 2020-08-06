@@ -1,6 +1,6 @@
 <template>
   <div class="battle">
-    <b-row class="d-block d-md-none justify-content-center">
+    <b-row class="d-block d-md-none ">
       <div class="img_button">
         <img
           class="img-responsive"
@@ -9,6 +9,12 @@
         />
       </div>
     </b-row>
+    <!-- Spinner for loading waiting -->
+    <sync-loader
+      :loading="load"
+      :color="'#fd3d30'"
+      class="justify-content-center my-2"
+    ></sync-loader>
     <b-row class=" justify-content-between">
       <b-col cols="12" md="5">
         <h3 v-bind:style="[{ color: players[0].color }]">
@@ -23,7 +29,7 @@
               <th scope="col" class="d-none d-sm-block">Avatar</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-show="!load">
             <tr
               v-for="pokemon of players[0].pokemonList"
               v-bind:key="pokemon.name"
@@ -96,7 +102,7 @@
               <th scope="col" class="d-none d-sm-block">Avatar</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody v-show="!load">
             <tr
               v-for="pokemon in players[1].pokemonList"
               v-bind:key="pokemon.name"
@@ -155,11 +161,18 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import support from "@/assets/scripts/functions.js";
 import router from "@/router";
 
+//Spinner library
+import Loader from "vue-spinner/src/SyncLoader.vue";
+
 export default {
   name: "Battle",
+  components: {
+    "sync-loader": Loader,
+  },
   computed: {
     ...mapState({
       players: (state) => state.battle.players,
+      load: (state) => state.pokemon.load,
     }),
   },
   methods: {
