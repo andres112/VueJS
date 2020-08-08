@@ -2,11 +2,10 @@
   <div class="battle">
     <b-row class="d-block d-md-none ">
       <div class="img_button">
-        <img
-          class="img-responsive"
-          src="@/assets/pokeball.png"
-          @click.prevent="getDetails"
-        />
+        <!-- disable button when pokemons retrieving is loading -->
+        <button class="img_button" @click.prevent="getDetails" :disabled="load">
+          <img class="img-responsive" src="@/assets/pokeball.png" />
+        </button>
       </div>
     </b-row>
     <!-- Spinner for loading waiting -->
@@ -81,13 +80,9 @@
         </table>
       </b-col>
       <b-col cols="2" class="d-none d-md-block">
-        <div class="img_button">
-          <img
-            class="img-responsive"
-            src="@/assets/pokeball.png"
-            @click.prevent="getDetails"
-          />
-        </div>
+        <button class="img_button" @click.prevent="getDetails" :disabled="load">
+          <img class="img-responsive" src="@/assets/pokeball.png" />
+        </button>
       </b-col>
       <b-col cols="12" md="5">
         <h3 v-bind:style="[{ color: players[1].color }]">
@@ -207,6 +202,11 @@ export default {
 .container {
   margin-top: 20px;
 }
+.img_button {
+  border: none !important;
+  background: transparent;
+  outline: none;
+}
 .img_button img {
   -webkit-transform: rotate(30deg) scale(0.5);
   transform: rotate(30deg) scale(0.5);
@@ -222,7 +222,6 @@ export default {
   -ms-transform: translateY(10px);
   -webkit-transform: translateY(10px);
   transform: translateY(10px); /*Move down*/
-  border-bottom: none; /*disappears*/
 }
 .table {
   margin-top: 10px;

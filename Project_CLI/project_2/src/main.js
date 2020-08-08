@@ -14,8 +14,10 @@ import Vuelidate from "vuelidate";
 
 // For color picker
 import "vue-swatches/dist/vue-swatches.css";
-import PrettyCheckbox from "pretty-checkbox-vue"; // For Check boxes and radio buttons style
-import "pretty-checkbox/src/pretty-checkbox.scss"; // scss for prety checkboxes
+// For Check boxes and radio buttons style
+import PrettyCheckbox from "pretty-checkbox-vue"; 
+// scss for prety checkboxes
+import "pretty-checkbox/src/pretty-checkbox.scss";
 
 Vue.config.productionTip = false;
 
@@ -26,6 +28,7 @@ Vue.use(IconsPlugin);
 // Install the vuelidate instance
 Vue.use(Vuelidate);
 
+// Install the Checkbox instance
 Vue.use(PrettyCheckbox);
 
 import { auth } from "./firebase";
