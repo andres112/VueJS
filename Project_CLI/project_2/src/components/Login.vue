@@ -34,8 +34,8 @@
           inline
           @submit.prevent="
             loginUser({
-              email: email,
-              password: pass,
+              email: $v.email.$model,
+              password: $v.pass.$model,
             })
           "
         >
@@ -49,7 +49,7 @@
             size="sm"
           />
           <b-form-input
-            v-model="pass"
+            v-model="$v.pass.$model"
             type="password"
             class="border rounded-right mr-sm-2"
             placeholder="password"
@@ -64,6 +64,7 @@
             data-toggle="tooltip"
             data-placement="bottom"
             title="login"
+            :disabled="$v.$invalid"
           >
             <i class="fa fa-paper-plane-o"></i>
           </b-button>
@@ -118,6 +119,7 @@ export default {
   },
   validations: {
     email: { required, email },
+    pass: {required}
   },
   computed: {
     ...mapState({

@@ -28,7 +28,7 @@ const actions = {
       router.push("/"); // Go to the main route "Menu"
       dispatch("sendEmailVerification");
     } catch (error) {
-      commit("setError", error);
+      commit("setError", error.message);
     }
   },
   // send email verificaaition for account
@@ -37,7 +37,7 @@ const actions = {
       const user = auth.currentUser;
       await user.sendEmailVerification();
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
   // login with existent user
@@ -54,10 +54,10 @@ const actions = {
         email: res.user.email,
         uid: res.user.uid,
       };
-      commit("setUser", user_res);
+      if (res.user.emailVerified)  commit("setUser", user_res);
       router.push("/"); // Go to the main route "Menu"
     } catch (error) {
-      commit("setError", error);
+      commit("setError", error.message);
     }
   },
   // close sesion

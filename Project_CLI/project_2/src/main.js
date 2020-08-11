@@ -34,11 +34,12 @@ Vue.use(PrettyCheckbox);
 import { auth } from "./firebase";
 
 auth.onAuthStateChanged((user) => {
-  if (user) {
+  if (user && user.emailVerified) {
     const payload = { email: user.email, uid: user.uid };
     store.dispatch("userStore/detectUser", payload);
-  } else {
-    store.dispatch("userStore/detectUser", user);
+  }
+  else {
+    store.dispatch("userStore/detectUser", null);
   }
 
   // Vue instance creation including router and store
