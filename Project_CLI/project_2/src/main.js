@@ -35,7 +35,7 @@ import { auth } from "./firebase";
 
 auth.onAuthStateChanged((user) => {
   if (user && user.emailVerified) {
-    const payload = { email: user.email, uid: user.uid };
+    const payload = { email: user.email, uid: user.uid};
     store.dispatch("userStore/detectUser", payload);
   }
   else {

@@ -6,11 +6,11 @@
     <br />
     <div class="btn-group-vertical">
       <button class="btn btn-primary" :disabled="!isSessionOn" @click="newGame">
-        {{$t('menu.btn-new_battle')}}
+        {{ $t("menu.btn-new_battle") }}
       </button>
       <router-link to="/battle">
         <button class="btn btn-primary" :disabled="!isSessionOn">
-          {{$t('menu.btn-continue_battle')}}
+          {{ $t("menu.btn-continue_battle") }}
         </button>
       </router-link>
     </div>
@@ -24,6 +24,11 @@ import router from "@/router";
 
 export default {
   name: "Menu",
+  data() {
+    return {
+      aja:false
+    }
+  },
   components: {
     Tittle,
   },
@@ -44,11 +49,11 @@ export default {
       router.push({ name: "Home" });
     },
   },
-  created() {
+  created() {    
     // Then load players from database
     if (this.isSessionOn) {
       this.getBattles();
-    }
+    } 
   },
 };
 </script>

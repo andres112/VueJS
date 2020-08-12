@@ -80,9 +80,6 @@ export default {
   methods: {
     ...mapActions({ createUser: "userStore/createUser" }),
     ...mapMutations({ setError: "userStore/setError" }),
-    closeAlert() {
-      this.setError(null); // Clean error
-    },
   },
   computed: {
     ...mapState({ error: (state) => state.userStore.error }),

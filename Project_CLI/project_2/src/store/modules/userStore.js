@@ -24,7 +24,7 @@ const actions = {
 
       // For each new user created, It is created a new collection with email as name
       await db.collection(res.user.email).doc();
-      commit("setUser", user_res);
+      commit("setError", "login.error-text-emailverification");
       router.push("/"); // Go to the main route "Menu"
       dispatch("sendEmailVerification");
     } catch (error) {
@@ -41,7 +41,7 @@ const actions = {
     }
   },
   // login with existent user
-  loginUser: async function({ commit }, payload) {
+  loginUser: async function({ commit, dispatch }, payload) {
     commit("setError", null); // Clean error
     try {
       // Apply this persitence to mantain the session status only for window opened
@@ -54,8 +54,14 @@ const actions = {
         email: res.user.email,
         uid: res.user.uid,
       };
-      if (res.user.emailVerified)  commit("setUser", user_res);
-      router.push("/"); // Go to the main route "Menu"
+      if (res.user.emailVerified) {
+        commit("setUser", user_res);
+      } else {
+        commit("setError", "login.error-text-resend-emailverification");
+        dispatch("sendEmailVerification");
+      }
+      router.push("/").catch(() => {});
+      // Go to the main route "Menu"
     } catch (error) {
       commit("setError", error.message);
     }

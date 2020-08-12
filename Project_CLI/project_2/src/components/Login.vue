@@ -79,7 +79,7 @@
             <i class="fa fa-times"></i>
           </b-button>
         </b-form>
-        <span class="error-text " v-show="error">{{ error }}</span>
+        <span class="error-text " v-if="error">{{ $t(error) }}</span>
       </div>
     </div>
     <div v-if="isSessionOn">
