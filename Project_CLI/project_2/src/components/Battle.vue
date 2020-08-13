@@ -202,6 +202,9 @@ export default {
 .container {
   margin-top: 20px;
 }
+td{
+  cursor: pointer;
+}
 .img_button {
   border: none !important;
   background: transparent;

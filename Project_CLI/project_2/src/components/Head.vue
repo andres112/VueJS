@@ -8,6 +8,9 @@
             <b-nav-item :to="{ name: 'Menu' }" exact
               ><strong>{{$t('header.nav-menu')}}</strong>
             </b-nav-item>
+            <b-nav-item :to="{ name: 'Pokepedia' }"
+              ><strong>Pokepedia</strong>
+            </b-nav-item>
             <b-nav-item :to="{ name: 'History' }" v-if="isSessionOn"
               ><strong>{{$t('header.nav-history')}}</strong>
             </b-nav-item>

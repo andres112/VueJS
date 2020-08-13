@@ -18,11 +18,14 @@
       "input_placeholder-email": "email",
       "input_placeholder-password": "password",
       "input_placeholder-repet_password": "repeat password",
-      "btn-register":"Register"
+      "btn-register": "Register"
     },
-    "login":{
-      "error-text-emailverification":"Please check your email and verify the registration",
-      "error-text-resend-emailverification":"Email no verified. Please review your email account"
+    "login": {
+      "error-text-emailverification": "Please check your email and verify the registration",
+      "error-text-resend-emailverification": "Email no verified. Please review your email account"
+    },
+    "pokepedia": {
+      "txt-title": "Pokemon Battle - Pokepedia"
     }
   },
   "es": {
@@ -44,11 +47,14 @@
       "input_placeholder-email": "correo",
       "input_placeholder-password": "contraseña",
       "input_placeholder-repet_password": "repetir contraseña",
-      "btn-register":"Registrar"
+      "btn-register": "Registrar"
     },
-    "login":{
-      "error-text-emailverification":"Por favor revisa to correo y verifica tu registro",
-      "error-text-resend-emailverification":"Correo no verificado. Por favor revisalo"
+    "login": {
+      "error-text-emailverification": "Por favor revisa to correo y verifica tu registro",
+      "error-text-resend-emailverification": "Correo no verificado. Por favor revisalo"
+    },
+    "pokepedia": {
+      "txt-title": "Batalla Pokemón - Pokepédia"
     }
   }
 }

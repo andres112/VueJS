@@ -4,6 +4,7 @@ import Menu from "../views/Menu.vue";
 import Battle from "@/views/Battle.vue";
 import Home from "@/views/Home.vue";
 import Register from "@/views/Register.vue";
+import Pokepedia from '@/views/Pokepedia.vue';
 
 import { auth } from "@/firebase"; // import firebase singleton
 
@@ -14,6 +15,11 @@ const routes = [
     path: "/",
     name: "Menu",
     component: Menu,
+  },
+  {
+    path: "/pokepedia",
+    name: "Pokepedia",
+    component: Pokepedia,
   },
   {
     path: "/register",
