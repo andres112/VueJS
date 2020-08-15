@@ -25,7 +25,10 @@
       "error-text-resend-emailverification": "Email no verified. Please review your email account"
     },
     "pokepedia": {
-      "txt-title": "Pokemon Battle - Pokepedia"
+      "txt-title": "Pokemon Battle - Pokepedia",
+      "species-label": "Species",
+      "search-input": "Search...",
+      "details-modal-button": "Details"
     }
   },
   "es": {
@@ -54,7 +57,10 @@
       "error-text-resend-emailverification": "Correo no verificado. Por favor revisalo"
     },
     "pokepedia": {
-      "txt-title": "Batalla Pokemón - Pokepédia"
+      "txt-title": "Batalla Pokemón - Pokepédia",
+      "species-label": "Especies",
+      "search-input": "Buscar...",
+      "details-modal-button": "Detalles"
     }
   }
 }

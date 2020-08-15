@@ -13,6 +13,7 @@ const actions = {
       const data = await fetch(url);
       const raw_data = await data.json();
       commit("fillPokemons", raw_data.results);
+      return raw_data.results;
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +39,10 @@ const actions = {
       for (let i = 0; i < state.numberOfPokemons; i++) {
         // when action getDetails start the spinner is initialized
         commit("loadPokemons", true);
-        const element = await dispatch("getPokemon", battlePokemons.next().value.url);
+        const element = await dispatch(
+          "getPokemon",
+          battlePokemons.next().value.url
+        );
         counter++;
         if (!element) {
           return;
@@ -83,6 +87,12 @@ const mutations = {
 const getters = {
   getNumberOfPokemons(state) {
     return state.numberOfPokemons;
+  },
+  getFilteredPokemons: (state) => (payload) => {
+    if (payload) {
+      return state.pokemons.filter((x) => x.name.includes(payload));
+    }
+    return state.pokemons;
   },
 };
 export default {
