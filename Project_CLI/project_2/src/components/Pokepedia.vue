@@ -34,11 +34,11 @@
           <template v-slot:cell(url)="row">
             <b-button
               size="sm"
-              @click="info(row.item, row.index, $event.target)"
+              @click.prevent ="info(row.item, row.index, $event.target)"
               class="mr-1"
               variant="success"
             >
-              {{$t("pokepedia.details-modal-button")}}
+              {{ $t("pokepedia.details-modal-button") }}
             </b-button>
           </template>
         </b-table>
@@ -48,9 +48,14 @@
           :title="infoModal.title"
           ok-only
           @hide="resetInfoModal"
-          scrollable 
+          scrollable
         >
-          <pre>{{ infoModal.content }}</pre>
+          <pre>
+            <b-row align-h="center">
+            <b-img :src="checkImage(infoModal.content.sprites)" fluid></b-img>
+            </b-row>
+            {{ infoModal.content.stats }}
+          </pre>
         </b-modal>
       </div>
     </div>
@@ -58,6 +63,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import support from "@/assets/scripts/functions.js";
 
 export default {
   name: "Pokepedia",
@@ -102,6 +108,12 @@ export default {
     resetInfoModal() {
       this.infoModal.title = "";
       this.infoModal.content = "";
+    },
+    checkImage(sprites) {
+      const image = sprites
+        ? sprites.front_default
+        : null;
+      return support.checkImage(image);
     },
   },
   watch: {
