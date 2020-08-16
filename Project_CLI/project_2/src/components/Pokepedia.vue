@@ -34,7 +34,7 @@
           <template v-slot:cell(url)="row">
             <b-button
               size="sm"
-              @click.prevent ="info(row.item, row.index, $event.target)"
+              @click.prevent="info(row.item, row.index, $event.target)"
               class="mr-1"
               variant="success"
             >
@@ -52,9 +52,44 @@
         >
           <pre>
             <b-row align-h="center">
-            <b-img :src="checkImage(infoModal.content.sprites)" fluid></b-img>
+              <b-img :src="checkImage(infoModal.content.sprites)" fluid class="pokeImage"></b-img>
             </b-row>
-            {{ infoModal.content.stats }}
+            <!-- <div class="row justify-content-around">
+              <div class="col-sm-3">
+                <label for="hp" class="font-weight-bold col-form-label">HP</label>
+                <input
+                  type="text"
+                  readonly
+                  id="hp"
+                  class="form-control-plaintext text-center"
+                  v-model="infoModal.content.hp"
+                />
+              </div>
+              <div class="col-sm-3">
+                <label for="attack" class="font-weight-bold col-form-label"
+                  >Attack</label
+                >
+                <input
+                  type="text"
+                  readonly
+                  id="attack"
+                  class="form-control-plaintext text-center"
+                  v-model="infoModal.content.attack"
+                />
+              </div>
+              <div class="col-sm-3">
+                <label for="defense" class="font-weight-bold col-form-label"
+                  >Defense</label
+                >
+                <input
+                  type="text"
+                  readonly
+                  id="defense"
+                  class="form-control-plaintext text-center"
+                  v-model="infoModal.content.defense"
+                />
+              </div>
+            </div> -->
           </pre>
         </b-modal>
       </div>
@@ -76,7 +111,7 @@ export default {
       infoModal: {
         id: "info-modal",
         title: "",
-        content: "",
+        content: {},
       },
     };
   },
@@ -102,6 +137,10 @@ export default {
       this.infoModal.title = item.name.toUpperCase();
       // this.infoModal.title = `Row index: ${index}`;
       this.infoModal.content = await this.getPokemon(item.url);
+      // let arrayStats = Object.values(content.stats);
+      // arrayStats.forEach((item) => {
+      //   this.infoModal.content[item.stat.name] = item.base_stat;
+      // });
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },
     // Close the modal anc clean the info in there
@@ -110,9 +149,7 @@ export default {
       this.infoModal.content = "";
     },
     checkImage(sprites) {
-      const image = sprites
-        ? sprites.front_default
-        : null;
+      const image = sprites ? sprites.front_default : null;
       return support.checkImage(image);
     },
   },
@@ -127,3 +164,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.pokeImage{
+  width: 35%;
+  height: auto;
+}
+</style>

@@ -132,14 +132,18 @@ export default {
     }),
   },
   methods: {
-    ...mapActions({ addBattleDB: "battle/addBattleDB" }),
+    ...mapActions({
+      addBattleDB: "battle/addBattleDB",
+      getDetails: "pokemon/getDetails",
+    }),
     ...mapMutations({ setDefaultPlayers: "battle/setDefaultPlayers" }),
     startBattle() {
       this.$v.$touch();
       if (this.$v.$invalid) {
       } else {
-        // update database when players data is changed
+        // update database when players data is changed        
         this.addBattleDB();
+        this.getDetails()
         router.push({ name: "Battle" });
       }
     },
