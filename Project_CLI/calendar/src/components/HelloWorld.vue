@@ -2,6 +2,12 @@
   <div>
     <v-row class="text-center" no-gutters>
       <v-col cols="12">
+        <v-chip class="ma-2" color="success" text-color="white" large label>
+          30-Oct
+          <v-icon right>fas fa-birthday-cake</v-icon>
+        </v-chip>
+      </v-col>
+      <v-col cols="12">
         <v-card>
           <v-date-picker
             v-model="date"
@@ -27,6 +33,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "HelloWorld",
   data() {
@@ -39,15 +46,18 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["showLoading", "hideLoading"]),
     async getDolar() {
       try {
+        // Activate the loading when information start to be retrieved
+        this.showLoading({ title: "Loading...", color: "info" });
         const date = this.date
           .split("-")
           .reverse()
           .join("-");
         const clp = await this.axios.get(
           `https://mindicador.cl/api/dolar/${date}`
-        );        
+        );
         const cop = await this.axios.get(
           `https://www.datos.gov.co/resource/32sa-8pi3.json?vigenciadesde=${this.date}`
         );
@@ -66,6 +76,9 @@ export default {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        // Hide loading at the end
+        this.hideLoading();
       }
     },
   },
