@@ -48,15 +48,21 @@
           :title="infoModal.title"
           ok-only
           @hide="resetInfoModal"
-          scrollable
+          size="lg"
         >
-          <pre>
+          <template>
             <b-row align-h="center">
-              <b-img :src="checkImage(infoModal.content.sprites)" fluid class="pokeImage"></b-img>
+              <b-img
+                :src="checkImage(infoModal.content.sprites)"
+                fluid
+                class="pokeImage"
+              ></b-img>
             </b-row>
-            <!-- <div class="row justify-content-around">
+            <div class="row justify-content-around">
               <div class="col-sm-3">
-                <label for="hp" class="font-weight-bold col-form-label">HP</label>
+                <label for="hp" class="font-weight-bold col-form-label"
+                  >HP</label
+                >
                 <input
                   type="text"
                   readonly
@@ -89,8 +95,8 @@
                   v-model="infoModal.content.defense"
                 />
               </div>
-            </div> -->
-          </pre>
+            </div>
+          </template>
         </b-modal>
       </div>
     </div>
@@ -137,10 +143,11 @@ export default {
       this.infoModal.title = item.name.toUpperCase();
       // this.infoModal.title = `Row index: ${index}`;
       this.infoModal.content = await this.getPokemon(item.url);
-      // let arrayStats = Object.values(content.stats);
-      // arrayStats.forEach((item) => {
-      //   this.infoModal.content[item.stat.name] = item.base_stat;
-      // });
+      console.log(this.infoModal.content);
+      let arrayStats = Object.values(this.infoModal.content.stats);
+      arrayStats.forEach((item) => {
+        this.infoModal.content[item.stat.name] = item.base_stat;
+      });
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },
     // Close the modal anc clean the info in there
@@ -165,7 +172,7 @@ export default {
 };
 </script>
 <style scoped>
-.pokeImage{
+.pokeImage {
   width: 35%;
   height: auto;
 }
