@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { i18n } from "./i18n";
+import VueAnalytics from "vue-analytics";
 
 // Boostrap libraries and CSS files
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
@@ -30,6 +31,12 @@ Vue.use(Vuelidate);
 
 // Install the Checkbox instance
 Vue.use(PrettyCheckbox);
+
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: "UA-189236636-1",
+  router, //Automatic google analytics tracking
+});
 
 import { auth } from "./firebase";
 
