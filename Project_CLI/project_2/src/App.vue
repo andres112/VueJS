@@ -3,7 +3,9 @@
     <!-- navbar-expand-sm allows to put the elements in nav inline -->
     <app-head></app-head>
     <br />
-    <b-container><router-view /></b-container>
+    <b-container>
+      <router-view />
+    </b-container>
   </div>
 </template>
 <script>

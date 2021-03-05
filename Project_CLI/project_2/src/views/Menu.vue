@@ -2,7 +2,11 @@
   <div class="menu">
     <!-- Here is possible to access to the menu-title in i18n -->
     <Tittle :msg="$t('menu.txt-title')" />
-    <img alt="working" src="@/assets/pokeball.png" />
+    <transition
+      enter-active-class="animate__animated animate__rubberBand animate__faster"
+    >
+      <img v-if="showImage" alt="working" src="@/assets/pokeball.png" />
+    </transition>
     <br />
     <div class="btn-group-vertical">
       <button class="btn btn-primary" :disabled="!isSessionOn" @click="newGame">
@@ -26,8 +30,9 @@ export default {
   name: "Menu",
   data() {
     return {
-      aja:false
-    }
+      aja: false,
+      showImage: false,
+    };
   },
   components: {
     Tittle,
@@ -49,12 +54,18 @@ export default {
       router.push({ name: "Home" });
     },
   },
-  created() {    
+  created() {
     // Then load players from database
     if (this.isSessionOn) {
       this.getBattles();
-    } 
+    }
   },
+  mounted() {
+    this.showImage = true;
+  },
+  destroy() {
+    this.showImage = false;
+  }
 };
 </script>
 

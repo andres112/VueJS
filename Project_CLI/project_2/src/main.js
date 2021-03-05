@@ -20,6 +20,9 @@ import PrettyCheckbox from "pretty-checkbox-vue";
 // scss for prety checkboxes
 import "pretty-checkbox/src/pretty-checkbox.scss";
 
+// for animations
+import "animate.css";
+
 Vue.config.productionTip = false;
 
 // Install BootstrapVue
