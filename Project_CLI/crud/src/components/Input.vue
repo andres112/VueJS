@@ -14,7 +14,7 @@
           class="form-check-input"
           id="check-1"
           v-model="task.category"
-          value="js"
+          value="javascript"
         />
         <label for="check-1" class="form-check-label">Javascript</label>
       </div>
@@ -24,7 +24,7 @@
           class="form-check-input"
           id="check-2"
           v-model="task.category"
-          value="dev"
+          value="web development"
         />
         <label for="check-2" class="form-check-label">Web Dev</label>
       </div>
@@ -65,11 +65,14 @@
         v-model.number="task.number"
       />
     </div>
-    <button class="btn btn-block btn-dark" type="submit" :disabled="blocking">
-      Process
-    </button>
-    <div>
-      <p>{{ task }}</p>
+    <div class="col-6 mx-auto mt-4">
+      <button
+        class="btn btn-block btn-danger"
+        type="submit"
+        :disabled="blocking"
+      >
+        Process
+      </button>
     </div>
   </div>
 </template>

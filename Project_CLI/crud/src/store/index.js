@@ -6,14 +6,13 @@ export default createStore({
     task: { id: "", name: "", category: [], state: "", number: null },
   },
   mutations: {
-    setTask(state, payload) {
+    addTask(state, payload) {
       state.tasks.push(payload);
     },
   },
   actions: {
     setTask({ commit }, newTask) {
-      console.log('jajajaja');
-      commit("setTask", newTask);
+      commit("addTask", newTask);
     },
   },
   modules: {},
