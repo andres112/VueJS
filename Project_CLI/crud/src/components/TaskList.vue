@@ -14,11 +14,25 @@
       <tr v-for="item in tasks" :key="item.id">
         <th scope="row">{{ item.id }}</th>
         <td>{{ item.name }}</td>
-        <td>{{item.category.join(', ')}}
-        </td>
+        <td>{{ item.category.join(", ") }}</td>
         <td>{{ item.state }}</td>
         <td>{{ item.number }}</td>
-        <td></td>
+        <td>
+          <div class="d-grid gap-2">
+            <router-link
+              class="btn btn-sm btn-outline-success mr-2"
+              :to="`/edit/${item.id}`"
+            >
+              Edit
+            </router-link>
+            <button
+              class="btn btn-sm btn-outline-danger"
+              @click="deleteTask(item)"
+            >
+              Delete
+            </button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -30,6 +44,9 @@ import { mapState, mapActions } from "vuex";
 export default {
   computed: {
     ...mapState(["tasks"]),
+  },
+  methods: {
+    ...mapActions(["deleteTask"]),
   },
 };
 </script>

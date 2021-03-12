@@ -13,7 +13,7 @@
 import Input from "@/components/Input.vue";
 import TaskList from "@/components/TaskList.vue";
 
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import { nanoid } from "nanoid"; // import singleton from nano id package
 
 export default {
@@ -24,20 +24,23 @@ export default {
   },
   data() {
     return {
-      task: { id: "", name: "", category: [], state: "", number: null }
+      task: { id: "", name: "", category: [], state: "", number: null },
     };
   },
+  computed: {
+    ...mapState(["tarea"]),
+  },
   methods: {
-    ...mapActions(["setTask"]),
+    ...mapActions(["setTasks"]),
     procesarFormulario() {
       if (this.task.name.trim() === "") {
-        console.log("name Vacío");
+        console.log("name empty");
         return;
       }
       // generate nano id for each task limited to 10 characters
       this.task.id = nanoid(10);
       // send data to action in vuex
-      this.setTask(this.task);
+      this.setTasks(this.task);
       // clear task
       this.task = { id: "", name: "", category: [], state: "", number: null };
     },
