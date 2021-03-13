@@ -5,8 +5,8 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Category</th>
-        <th scope="col">State</th>
-        <th scope="col">Number</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Date</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -15,10 +15,10 @@
         <th scope="row">{{ item.id }}</th>
         <td>{{ item.name }}</td>
         <td>{{ item.category.join(", ") }}</td>
-        <td>{{ item.state }}</td>
-        <td>{{ item.number }}</td>
+        <td :class="getPriorityColor(item.priority)">{{ item.priority }}</td>
+        <td>{{ getDate(item.date) }}</td>
         <td>
-          <div class="d-grid gap-2">
+          <div class="d-grid gap-2 d-flex justify-content-center">
             <router-link
               class="btn btn-sm btn-outline-success mr-2"
               :to="`/edit/${item.id}`"
@@ -40,6 +40,12 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+const DATE_OPTIONS = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
 
 export default {
   computed: {
@@ -47,6 +53,23 @@ export default {
   },
   methods: {
     ...mapActions(["deleteTask"]),
+    getPriorityColor(priority = "") {
+      priority = priority.toLowerCase();
+      if (priority === "high") {
+        return "table-danger";
+      }
+      if (priority === "medium") {
+        return "table-warning";
+      }
+      if (priority === "low") {
+        return "table-primary";
+      }
+      return;
+    },
+    getDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-US", DATE_OPTIONS);
+    },
   },
 };
 </script>

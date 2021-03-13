@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
-    <h1>ToDo Listo</h1>
-    <form class="mt-3" @submit.prevent="procesarFormulario">
+    <h1>Edit Task</h1>
+    <form class="mt-3" @submit.prevent="updateForm()">
       <form-fields :task="task" />
     </form>
   </div>
@@ -18,7 +18,10 @@ export default {
     "form-fields": Input,
   },
   methods: {
-    ...mapActions(["setTask"]),
+    ...mapActions(["setTask", "updateTask"]),
+    updateForm() {
+      this.updateTask(this.task);
+    },
   },
   created() {
     this.setTask(this.$route.params.id);
