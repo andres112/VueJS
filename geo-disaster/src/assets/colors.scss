@@ -1,0 +1,32 @@
+$aquamarine: rgb(0, 211, 167);
+$aquamarine-invert: findColorInvert($aquamarine);
+$teal-blue: rgb(0, 151, 166);
+$teal-blue-invert: findColorInvert($teal-blue);
+$teal: rgb(0, 168, 137);
+$teal-invert: findColorInvert($teal);
+$pumpkin-orange: rgb(248, 139, 28);
+$pumpkin-orange-invert: findColorInvert($pumpkin-orange);
+$azure: rgb(29, 161, 242);
+$azure-invert: findColorInvert($azure);
+$dark-sky-blue: rgb(59, 175, 211);
+$dark-sky-blue-invert: findColorInvert($dark-sky-blue);
+$coral: rgb(255, 62, 62);
+$coral-invert: findColorInvert($coral);
+$light-gold: rgb(252, 205, 74);
+$light-gold-invert: findColorInvert($light-gold);
+$navy: rgb(2, 31, 39);
+$navy-invert: findColorInvert($navy);
+$gunmetal: rgb(77, 98, 103);
+$gunmetal-invert: findColorInvert($gunmetal);
+$white: rgb(255, 255, 255);
+$white-invert: findColorInvert($white);
+$transparent: rgba(255, 255,255, 0);
+$transparent-invert: findColorInvert($transparent);
+
+$blue-light: #00A3AD;
+$blue-light-invert: findColorInvert($blue-light);
+
+$primary: #529DBA;
+
+$secondary: #dfa72f;
+$secondary-invert: findColorInvert($secondary);
