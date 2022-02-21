@@ -16,6 +16,7 @@
     "vue": "^2.6.14",
     "vue-carousel": "^0.18.0",
     "vue-router": "^3.2.0",
+    "vue-split-panel": "^1.0.4",
     "vue-youtube-embed": "^2.2.2",
     "vue2-google-maps": "^0.10.7",
     "vuex": "^3.4.0"

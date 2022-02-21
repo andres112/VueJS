@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- b-loading(:active.sync='isLoading')-->
-    <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal>
+    <!-- <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal>
     <div
       v-show="$mq === 'sm'"
       v-if="currentTask.hasOwnProperty('id')"
@@ -67,7 +67,6 @@
         </div>
       </div>
       <div class="mobile-column-questions">
-        <!-- .column.column-middle.mobile-column-questions-->
         <div v-show="step&lt;2">
           <div>
             <h2 class="subtitle" v-if="approxLocationOptions.length">
@@ -273,14 +272,14 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div
-      v-show="$mq === 'lg'"
       v-if="currentTask.hasOwnProperty('id')"
-      :class="{ section: $mq === 'lg' }"
+      
       style="color: black; margin-top: -20px; padding: 0px"
     >
       <Split direction="horizontal">
+        asdfsa df
         <SplitArea class="column-image" :size="30">
           <section
             v-if="currentTask.hasOwnProperty('id')"
@@ -695,8 +694,9 @@ export default {
           "Content-Type": "application/json",
         },
       });
-      debugger;
+      
       let project = await project_aux.json();
+      debugger;
       if (project.length && project[0].id === task.project_id) {
         this.$store.commit("ADD_TASKS", [task]);
       } else {
@@ -968,6 +968,7 @@ export default {
       }
     },
     async loaded() {
+      debugger;
       // polygon
       console.log("loaded called");
       if (
@@ -1085,12 +1086,12 @@ export default {
     },
     toggleModal() {
       this.isModalActive = !this.isModalActive;
-      if (this.isModalActive && this.$mq === "sm") {
-        this.$store.commit("BOTTOM_NAVBAR", false);
-      }
-      if (this.isModalActive === false && this.$mq === "sm") {
-        this.$store.commit("BOTTOM_NAVBAR", true);
-      }
+      // if (this.isModalActive && this.$mq === "sm") {
+      //   this.$store.commit("BOTTOM_NAVBAR", false);
+      // }
+      // if (this.isModalActive === false && this.$mq === "sm") {
+      //   this.$store.commit("BOTTOM_NAVBAR", true);
+      // }
     },
     post_time(val) {
       return moment(val).format("MMM D");
@@ -1251,6 +1252,7 @@ export default {
       }
     },
     tasks() {
+      debugger;
       if (this.tasks.length > 0) {
         this.initializeTutorial();
       }
@@ -1265,24 +1267,26 @@ export default {
     approxLocation() {
       // this.incStep()
     },
-    currentTask() {
-      if (this.currentTask.hasOwnProperty("id")) {
-        let url = `/project/${this.$route.params.slug}/task/${this.currentTask.id}`;
-        history.pushState({}, "Title", url);
-      } else {
-        let url = `/project/${this.$route.params.slug}/task/0`;
-        history.pushState({}, "Title", url);
-      }
-    },
+    // currentTask() {
+    //   debugger;
+    //   if (this.currentTask.hasOwnProperty("id")) {
+    //     let url = `/project/${this.$route.params.slug}/task/${this.currentTask.id}`;
+    //     history.pushState({}, "Title", url);
+    //   } else {
+    //     let url = `/project/${this.$route.params.slug}/task/0`;
+    //     history.pushState({}, "Title", url);
+    //   }
+    // },
     isModalActive(newVal) {
-      if (this.isModalActive && this.$mq === "sm") {
-        this.$store.commit("BOTTOM_NAVBAR", false);
-      }
-      if (this.isModalActive === false && this.$mq === "sm") {
-        this.$store.commit("BOTTOM_NAVBAR", true);
-      }
+      // if (this.isModalActive && this.$mq === "sm") {
+      //   this.$store.commit("BOTTOM_NAVBAR", false);
+      // }
+      // if (this.isModalActive === false && this.$mq === "sm") {
+      //   this.$store.commit("BOTTOM_NAVBAR", true);
+      // }
     },
     tasks() {
+      debugger;
       if (this.tasks.length > 0 && this.tasks.length <= 5) {
         this.newTask(this.project_id, [], 2, this.currentTask.id);
       }

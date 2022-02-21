@@ -8,6 +8,8 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import VueSplit from 'vue-split-panel'
+
 
 const localConfig = require("@/assets/localConfig.js");
 
@@ -24,6 +26,7 @@ Vue.use(VueGoogleMaps, {
     libraries: "places,drawing,visualization,geometry",
   },
 });
+Vue.use(VueSplit)
 
 new Vue({
   router,

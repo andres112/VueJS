@@ -81,21 +81,29 @@ export default {
             }
           });
           let url = `${localConfig.baseURL}api/task?project_id=${projectId}&info=${query}&fulltextsearch=true&participated=true&limit=${limit}&state=ongoing&orderby=priority_0&desc=true`;
-          let tasks = await fetch(url);
+          let tasks_aux = await fetch(url);
+          let tasks = await tasks_aux.json();
           this.$store.commit("ADD_TASKS", tasks);
         }
       }
       if (!_.isUndefined(lastId) && _.isInteger(lastId) && lastId > 0) {
         let url = `${localConfig.baseURL}api/task?project_id=${projectId}&all=1&participated=true&limit=2&last_id=${lastId}&state=ongoing&orderby=priority_0&desc=true`;
-        let tasks = await fetch(url);
+        let tasks_aux = await fetch(url, {
+          credentials: "include", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        let tasks = await tasks_aux.json();
         if (!_.isArray(tasks) || tasks.length < 1) {
           url = `${localConfig.baseURL}api/project/${projectId}/newtask?limit=2&orderby=priority_0&desc=true`;
-          tasks = await fetch(url, {
+          tasks_aux = await fetch(url, {
             credentials: "include", // include, *same-origin, omit
             headers: {
               "Content-Type": "application/json",
             },
           });
+          let tasks = await tasks_aux.json();
           if (!Array.isArray(tasks)) {
             if (tasks.hasOwnProperty("id")) {
               tasks = [tasks];
@@ -108,12 +116,13 @@ export default {
       } else {
         let offset = this.$store.state.tasks.length;
         let url = `${localConfig.baseURL}api/project/${projectId}/newtask?limit=2&orderby=priority_0&desc=true`;
-        let tasks = await fetch(url, {
+        let tasks_aux = await fetch(url, {
           credentials: "include", // include, *same-origin, omit
           headers: {
             "Content-Type": "application/json",
           },
         });
+        let tasks = await tasks_aux.json();
         if (!Array.isArray(tasks)) {
           if (tasks.hasOwnProperty("id")) {
             tasks = [tasks];
