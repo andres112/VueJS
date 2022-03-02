@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- b-loading(:active.sync='isLoading')-->
-    <!-- <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal>
-    <div
+    <!-- <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal> -->
+    <!-- <div
       v-show="$mq === 'sm'"
       v-if="currentTask.hasOwnProperty('id')"
       :class="{ section: $mq === 'sm' }"
@@ -279,7 +279,6 @@
       style="color: black; margin-top: -20px; padding: 0px"
     >
       <Split direction="horizontal">
-        asdfsa df
         <SplitArea class="column-image" :size="30">
           <section
             v-if="currentTask.hasOwnProperty('id')"
@@ -696,7 +695,6 @@ export default {
       });
       
       let project = await project_aux.json();
-      debugger;
       if (project.length && project[0].id === task.project_id) {
         this.$store.commit("ADD_TASKS", [task]);
       } else {
@@ -968,7 +966,6 @@ export default {
       }
     },
     async loaded() {
-      debugger;
       // polygon
       console.log("loaded called");
       if (
@@ -1252,7 +1249,6 @@ export default {
       }
     },
     tasks() {
-      debugger;
       if (this.tasks.length > 0) {
         this.initializeTutorial();
       }
@@ -1286,7 +1282,6 @@ export default {
       // }
     },
     tasks() {
-      debugger;
       if (this.tasks.length > 0 && this.tasks.length <= 5) {
         this.newTask(this.project_id, [], 2, this.currentTask.id);
       }

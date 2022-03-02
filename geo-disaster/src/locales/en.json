@@ -1,0 +1,356 @@
+{
+  "locales": {
+    "en": "English",
+    "es": "Spanish",
+    "de": "German"
+  },
+
+  "leaderboard": {
+      "rank": "Rank",
+      "score": "Score",
+      "general": "General",
+      "extension": "Chrome Extension",
+      "images": "Contributed images"
+  },
+
+  "extension": {
+      "install": "Get the extension"
+  },
+
+
+  "about": {
+      "01": "CROWD4EMS is an innovative European Service Platform  providing unique EU access point to filtered social media and crowdsourced data , to support emergency responders in collecting coordinated and structured Volunteer Geographic Information (VGI) input from their qualified crowd of volunteers as well as, directly from citizens in a working and validated operational framework." ,
+      "partners": "Partners"
+  },
+
+  "navigation": {
+    "cookies": "Cookies",
+    "home": "Go home",
+    "seeEvents": "See events to contribute",
+    "contributions": "contributions",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out",
+    "leaderboard": "Leaderboard",
+    "event": "Event | Events",
+    "admin": "Admin",
+    "announcement": "Announcement | Announcements",
+    "contact": "Contact",
+    "about": "About",
+    "01": "Access to your account",
+    "02": "Track your contributions",
+    "03": "Keep updated by email",
+    "04": "Save and manage your profile",
+    "developedBy": "Developed by"
+  },
+
+  "home": {
+    "home": "Home",
+    "cookies": "We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.",
+    "cookiesinfo": "More info about cookies."
+  },
+
+  "translation": {
+    "title": "Help translating disaster related words",
+    "subtitle": "We’ll use this translation to get content in Social Media. We are tring to identify slang and local language."
+  },
+
+  "project": {
+    "ongoing": "Project ongoing",
+    "closed": "Project closed",
+    "relevance": "Relevance",
+    "geolocation": "Geolocalization",
+    "translation": "Translation",
+    "info": "About the project",
+    "location": "Is this a location?",
+    "import": "Import tasks",
+    "tasks": "Tasks",
+    "imagesLeft": "project completed | 1 image left | {images} images left",
+    "wordsLeft": "project completed | 1 word left | {words} words left"
+  },
+
+
+  "event": {
+      "notActive": "Event is not active anymore",
+      "updateTitle": "Update event",
+      "type": "Event type",
+      "name": "Event name",
+      "location": "Event location",
+      "short": "Short description",
+      "about": "About the event",
+      "id": "Event ID in Data API",
+      "tasks": "Add tasks of this event",
+      "tasksPlaceholder": "Add a task",
+      "finishes": "Event finishes",
+      "select": "Click to select...",
+      "cover": "Cover",
+      "activated": "Event activated",
+      "left": "{timeLeft} left to participate",
+      "taskLeft": "Tasks left"
+  },
+
+  "relevanceTags": {
+    "info": "Choose as many tags as you want",
+    "flooded-street": "Flooded street",
+    "flooded-houses": "Flooded houses",
+    "damaged-buildings": "Damaged buildings",
+    "uninhabitable-houses": "Uninhabitable houses",
+    "habitable-but-damaged-houses": "Habitable but damaged houses",
+    "no-damage": "No damage",
+    "visible-damage": "Visible damage"
+  },
+
+  "meta": {
+    "of": "of",
+    "announcements": "Announcements",
+    "announcement": "Announcement",
+    "listAnnouncements": "List of announcements",
+    "delete": "Delete account",
+    "community": "Community",
+    "name": "Name",
+    "export": "Export your data",
+    "language": "Language",
+    "country": "Country",
+    "countryBorn": "Country of birth",
+    "region": "Region",
+    "city": "City",
+    "limited": "Limited",
+    "work": "Work",
+    "lived": "Lived",
+    "native": "Native",
+    "selectProficency": "Select your proficency level",
+    "selectLanguage": "Select a language",
+    "selectCountry": "Select a country",
+    "selectRegion": "Select a region",
+    "selectGender": "Select a gender",
+    "proficency": "Proficency",
+    "gender": "Gender",
+    "age": "Age",
+    "info": "Information",
+    "male": "Male",
+    "female": "Female"
+  },
+
+  "actions": {
+    "showComments": "Show comments",
+    "hideComments": "Hide comments",
+    "back": "Back",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "reject": "Reject",
+    "accept": "Accept",
+    "create": "Create",
+    "edit": "Edit",
+    "update": "Update",
+    "crop": "crop",
+    "save": "Save",
+    "browse": "Browse",
+    "add": "Add",
+    "prev": "Prev",
+    "next": "Next",
+    "delete": "Delete",
+    "sendEmail": "Send email",
+    "contribute": "Contribute",
+    "info": "More info",
+    "skip": "Skip",
+    "cancel": "Cancel",
+    "done": "Done",
+    "skiphelp": "Skip help",
+    "getstarted": "Get started",
+    "yesbottom": "Relevant",
+    "nobottom": "NOT relevant",
+    "letsGo": "Let's go!"
+  },
+
+  "account": {
+    "goodbye": "Cya! Come back soon!",
+    "complete": "Complete your profile",
+    "completeMsg": "Please, provide from which group or team are you joining this site.",
+    "delete": "Delete your account",
+    "deleteMsg": "Are you sure you want to <b>delete</b> your account? This action cannot be undone.",
+    "deleteConfirm": "Delete account",
+    "deleted": "Your account has been deleted",
+    "getData": "You will get an email when the data is available",
+    "changePassword": "Change password",
+    "welcomeBack": "Welcome back!",
+    "register": "Register",
+    "signup": "Sign up & Register",
+    "recover": "Recover password",
+    "registerLong": "Get started creating an account",
+    "signin": "Sign in",
+    "forgot": "Forgot password?",
+    "signout": "Sign out",
+    "fullname": "Full name",
+    "name": "Name",
+    "email": "Email",
+    "privacy": "Privacy",
+    "emailNotifications": "Get email notifications",
+    "language": "Language",
+    "profile": "Profile",
+    "apikey": "API key",
+    "avatarUpdated": "Your avatar has been updated",
+    "rank": "Rank",
+    "contributions": "Contributions",
+    "contributed": "Contributed",
+    "yours": "Yours",
+    "draft": "Draft",
+    "password": "Password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirm": "Confirm password",
+    "details": "Your personal info"
+  },
+
+  "server": {
+      "about": "About"
+  },
+
+  "translations": {
+      "task": "keywords"
+  },
+
+  "index": {
+    "fund": "The E2mC Project is co-funded by the European commission / H2020 Programme Grant Agreement No. 730082",
+    "headline1": "Crowdsourcing",
+    "headline2": "for disaster response",
+    "volunteers": "Volunteers",
+    "contributions": "Contributions",
+    "taskCompleted": "Task completed",
+    "subtitle1": "When a natural disaster happens, emergency responders need high-quality information quickly to make good decisions.",
+    "subtitle2": "Social media is a potential source of such data. However, the information is not always reliable.",
+    "subtitle3": "With your help, we can improve the reliability of data coming from social media.",
+    "explanation1": "Social media is a potential source of data in case of natural disasters, however the information is not always reliable.",
+    "explanation2": "",
+    "explanation3": "",
+    "explanation4": "Help us check and improve the data coming from social media to  provide high-quality data quickly to first responders.",
+    "explanation5": "",
+    "explanation6": "Learn new skills by using geospatial information systems (GIS) to accurately map social data to the area affected by a natural disaster.",
+    "explanation7": "",
+    "explanation8": "",
+    "photocredit": "Photo: NASA by Robert Simmon",
+    "explanation9": "Time constraint is key",
+    "explanation10": "We have just a few hours to deliver",
+    "explanation11": "data processed by volunteers",
+    "activeEvents": "active events",
+    "titleJoin": "Join our crowdsourcing community",
+    "subtitleJoin": "A few minutes of your time will help us to respond more efficiently in crisis and disasters.",
+    "coordinatedby": "COORDINATED BY"
+  },
+
+  "twitter": {
+      "meteo": "Meteo reports, etc.", 
+      "tv": "TV clippings, maps, etc.",
+      "river": "Sea waves or just sea shore, floode river, etc",
+      "politics": "Politicians and/or politicians discussing about the event",
+      "map": "Maps showing the eye of hurricane",
+      "roads": "Images showing the impact of the disaster (flooded roads/streets/buildings)",
+      "clues": "Images showingvisual cues or with information about the location",
+      "bridges": "Bridges under water",
+      "tags": "Tag this image with the following options",
+      "tagsVideo": "Tag this video with the following options",
+      "useful": "Is this image providing useful information about the",
+      "usefulVideo": "Is this video providing useful information about the",
+      "relevant": "Relevant",
+      "notrelevant": "NOT relevant",
+      "contains": "Tweet contains",
+      "nomedia": "There's no image",
+      "image": "image | images",
+      "task": "images",
+      "modalTitle": "Help to classify images that are relevant to report about catastrophe's damages",
+      "modalSubTitle": "We need your help to validate which images extracted automatically from posts in Social Media are actually giving useful information to emergency services.",
+      "tutorialLastStep": "Click on help icon to display this tutorial again. Go for it! :)",
+      "hours": "hours",
+      "days": "days",
+      "tutorialExtracted": "These are images extracted automatically from posts in Social Media.",
+      "tutorialNotRelevant": "Examples of WHAT is NOT relevant",
+      "tutorialRelevant": "Examples of WHAT is RELEVANT",
+      "tutorialDisplayProblem": "this section will display information of the post that contains the problem image.",
+      "onePostContains": "1 post contains this",
+      "xPostContains": "posts contains this information",
+      "moreInfo": "More info",
+      "noMoreTasks": "There are no more available tasks for you. Thanks for your work!",
+      "goBack": "Go back to the event",
+      "previousPost": "Previous post",
+      "nextPost": "Next post"
+  },
+
+  "translate": {
+      "translate": "Translate",
+      "location": "This is a location",
+      "to": "to",
+      "title": "Translate from",
+      "fromTo": "{from} to {to}",
+      "introTitle": "Help to gather information of a catastrophe by translating words",
+      "introSubTitle": "The words you translate will be used to identify in Social Media #hashtags that people use to report catastrophe’s damages.",
+      "last": "Click on help icon to display this tutorial again. Go for it! :)",
+      "tut01": "Enable this if the translation is the name of the location.",
+      "tut02": "Add as many meanings of the word you know. Slang words typical of a region are especially useful."
+  },
+
+  "projectInfo": {
+    "completed": "Project completed",
+    "timeLeft": "left to participate",
+    "settings": "Settings"
+  },
+
+  "optionlist": {
+      "press": "Press",
+      "choose": "Choose as many as you like"
+  },
+
+  "contact": {
+      "title": "Contact",
+      "info": "You can contact us via e-mail <a href='mailto:info@crowd4ems.org'>info@crowd4ems.org</a> or join our Slack community. If you are interested in joining us in Slack, click in this <a href='https://join.slack.com/t/crowd4ems/shared_invite/enQtNDg5OTUyNTIwMjI3LTkyMDZiMDVlZWVhOWFmMDQ5MjkwYTg1Nzk4MWZjZjAxZTY3YjE1MjAxZGFkNTIyY2UxM2UyMWQ1ZDk0NWVhNDk'>link</a>."
+  },
+
+  "geolocation": {
+    "high": "High precision",
+    "highExtra": "You found the exact location, meaning you locate a very accurate point on the map: building, street number, coordinates of a road or similar precision.",
+    "medium":  "Medium precision",
+    "mediumExtra": "You know the image was taken close to your geolocation. It may be an street, road, path or similar.",
+    "low": "Low precision",
+    "lowExtra": "Meaning that the precision you have provided it’s in a level of a city, town, district, region, neighbour and so on.",
+    "yes": "Yes",
+    "no": "No",
+    "steps": "{start} of {end}",
+    "checkOriginalImage": "Check the image's comments to validate it.",
+    "checkOriginalVideo": "Check the video's comments to validate it.",
+    "seeOriginal": "See original post",
+    "googleReverse": "Search Google for image",
+    "googleTranslate": "Translate on Google",
+    "isItLocatedIn": "Is this image located in",
+    "checkToValidate": "Check the image comment to validate it.",
+    "tips": "Tips",
+    "tipsHeadline": "TIPS",
+    "checkOriginalLink": "Check the video original link to read the comments.",
+    "readTheFullPost": "Read the full post. You can link to the source. Does the location provide a match?",
+    "useGoogleImages": "Use Google Images search and find relevant images to the current one.",
+    "gotIt": "Got it",
+    "locateExactPosition": "Locate the exact position of the damage.",
+    "locateExactPositionDesktop": "Locate the exact position of the damage on the map.",
+    "useSearchbox": "Use the search box or drag the flag to point the location.",
+    "streetview1": "Use Street View. Drag the",
+    "streetview2": "on the map to find the precise location on the bigger map.",
+    "streetview3": "Use the second map as a way to know the overall location.",
+    "streetview4": "Visual clues on teh picture might help you: signs, landmarks, roadmarks, recognisable buildings, etc.",
+    "streetview5": "Select view: satellite and map.",
+    "streetview6": "Drag and Drop the pin to place it in the exact position. When you are done with the location go to the next step.",
+    "streetview7": "Be as precise as you can.",
+    "streetview8": "There are 3 levels of precision:",
+    "streetview1Desktop": "Use Street View. Drag the",
+    "streetview2Desktop": "on the map to find the precise location.",
+    "streetview3Desktop": "Visual clues on teh picture might help you: signs, landmarks, roadmarks, recognisable buildings, etc.",
+    "streetview4Desktop": "Navigate the map full screen",
+    "streetview5Desktop": "Select view: satellite and map.",
+    "streetview6Desktop": "Be as precise as you can.",
+    "streetview7Desktop": "There are 3 levels of precision:",
+    "streetHigh": "High (building, street number, ...)",
+    "streetMedium": "Medium (street, road, ...)",
+    "streetLow": "Low (town, city,...)",
+    "greatPleaseMeasure": "Great! Please, measure the precision of the location you've just saved",
+    "taskCompleted": "Task completed!",
+    "submitAndNext": "Submit and next",
+    "modalTitle": "Help us geolocate the images to its nearest precision.",
+    "modalSubtitle": "These images after geolocation will reflect on a Map used by professionals. Geo-locating to its nearest position will help in Rapid Disaster Assessment."
+  }
+}

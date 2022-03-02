@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- Manual navigation -->
       <router-link to="/235903/dogs_identification">Home</router-link> 
     </div>
     <router-view/>

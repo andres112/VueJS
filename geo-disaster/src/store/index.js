@@ -50,6 +50,7 @@ export default new Vuex.Store({
       Vue.set(state, "categories", value);
     },
     ADD_TASK_FIRST: (state, obj) => {
+      debugger;
       Vue.set(state.tasks, 0, obj);
     },
     RESET_TUTORIAL_STEP: (state) => {
@@ -65,6 +66,14 @@ export default new Vuex.Store({
       state.currentModalActive = value;
     },
     ADD_TASKS: (state, tasks) => {
+      //FIXME: add media manually
+      tasks = tasks.map((x) => {
+        x.info["media"] = [
+          "http://pbs.twimg.com/media/BgSa7e9IgAA7SKn.jpg",
+          "http://pbs.twimg.com/media/BgSY0XfIgAEh7TP.jpg",
+        ];
+        return x;
+      });
       var tmp = _.union(state.tasks, tasks);
       state.tasks = tmp;
     },
