@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import * as VueGoogleMaps from "../node_modules/vue2-google-maps/src/main.js";
+import * as VueGoogleMaps from "vue2-google-maps";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 import VueI18n from "vue-i18n";
@@ -13,7 +13,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import VueSplit from "vue-split-panel";
 
-const localConfig = require("@/assets/localConfig.js");
+import localConfig from "@/assets/localConfig.js";
 
 Vue.config.productionTip = false;
 

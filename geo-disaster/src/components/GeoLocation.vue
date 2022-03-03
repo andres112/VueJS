@@ -275,7 +275,6 @@
     </div> -->
     <div
       v-if="currentTask.hasOwnProperty('id')"
-      
       style="color: black; margin-top: -20px; padding: 0px"
     >
       <Split direction="horizontal">
@@ -693,7 +692,7 @@ export default {
           "Content-Type": "application/json",
         },
       });
-      
+
       let project = await project_aux.json();
       if (project.length && project[0].id === task.project_id) {
         this.$store.commit("ADD_TASKS", [task]);
@@ -851,10 +850,13 @@ export default {
     getLatLng(locationEncoded) {
       let newLat;
       let newLng;
+      debugger;
       if (locationEncoded.length === 1) {
         locationEncoded = locationEncoded[0].value;
         try {
-          let location = JSON.parse(locationEncoded);
+          // let location = JSON.parse(locationEncoded);
+          let location = locationEncoded;
+          console.log("******************", location);
           newLat = location[0][0];
           newLng = location[0][1];
         } catch (err) {
@@ -1094,6 +1096,7 @@ export default {
       return moment(val).format("MMM D");
     },
     async getReverseGeo(obj) {
+      debugger;
       if (obj.length) {
         let tmp = [];
         try {
@@ -1115,6 +1118,7 @@ export default {
       }
     },
     async fixNoCIME() {
+      debugger;
       let address = await this.getReverseGeo(
         _.filter(this.currentTask.info.tags, {
           name: "CIME_geolocation_centre",

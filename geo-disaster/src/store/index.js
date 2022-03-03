@@ -72,6 +72,12 @@ export default new Vuex.Store({
           "http://pbs.twimg.com/media/BgSa7e9IgAA7SKn.jpg",
           "http://pbs.twimg.com/media/BgSY0XfIgAEh7TP.jpg",
         ];
+        x.info["tags"] = [
+          {
+            name: "CIME_geolocation_centre",
+            value: [["51.21025394", "-1.4819954"]],
+          },
+        ];
         return x;
       });
       var tmp = _.union(state.tasks, tasks);
