@@ -850,7 +850,6 @@ export default {
     getLatLng(locationEncoded) {
       let newLat;
       let newLng;
-      debugger;
       if (locationEncoded.length === 1) {
         locationEncoded = locationEncoded[0].value;
         try {
@@ -1032,7 +1031,7 @@ export default {
 
         if (!_.isUndefined(this.$refs.gmap)) {
           let self = this;
-          this.$refs.gmap.$mapCreated.then((map) => {
+          self.$refs.gmap.$mapPromise.then((map) => {
             console.log("NEW BOUNDS!");
             let pn = map.getStreetView();
             map.fitBounds(bounds);
@@ -1096,11 +1095,11 @@ export default {
       return moment(val).format("MMM D");
     },
     async getReverseGeo(obj) {
-      debugger;
       if (obj.length) {
         let tmp = [];
         try {
-          tmp = JSON.parse(obj[0].value);
+          // tmp = JSON.parse(obj[0].value);
+          tmp = obj[0].value;
         } catch (err) {
           tmp = JSON.parse(obj[0].value.replace(/\\/g, ""));
           tmp[0][0] = parseFloat(tmp[0][0].replace(",", "."));
@@ -1110,7 +1109,8 @@ export default {
           let lat = tmp[0][0];
           let lng = tmp[0][1];
           let url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`;
-          let data = await fetch(url);
+          let data_aux = await fetch(url);
+          const data = await data_aux.json();
           if (data.hasOwnProperty("address")) {
             return data.address;
           }
@@ -1118,7 +1118,6 @@ export default {
       }
     },
     async fixNoCIME() {
-      debugger;
       let address = await this.getReverseGeo(
         _.filter(this.currentTask.info.tags, {
           name: "CIME_geolocation_centre",
@@ -1149,7 +1148,8 @@ export default {
                 tag.value || `'["${await this.fixNoCIME()}"]'`;
               let locationParsed = await this.fixNoCIME();
               try {
-                locationParsed = JSON.parse(locationEncoded);
+                // locationParsed = JSON.parse(locationEncoded);
+                locationParsed = locationEncoded;
               } catch (err) {
                 locationParsed = JSON.parse(locationEncoded.replace(/\\/g, ""));
               }
@@ -1268,7 +1268,6 @@ export default {
       // this.incStep()
     },
     // currentTask() {
-    //   debugger;
     //   if (this.currentTask.hasOwnProperty("id")) {
     //     let url = `/project/${this.$route.params.slug}/task/${this.currentTask.id}`;
     //     history.pushState({}, "Title", url);

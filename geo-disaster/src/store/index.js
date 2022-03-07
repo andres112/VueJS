@@ -66,16 +66,32 @@ export default new Vuex.Store({
       state.currentModalActive = value;
     },
     ADD_TASKS: (state, tasks) => {
-      //FIXME: add media manually
+      //FIXME: add data manually
       tasks = tasks.map((x) => {
-        x.info["media"] = [
-          "http://pbs.twimg.com/media/BgSa7e9IgAA7SKn.jpg",
-          "http://pbs.twimg.com/media/BgSY0XfIgAEh7TP.jpg",
-        ];
+        x.info["media"] = ["https://pbs.twimg.com/media/BgEe0UfIQAAIeKv.jpg"];
+        (x.info["type"] = "tweet"),
+          (x.info["url"] =
+            "www.twitter.com/desdigger/status/433641810951667712");
         x.info["tags"] = [
           {
             name: "CIME_geolocation_centre",
-            value: [["51.21025394", "-1.4819954"]],
+            value: [[51.54274635, -0.368274988484943]],
+          },
+          {
+            name: "CIME_geolocation_string",
+            value: [
+              "Belvue Park, Rowdell Road, Wood End, Northolt, London Borough of Ealing, London, Greater London, England",
+            ],
+          },
+          {
+            name: "CIME_geolocation_osm",
+            value: [
+              {
+                admin_level: 15,
+                nm_class: "leisure",
+                nm_type: "park",
+              },
+            ],
           },
         ];
         return x;
