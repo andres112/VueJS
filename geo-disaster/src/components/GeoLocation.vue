@@ -14,7 +14,7 @@
       >
         <div
           style="max-width: 200px; margin-right: 10px"
-          v-if="currentTask.hasOwnProperty('info') &amp;&amp; currentTask.info.source !== 'youtube'"
+          v-if="currentTask.hasOwnProperty('info') && currentTask.info.source !== 'youtube'"
         >
           <figure class="image-container is-clickable mobile-image">
             <img
@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="mobile-column-questions">
-        <div v-show="step&lt;2">
+        <div v-show="step<2">
           <div>
             <h2 class="subtitle" v-if="approxLocationOptions.length">
               {{ step }} - {{ $t("geolocation.isItLocatedIn") }}
@@ -182,12 +182,12 @@
                   :draggable="step === 2"
                 ></gmap-marker>
                 <gmap-polyline
-                  v-if="path.length &gt; 0"
+                  v-if="path.length > 0"
                   v-bind:path.sync="path"
                   v-bind:options="{ strokeColor: '#900000' }"
                 ></gmap-polyline>
                 <gmap-polygon
-                  v-if="polygon.length &gt; 0"
+                  v-if="polygon.length > 0"
                   :paths="polygon"
                   v-bind:options="{
                     strokeColor: '#FF0000',
@@ -278,6 +278,7 @@
       style="color: black; margin-top: -20px; padding: 0px"
     >
       <Split direction="horizontal">
+        <!-- Right image section -->
         <SplitArea class="column-image" :size="30">
           <section
             v-if="currentTask.hasOwnProperty('id')"
@@ -285,7 +286,10 @@
           >
             <figure class="image-container is-clickable">
               <img
-                v-if="currentTask.hasOwnProperty('info') &amp;&amp; currentTask.info.source !== 'youtube'"
+                v-if="
+                  currentTask.hasOwnProperty('info') &&
+                  currentTask.info.source !== 'youtube'
+                "
                 @click="toggleModal"
                 :src="tweetImage"
                 @load="loaded"
@@ -303,46 +307,58 @@
             </figure>
             <br />
             <p class="post-text">{{ currentTask.info.text }}</p>
-            <br /><span class="post-author"
-              >{{ currentTask.info.author }} &nbsp;</span
-            ><span class="post-handle"
-              >{{ tweetHandle }}&nbsp;-@&nbsp;{{
+            <br />
+            <!-- mmm @desdigger -@ Mar 11  -->
+            <span class="post-author">
+              {{ currentTask.info.author }} &nbsp;
+            </span>
+            <span class="post-handle">
+              {{ tweetHandle }}&nbsp;-@&nbsp;{{
                 post_time(currentTask.info.date_created)
-              }}</span
-            ><br />
+              }}
+            </span>
+            <br />
             <p class="link" style="margin-top: 10px">
+              <!-- See original post -->
               <a
                 v-if="currentTask.info.source !== 'youtube'"
                 target="blank"
                 :href="urlOriginalPost"
-                ><b-icon icon="file-document" size="is-small"></b-icon>
-                {{ $t("geolocation.seeOriginal") }}</a
-              ><a v-else target="blank" :href="currentTask.info.url"
-                ><b-icon icon="file-document" size="is-small"></b-icon>
-                {{ $t("geolocation.seeOriginal") }}</a
               >
+                <b-icon icon="file-earmark" size="is-small"></b-icon>
+                {{ $t("geolocation.seeOriginal") }}
+              </a>
+              <a v-else target="blank" :href="currentTask.info.url">
+                <b-icon icon="file-earmark" size="is-small"></b-icon>
+                {{ $t("geolocation.seeOriginal") }}
+              </a>
             </p>
+            <!-- Search Google for image -->
             <p class="link">
               <a class="link" target="blank" :href="searchImg"
                 ><b-icon icon="camera" size="is-small"></b-icon>
                 {{ $t("geolocation.googleReverse") }}</a
               >
             </p>
+            <!-- Translate on Google -->
             <p class="link">
-              <a class="link" target="blank" :href="translate"
-                ><b-icon icon="translate" size="is-small"></b-icon>
-                {{ $t("geolocation.googleTranslate") }}</a
-              >
+              <a class="link" target="blank" :href="translate">
+                <b-icon icon="globe" size="is-small"></b-icon>
+                {{ $t("geolocation.googleTranslate") }}
+              </a>
             </p>
             <comments linkClass="link" wrapperClass="link"></comments>
           </section>
         </SplitArea>
+        <!-- Left interaction task -->
         <SplitArea
           class="is-paddingless column-middle column-questions"
           :size="70"
         >
-          <div class="centered" v-show="step&lt;2">
+          <!-- **** STEP 1 ***** -->
+          <div class="centered" v-show="step < 2">
             <div>
+              <!-- Question  -->
               <h1
                 class="title"
                 style="font-size: 24px; margin: 0; max-width: 425px"
@@ -351,6 +367,7 @@
                 {{ step }} - {{ $t("geolocation.isItLocatedIn") }}
                 {{ approxLocationOptions[0].storeValue }}?
               </h1>
+              <!-- Check the image's comments to validate it -->
               <h2
                 class="subtitle"
                 v-if="currentTask.info.source !== 'youtube'"
@@ -361,23 +378,10 @@
                   class="is-clickable"
                   style="color: #2f67df"
                   @click="showTips = true"
-                  ><b-icon icon="help-circle-outline"></b-icon>
-                  {{ $t("geolocation.tips") }}</span
                 >
-              </h2>
-              <h2
-                class="subtitle"
-                v-else
-                style="margin-top: 12px; font-size: 16px; position: relative"
-              >
-                {{ $t("geolocation.checkOriginalVideo") }}
-                <span
-                  class="is-clickable"
-                  style="color: #2f67df"
-                  @click="showTips = true"
-                  ><b-icon icon="help-circle-outline"></b-icon>
-                  {{ $t("geolocation.tips") }}</span
-                >
+                  <b-icon icon="question-circle"></b-icon>
+                  {{ $t("geolocation.tips") }}
+                </span>
                 <div class="tips" :class="{ hidden: !showTips }">
                   <h3>{{ $t("geolocation.tipsHeadline") }}</h3>
                   <p>{{ $t("geolocation.readTheFullPost") }}</p>
@@ -391,6 +395,36 @@
                   </button>
                 </div>
               </h2>
+              <!-- This section is for youtube -->
+              <h2
+                class="subtitle"
+                v-else
+                style="margin-top: 12px; font-size: 16px; position: relative"
+              >
+                {{ $t("geolocation.checkOriginalVideo") }}
+                <span
+                  class="is-clickable"
+                  style="color: #2f67df"
+                  @click="showTips = true"
+                >
+                  <b-icon icon="help-circle-outline"></b-icon>
+                  {{ $t("geolocation.tips") }}
+                </span>
+                <div class="tips" :class="{ hidden: !showTips }">
+                  <h3>{{ $t("geolocation.tipsHeadline") }}</h3>
+                  <p>{{ $t("geolocation.readTheFullPost") }}</p>
+                  <p>{{ $t("geolocation.useGoogleImages") }}</p>
+                  <button
+                    class="button is-secondary"
+                    style="align-self: flex-end"
+                    @click="showTips = false"
+                  >
+                    {{ $t("geolocation.gotIt") }}
+                  </button>
+                </div>
+              </h2>
+              <!-- Options : yes, no -->
+              <!-- Tooltips are commented -->
               <options
                 ref="optionsApprox"
                 key="approxLocation"
@@ -400,21 +434,26 @@
               ></options>
             </div>
           </div>
+          <!-- ****Step 2***** -->
           <div class="centered" v-show="step === 2">
             <div style="width: 100%">
               <div style="padding: 0px 68px">
+                <!-- Title -->
                 <h1 class="title">
                   {{ $t("geolocation.locateExactPositionDesktop") }}
                 </h1>
-                <h2 class="subtitle" style="position: relative">
+                <!-- Subtitle -->
+                <h3 class="subtitle" style="position: relative">
                   {{ $t("geolocation.useSearchbox") }}
                   <span
                     class="is-clickable"
                     style="color: #2f67df"
                     @click="showTips = true"
-                    ><b-icon icon="help-circle-outline"></b-icon>
-                    {{ $t("geolocation.tips") }}</span
                   >
+                    <b-icon icon="question-circle"></b-icon>
+                    {{ $t("geolocation.tips") }}
+                  </span>
+                  <!-- Tips in pop up window -->
                   <div
                     class="tips"
                     :class="{ hidden: !showTips }"
@@ -447,16 +486,19 @@
                       {{ $t("geolocation.gotIt") }}
                     </button>
                   </div>
-                </h2>
+                </h3>
               </div>
+              <!-- Search input for google -->
               <div class="control">
                 <gmap-autocomplete
                   class="input"
                   @place_changed="setPlace"
                 ></gmap-autocomplete>
               </div>
+
               <Split class="fill-height-or-more" direction="vertical">
                 <SplitArea :size="80">
+                  <!-- Google maps -->
                   <gmap-map
                     ref="gmap"
                     :zoom="zoom"
@@ -472,12 +514,12 @@
                       :draggable="step === 2"
                     ></gmap-marker>
                     <gmap-polyline
-                      v-if="path.length &gt; 0"
+                      v-if="path.length > 0"
                       v-bind:path.sync="path"
                       v-bind:options="{ strokeColor: '#900000' }"
                     ></gmap-polyline>
                     <gmap-polygon
-                      v-if="polygon.length &gt; 0"
+                      v-if="polygon.length > 0"
                       :paths="polygon"
                       v-bind:options="{
                         strokeColor: '#FF0000',
@@ -486,7 +528,10 @@
                     ></gmap-polygon>
                   </gmap-map>
                 </SplitArea>
+
                 <SplitArea :size="20">
+                  <!-- Google street view when is enabled -->
+                  <!-- small map below without streetview capabilities -->
                   <gmap-map
                     v-show="streetViewEnabled"
                     ref="gmap2"
@@ -504,12 +549,12 @@
                       :draggable="step === 2"
                     ></gmap-marker>
                     <gmap-polyline
-                      v-if="path.length &gt; 0"
+                      v-if="path.length > 0"
                       v-bind:path.sync="path"
                       v-bind:options="{ strokeColor: '#900000' }"
                     ></gmap-polyline>
                     <gmap-polygon
-                      v-if="polygon.length &gt; 0"
+                      v-if="polygon.length > 0"
                       :paths="polygon"
                       v-bind:options="{
                         strokeColor: '#FF0000',
@@ -521,6 +566,7 @@
               </Split>
             </div>
           </div>
+          <!-- ***Step 3*** -->
           <div class="centered" v-show="step === 3">
             <div class="steps" style="max-width: 450px">
               <h1
@@ -530,22 +576,27 @@
               >
                 {{ step }} - {{ $t("geolocation.greatPleaseMeasure") }}
               </h1>
+              <!-- Validate how this component is working -->
               <options
                 ref="optionsPrecision"
                 key="precisionLocation"
                 :options="precisionOptions"
-                :overflow="false"
+                :overflow="true"
                 :storeValue.sync="accuracy"
                 :active="true"
               ></options>
             </div>
           </div>
+          <!-- ***Step 4*** -->
           <div class="centered" v-show="step === 4">
             <div
               class="steps"
               style="display: flex; flex-direction: column; align-items: center"
             >
-              <img src="/completed.svg" style="padding-left: 20px" />
+              <img
+                src="@/assets/img/completed.svg"
+                style="padding-left: 20px"
+              />
               <h1
                 class="title"
                 style="font-size: 24px; margin-top: 15px; margin-bottom: 15px"
@@ -562,6 +613,8 @@
               </button>
             </div>
           </div>
+
+          <!-- Skip button and navigation -->
           <div class="bottom">
             <div class="level">
               <div class="level-item">
@@ -934,8 +987,7 @@ export default {
       this.$store.commit("SET_MODAL_ACTIVE", true);
     },
     getMarkerPosition(latlng) {
-      console.log(latlng.lat());
-      console.log(latlng.lng());
+      console.log(latlng.lat(), latlng.lng());
       this.markerLatLng = { lat: latlng.lat(), lng: latlng.lng() };
       this.$refs.marker.$markerObject.setPosition(this.markerLatLng);
       this.$refs.marker2.$markerObject.setPosition(this.markerLatLng);
