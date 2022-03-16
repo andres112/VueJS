@@ -69,6 +69,7 @@ export default new Vuex.Store({
       //FIXME: add data manually
       tasks = tasks.map((x) => {
         x.info["media"] = ["https://pbs.twimg.com/media/BgEe0UfIQAAIeKv.jpg"];
+        x.info["text"] = "the river Anton continues to flood the road, but the drains can't keep up, so a mini swimming pool has been created! http://t.co/gxc9lq3f7B";
         (x.info["type"] = "tweet"),
           (x.info["url"] =
             "www.twitter.com/desdigger/status/433641810951667712");

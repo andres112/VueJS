@@ -94,7 +94,6 @@ export default {
     };
   },
   mounted() {
-    debugger;
     if (this.multi) {
       for (const option of this.storeValue) {
         let found = _.find(this.options, { storeValue: option });

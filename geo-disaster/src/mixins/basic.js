@@ -69,6 +69,7 @@ export default {
         },
       });
     },
+    // NOTE: This function is Disabled is not required anymore
     async newTask(projectId, filters, limit = 20, lastId = 0) {
       if (filters.length) {
         for (var filter of filters) {

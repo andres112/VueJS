@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- b-loading(:active.sync='isLoading')-->
-    <!-- <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal> -->
+    <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal>
     <!-- <div
       v-show="$mq === 'sm'"
       v-if="currentTask.hasOwnProperty('id')"
@@ -285,6 +285,7 @@
             style="padding: 27px"
           >
             <figure class="image-container is-clickable">
+              <!-- NOTE: This image component can be replaced by media presenter component -->
               <img
                 v-if="
                   currentTask.hasOwnProperty('info') &&
@@ -295,7 +296,9 @@
                 @load="loaded"
                 @error="error"
               />
-              <no-ssr v-else>
+              <!-- NOTE: support only for twitter images  -->
+              <!-- Replace v-else with no media available message -->
+              <!-- <no-ssr v-else>
                 <div style="width: 100%; height: 100%">
                   <youtube
                     :video-id="videoId"
@@ -303,9 +306,10 @@
                     player-width="100%"
                   ></youtube>
                 </div>
-              </no-ssr>
+              </no-ssr> -->
             </figure>
             <br />
+            <!-- NOTE: the text of the tweeter -->
             <p class="post-text">{{ currentTask.info.text }}</p>
             <br />
             <!-- mmm @desdigger -@ Mar 11  -->
@@ -718,17 +722,19 @@ export default {
     await this.signTask(this.$route.params.slug, this.$route.params.id);
     // this.$store.commit("set", { key: "navBarColor", val: "is-secondary" });
     let step = `step${this.step}`;
-    if (this.tasks.length > 0) {
-      this.initializeTutorial();
-    } else {
-      this.isLoading = false;
-    }
-    this.$store.commit("set", {
-      key: "projectNavTutorial",
-      val: this.showProjectTutorial,
-    });
+    // if (this.tasks.length > 0) {
+    //   this.initializeTutorial();
+    // } else {
+    //   this.isLoading = false;
+    // }
+    // this.$store.commit("set", {
+    //   key: "projectNavTutorial",
+    //   val: this.showProjectTutorial,
+    // });
   },
   async created() {
+    // NOTE: This logic is for loading the task from the server BUT the task is already loaded
+    // before in the TemplateRenderer.vue file. currentTask is replaced by task in PB
     if (this.currentTask.hasOwnProperty("id") === false) {
       var url = `${localConfig.baseURL}api/task/${this.$route.params.id}`;
       var task_aux = await fetch(url, {
@@ -756,26 +762,28 @@ export default {
     this.project_id = this.currentTask.project_id;
   },
   computed: {
-    mobilePrecisionOptions() {
-      return [
-        {
-          activationKey: "a",
-          storeValue: "high",
-          text: this.$t("geolocation.high"),
-        },
-        {
-          activationKey: "b",
-          storeValue: "medium",
-          text: this.$t("geolocation.medium"),
-        },
-        {
-          activationKey: "c",
-          storeValue: "low",
-          text: this.$t("geolocation.low"),
-        },
-      ];
-    },
+    // Not required anymore. only for mobiles
+    // mobilePrecisionOptions() {
+    //   return [
+    //     {
+    //       activationKey: "a",
+    //       storeValue: "high",
+    //       text: this.$t("geolocation.high"),
+    //     },
+    //     {
+    //       activationKey: "b",
+    //       storeValue: "medium",
+    //       text: this.$t("geolocation.medium"),
+    //     },
+    //     {
+    //       activationKey: "c",
+    //       storeValue: "low",
+    //       text: this.$t("geolocation.low"),
+    //     },
+    //   ];
+    // },
 
+    // *** Options for option list component in 3rd screen***
     precisionOptions() {
       return [
         {
@@ -798,42 +806,54 @@ export default {
         },
       ];
     },
-    canProvideMoreAccurateOptions() {
-      return [
-        {
-          activationKey: "a",
-          storeValue: "yes",
-          text: this.$t("geolocation.yes"),
-        },
-        {
-          activationKey: "b",
-          storeValue: "no",
-          text: this.$t("geolocation.no"),
-        },
-      ];
-    },
-    videoId() {
-      if (
-        this.currentTask.hasOwnProperty("info") &&
-        this.currentTask.info.source === "youtube"
-      ) {
-        return this.$youtube.getIdFromURL(this.currentTask.info.url);
-      } else {
-        return "";
-      }
-    },
+    // Not used
+    // canProvideMoreAccurateOptions() {
+    //   return [
+    //     {
+    //       activationKey: "a",
+    //       storeValue: "yes",
+    //       text: this.$t("geolocation.yes"),
+    //     },
+    //     {
+    //       activationKey: "b",
+    //       storeValue: "no",
+    //       text: this.$t("geolocation.no"),
+    //     },
+    //   ];
+    // },
+
+    // Remove Youtube support for now
+    // videoId() {
+    //   if (
+    //     this.currentTask.hasOwnProperty("info") &&
+    //     this.currentTask.info.source === "youtube"
+    //   ) {
+    //     return this.$youtube.getIdFromURL(this.currentTask.info.url);
+    //   } else {
+    //     return "";
+    //   }
+    // },
+
+    //NOTE: chained with See Original Post
     urlOriginalPost() {
       return `https://${this.currentTask.info.url}`;
     },
+    //NOTE: chained with Search Google for image
     searchImg() {
       return `https://www.google.com/searchbyimage?image_url=${this.tweetImage}`;
     },
+    //NOTE: chained with Translate on Google
     translate() {
       return `https://translate.google.com/#auto/${this.$store.state.locale}/${this.currentTask.info.text}`;
     },
+
     postTaskrun() {
       return this.$store.state.postTaskRun;
     },
+
+    //NOTE: VALIDATE HOW WE GET THE TWITTER DATA IN PROJECTS OF TWITTER
+
+    // NOTE: check this function to get author of tweet
     tweetHandle() {
       let handle = "";
       if (
@@ -854,11 +874,13 @@ export default {
       return "";
     },
     tweetImage() {
+      //NOTE: this image can be replaced by no media found in media presenter component
       let broken = `/broken-img-icon.svg?id=${this.currentTask.id}`;
       if (
         this.currentTask !== undefined &&
         this.currentTask.hasOwnProperty("info")
       ) {
+        // this.tweetActiveImg IS EQUAL TO 0;
         let url = this.currentTask.info.media[this.tweetActiveImg] || broken;
         url = url.replace(/^http:\/\//i, "https://");
         return url;
@@ -866,6 +888,8 @@ export default {
         return broken;
       }
     },
+
+    // FIXME: AQUI QUEDO PARA SEGUIR MAÑANA
     hasEntities() {
       if (this.currentTask.hasOwnProperty("id")) {
         return this.currentTask.info.hasOwnProperty("entities");
@@ -1304,17 +1328,19 @@ export default {
         this.step = 2;
       }
     },
+    // Not required anymore
     tasks() {
       if (this.tasks.length > 0) {
         this.initializeTutorial();
       }
     },
 
-    videoId() {
-      if (this.videoID !== "") {
-        this.isLoading = false;
-      }
-    },
+    // Not Required anymore
+    // videoId() {
+    //   if (this.videoID !== "") {
+    //     this.isLoading = false;
+    //   }
+    // },
 
     approxLocation() {
       // this.incStep()
@@ -1337,7 +1363,10 @@ export default {
       // }
     },
     tasks() {
-      if (this.tasks.length > 0 && this.tasks.length <= 5) {
+      // if (this.tasks.length > 0 && this.tasks.length <= 5) {
+      // This functionality is disabled. is not required
+      // NOTE: The loop of tasks not presented is covered in TemplateRenderer.vue
+      if (this.tasks.length > 0 && this.tasks.length < 1) {
         this.newTask(this.project_id, [], 2, this.currentTask.id);
       }
     },
