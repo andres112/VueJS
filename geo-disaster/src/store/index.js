@@ -69,31 +69,30 @@ export default new Vuex.Store({
       //FIXME: add data manually
       tasks = tasks.map((x) => {
         x.info["media"] = ["https://pbs.twimg.com/media/BgEe0UfIQAAIeKv.jpg"];
-        x.info["text"] = "the river Anton continues to flood the road, but the drains can't keep up, so a mini swimming pool has been created! http://t.co/gxc9lq3f7B";
+        x.info["text"] =
+          "the river Anton continues to flood the road, but the drains can't keep up, so a mini swimming pool has been created! http://t.co/gxc9lq3f7B";
         (x.info["type"] = "tweet"),
           (x.info["url"] =
             "www.twitter.com/desdigger/status/433641810951667712");
         x.info["tags"] = [
+          // {
+          //   api_user: 3,
+          //   id: 2484,
+          //   name: "CIME_geolocation_geojson",
+          //   value: [
+          //     '{"type":"Polygon","coordinates":[[[-0.3708072,51.5432702],[-0.3700939,51.5434596],[-0.3695682,51.5434818],[-0.3690943,51.5436151],[-0.3686574,51.5436817],[-0.3682945,51.5436669],[-0.3679981,51.5435685],[-0.3677422,51.5436107],[-0.367525,51.5437487],[-0.3675017,51.5438856],[-0.3671689,51.5438595],[-0.366732,51.5435262],[-0.365655,51.5428877],[-0.3662687,51.5426],[-0.3669231,51.542331],[-0.367537,51.5421578],[-0.3681965,51.5420241],[-0.3687386,51.5419793],[-0.369267,51.5419411],[-0.3696237,51.5419089],[-0.3699163,51.5418404],[-0.370185,51.5422395],[-0.3704728,51.542605],[-0.3707154,51.5428892],[-0.3708072,51.5432702]]]}',
+          //   ],
+          // },
           {
             name: "CIME_geolocation_centre",
-            value: [[51.54274635, -0.368274988484943]],
+            value: [[47.40279168143903, 8.594684933615401]],
           },
-          {
-            name: "CIME_geolocation_string",
-            value: [
-              "Belvue Park, Rowdell Road, Wood End, Northolt, London Borough of Ealing, London, Greater London, England",
-            ],
-          },
-          {
-            name: "CIME_geolocation_osm",
-            value: [
-              {
-                admin_level: 15,
-                nm_class: "leisure",
-                nm_type: "park",
-              },
-            ],
-          },
+          // {
+          //   name: "CIME_geolocation_string",
+          //   value: [
+          //     "Belvue Park, Rowdell Road, Wood End, Northolt, London Borough of Ealing, London, Greater London, England",
+          //   ],
+          // }
         ];
         return x;
       });

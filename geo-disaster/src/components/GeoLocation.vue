@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- b-loading(:active.sync='isLoading')-->
-    <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal>
+    <!-- <b-modal :active.sync="isModalActive"><img :src="tweetImage" /></b-modal> -->
     <!-- <div
       v-show="$mq === 'sm'"
       v-if="currentTask.hasOwnProperty('id')"
@@ -504,14 +504,14 @@
                 <SplitArea :size="80">
                   <!-- Google maps -->
                   <gmap-map
-                    ref="gmap"
+                    ref="gmap1"
                     :zoom="zoom"
                     :center="latLng"
                     style="width: 100%; height: 100%"
                     @zoom_changed="zoomChanged"
                   >
                     <gmap-marker
-                      ref="marker"
+                      ref="marker1"
                       @dragend="getMarkerPosition($event.latLng)"
                       :position="latLng"
                       :clickable="step === 2"
@@ -608,6 +608,7 @@
               >
                 {{ $t("geolocation.taskCompleted") }}
               </h1>
+              <!-- NOTE: Submit button - will be replaced by ours -->
               <button
                 class="button is-secondary"
                 :disabled="approxLocation === '' || accuracy === ''"
@@ -698,7 +699,7 @@ export default {
       tweetActiveImg: 0,
       step: 1,
       isLoading: true,
-      isModalActive: false,
+      isModalActive: true,
       showTutorial: false,
       searchLatLng: null,
       streetViewEnabled: false,
@@ -733,7 +734,7 @@ export default {
     // });
   },
   async created() {
-    // NOTE: This logic is for loading the task from the server BUT the task is already loaded
+    // NOTE: This logic is for loading the task from the server BUT the task is already Loaded
     // before in the TemplateRenderer.vue file. currentTask is replaced by task in PB
     if (this.currentTask.hasOwnProperty("id") === false) {
       var url = `${localConfig.baseURL}api/task/${this.$route.params.id}`;
@@ -889,32 +890,36 @@ export default {
       }
     },
 
-    // FIXME: AQUI QUEDO PARA SEGUIR MAÑANA
-    hasEntities() {
-      if (this.currentTask.hasOwnProperty("id")) {
-        return this.currentTask.info.hasOwnProperty("entities");
-      } else {
-        return false;
-      }
-    },
-    hasMedia() {
-      if (this.currentTask.info.media.length) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    nMedia() {
-      if (this.hasMedia) {
-        return this.currentTask.info.media.length;
-      } else {
-        return 0;
-      }
-    },
+    // Not used
+    // hasEntities() {
+    //   if (this.currentTask.hasOwnProperty("id")) {
+    //     return this.currentTask.info.hasOwnProperty("entities");
+    //   } else {
+    //     return false;
+    //   }
+    // },
+    // hasMedia() {
+    //   if (this.currentTask.info.media.length) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // },
+    // nMedia() {
+    //   if (this.hasMedia) {
+    //     return this.currentTask.info.media.length;
+    //   } else {
+    //     return 0;
+    //   }
+    // },
+
+    //NOTE: this return the lat and long of the 2nd Step
     latLng() {
+      // NOTE: this is the result of searching with google input autocomplete
       if (this.searchLatLng != null) {
         return this.searchLatLng;
       }
+      // NOTE: this consider the center coming from task info
       if (this.currentTask.info) {
         let locationEncoded = _.filter(this.currentTask.info.tags, {
           name: "CIME_geolocation_centre",
@@ -924,6 +929,7 @@ export default {
     },
   },
   methods: {
+    // NOTE: get the clean lat lng in correct format
     getLatLng(locationEncoded) {
       let newLat;
       let newLng;
@@ -956,75 +962,88 @@ export default {
       }
       return { lat: newLat, lng: newLng };
     },
-    ready() {
-      this.isLoading = false;
-      this.loaded();
-    },
+
+    // useful for youtube component only, then this is discarded is not used anymore
+    // ready() {
+    //   this.isLoading = false;
+    //   this.loaded();
+    // },
+
+    // Triggered when maps change of Zoom
     zoomChanged(level) {
       console.log("Zoom:" + level);
       if (level < ZOOMMIN) {
         this.zoom = ZOOMMIN;
       }
-      // info: use ZOOMMAX + 1 because we cannot set for unknown reasons same zoom level twice (as on init) :/
+      // info: use ZOOMMAX + 1 because we cannot set for unknown reasons same Zoom level twice (as on init) :/
       if (level > ZOOMMAX + 1) {
         this.zoom = ZOOMMAX + 1;
       }
     },
-    showProjectTutorial() {
-      this.$store.commit("RESET_TUTORIAL_STEP");
-      this.$store.commit("SET_MODAL", Onboarding);
 
-      let carousel = [
-        {
-          html: `<img src="/tutorial/step0.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Kindly Validate the suggested location of the image.</h1><div class="text"><p>Is this image is located in Rieti, Lazio? Please read the text and confirm</p></div>`,
-        },
-        {
-          html: `<img src="/tutorial/step1.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Tips</h1><div class="text"><p>Read the text under the image, including links. (Original Tweet and Google Image Search ) See if the location of the picture is mentioned.<p>‘Original Post’ and ‘Google Image Search’ will provide you clues of where the image has been taken</p></div>`,
-        },
-        {
-          html: `<img src="/tutorial/step2.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Locate the position of the damage on the map as precisely as possible</h1><div class="text"><p>Use Google Street View , Google Image Search or the Google Explore.</p></div>`,
-        },
-        {
-          html: `<img src="/tutorial/step1.1.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Tips</h1><div class="text"><p><strong>In the text</strong>: look for specific cues in the information associated with the image. Look for <em>reference points</em> like landmarks, Road,</p><p><strong>In the picture:</strong> look for visual cues in the image, ie.prominent land mark, (bridges, towers, shops, building elements..etc.,) Try to search with any given cues in the google map (map view). Look also in the “satellite view” or street view. You can navigate the map full screen to facilitate the search.</p></div>`,
-        },
-        {
-          html: `<img src="/tutorial/step3.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Save location</h1><div class="text"><p>Enter the location of the given place, move the pin in the map until you find the place. Then click the next (arrow) button. </p>`,
-        },
-        {
-          html: `<img src="/tutorial/step5.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Be as precise as you can</h1><div class="text"><p>There are 3 levels of precision: <p><strong>High</strong> (at the level of building or the exact point of which the picture is taken</p><p><strong>Medium</strong> (street or road level)</p><p><strong>Low</strong> (town or neighbourhood level)</p></div>`,
-        },
-        {
-          html: `<img src="/tutorial/step6.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Submit and check the next task</h1>`,
-        },
-        {
-          html: `<img src="/tutorial/step7.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">You can always go back!</h1><div class="text"><p>At any given point you can bo back to a particular step or you can skip the task.</p></div>`,
-        },
-      ];
+    // Tutorial not used
+    // showProjectTutorial() {
+    //   this.$store.commit("RESET_TUTORIAL_STEP");
+    //   this.$store.commit("SET_MODAL", Onboarding);
 
-      this.$store.commit("SET_MODAL_PROPS", {
-        customClass: "is-secondary",
-        img: "/geolocation-tutorial-small.svg",
-        title: this.$t("geolocation.modalTitle"),
-        subtitle: this.$t("geolocation.modalSubtitle"),
-        carrousel: carousel,
-      });
-      this.$store.commit("SET_MODAL_ACTIVE", true);
-    },
+    //   let carousel = [
+    //     {
+    //       html: `<img src="/tutorial/step0.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Kindly Validate the suggested location of the image.</h1><div class="text"><p>Is this image is located in Rieti, Lazio? Please read the text and confirm</p></div>`,
+    //     },
+    //     {
+    //       html: `<img src="/tutorial/step1.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Tips</h1><div class="text"><p>Read the text under the image, including links. (Original Tweet and Google Image Search ) See if the location of the picture is mentioned.<p>‘Original Post’ and ‘Google Image Search’ will provide you clues of where the image has been taken</p></div>`,
+    //     },
+    //     {
+    //       html: `<img src="/tutorial/step2.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Locate the position of the damage on the map as precisely as possible</h1><div class="text"><p>Use Google Street View , Google Image Search or the Google Explore.</p></div>`,
+    //     },
+    //     {
+    //       html: `<img src="/tutorial/step1.1.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Tips</h1><div class="text"><p><strong>In the text</strong>: look for specific cues in the information associated with the image. Look for <em>reference points</em> like landmarks, Road,</p><p><strong>In the picture:</strong> look for visual cues in the image, ie.prominent land mark, (bridges, towers, shops, building elements..etc.,) Try to search with any given cues in the google map (map view). Look also in the “satellite view” or street view. You can navigate the map full screen to facilitate the search.</p></div>`,
+    //     },
+    //     {
+    //       html: `<img src="/tutorial/step3.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Save location</h1><div class="text"><p>Enter the location of the given place, move the pin in the map until you find the place. Then click the next (arrow) button. </p>`,
+    //     },
+    //     {
+    //       html: `<img src="/tutorial/step5.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Be as precise as you can</h1><div class="text"><p>There are 3 levels of precision: <p><strong>High</strong> (at the level of building or the exact point of which the picture is taken</p><p><strong>Medium</strong> (street or road level)</p><p><strong>Low</strong> (town or neighbourhood level)</p></div>`,
+    //     },
+    //     {
+    //       html: `<img src="/tutorial/step6.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">Submit and check the next task</h1>`,
+    //     },
+    //     {
+    //       html: `<img src="/tutorial/step7.png" style="max-height:430px;"/><h1 class="title is-5" style="margin-top:1.5rem;">You can always go back!</h1><div class="text"><p>At any given point you can bo back to a particular step or you can skip the task.</p></div>`,
+    //     },
+    //   ];
+
+    //   this.$store.commit("SET_MODAL_PROPS", {
+    //     customClass: "is-secondary",
+    //     img: "/geolocation-tutorial-small.svg",
+    //     title: this.$t("geolocation.modalTitle"),
+    //     subtitle: this.$t("geolocation.modalSubtitle"),
+    //     carrousel: carousel,
+    //   });
+    //   this.$store.commit("SET_MODAL_ACTIVE", true);
+    // },
+
+    // NOTE: get the marker position when is dragged by user
     getMarkerPosition(latlng) {
       console.log(latlng.lat(), latlng.lng());
       this.markerLatLng = { lat: latlng.lat(), lng: latlng.lng() };
-      this.$refs.marker.$markerObject.setPosition(this.markerLatLng);
+      this.$refs.marker1.$markerObject.setPosition(this.markerLatLng);
       this.$refs.marker2.$markerObject.setPosition(this.markerLatLng);
     },
+
+    // NOTE: this function is called when google input auto complete change
     setPlace(place) {
       if (place != null) {
         this.markerLatLng = {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
         };
+        // NOTE: Here the latlng is set
         this.searchLatLng = place.geometry.location;
       }
     },
+
+    // NOTE: this function is called when user Go backs to a step
     decStep() {
       if (this.step === 2) {
         this.canProvideMoreAccurate = "";
@@ -1034,6 +1053,8 @@ export default {
         this.step--;
       }
     },
+
+    // NOTE: this function is called when user Go forward to a step
     incStep(event) {
       if (!_.isUndefined(event) && event.target.attributes.disabled) {
         return;
@@ -1042,6 +1063,8 @@ export default {
         this.step++;
       }
     },
+
+    // NOTE: this function is called when component is mounted IMPORTANT!
     async loaded() {
       // polygon
       console.log("loaded called");
@@ -1050,12 +1073,15 @@ export default {
         typeof this.currentTask.info.tags !== "undefined" &&
         this.currentTask.info.tags.length > 0
       ) {
+        // NOTE: Define how the map is loaded, whit center or polygon or line, according to the tag
         for (let tag of this.currentTask.info.tags) {
+          // NOTE: get the map polygon based on this tag name
           if (tag.name === "CIME_geolocation_geojson") {
             let polygonEncoded = tag.value || '["unkown"]';
             let polygons = JSON.parse(polygonEncoded) || "unknown";
             // TODO: multi polygons
-            let polygon0 = JSON.parse(polygons[0]) || "unknown";
+            // let polygon0 = JSON.parse(polygons[0]) || "unknown";
+            let polygon0 = polygons || "unknown";
             this.path = [];
             this.polygon = [];
             if (polygon0 !== "unknown") {
@@ -1072,9 +1098,7 @@ export default {
                 }
               } else if (polygon0.type === "Polygon") {
                 this.polygon = polygon0.coordinates.map((linearRing) =>
-                  linearRing
-                    .slice(0, linearRing.length - 1)
-                    .map(([lng, lat]) => ({
+                  linearRing.map(([lng, lat]) => ({
                       lat,
                       lng,
                     }))
@@ -1105,9 +1129,10 @@ export default {
           );
         }
 
-        if (!_.isUndefined(this.$refs.gmap)) {
+        // NOTE: When is not undefined the ref exist
+        if (!_.isUndefined(this.$refs.gmap1)) {
           let self = this;
-          self.$refs.gmap.$mapPromise.then((map) => {
+          self.$refs.gmap1.$mapPromise.then((map) => {
             console.log("NEW BOUNDS!");
             let pn = map.getStreetView();
             map.fitBounds(bounds);
@@ -1129,17 +1154,23 @@ export default {
           });
         }
 
-        if (this.path.length + this.polygon.length === 0) {
-          this.zoom = ZOOMMAX;
+        const _self = this
+        if (_self.path.length + _self.polygon.length === 0) {
+          _self.zoom = ZOOMMAX;
         }
       }
       this.canProvideMoreAccurate = "";
       await this.getAllApproxLocationOptions();
       this.isLoading = false;
     },
+    // ********************
+
     async error() {
       await this.loaded();
     },
+
+    // NOTE: this skip will be replaced by our skip Task
+    // But requieres a trigger to clear all the elements
     async skip() {
       this.markerLatLng = null;
       this.searchLatLng = null;
@@ -1158,6 +1189,7 @@ export default {
       }
       await this.loaded();
     },
+    // not used
     toggleModal() {
       this.isModalActive = !this.isModalActive;
       // if (this.isModalActive && this.$mq === "sm") {
@@ -1207,6 +1239,7 @@ export default {
         return "Pin is correct";
       }
     },
+
     async getAllApproxLocationOptions() {
       let locations = [];
 
@@ -1272,6 +1305,8 @@ export default {
         this.approxLocationOptions[1].text = this.$t("geolocation.no");
       }
     },
+
+    // 
     saveMarker() {
       if (this.markerLatLng != null) {
         this.save(this.markerLatLng.lat, this.markerLatLng.lng);
@@ -1279,6 +1314,8 @@ export default {
         this.save(this.latLng["lat"], this.latLng["lng"]);
       }
     },
+
+    // NOTE: this save will be replaced by our save Task
     async save(lat, lng) {
       this.isLoading = true;
       var url = `${localConfig.baseURL}api/taskrun`;
