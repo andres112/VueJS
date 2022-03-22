@@ -629,22 +629,7 @@
                   >{{ $t("actions.skip") }}</a
                 >
               </div>
-              <div
-                class="level-item square"
-                :class="{ completed: step === 1 }"
-              ></div>
-              <div
-                class="level-item square"
-                :class="{ completed: step === 2 }"
-              ></div>
-              <div
-                class="level-item square"
-                :class="{ completed: step === 3 }"
-              ></div>
-              <div
-                class="level-item square"
-                :class="{ completed: step === 4 }"
-              ></div>
+              
               <div class="level-item">
                 <div>
                   {{ $t("geolocation.steps", { start: step, end: 4 }) }}
@@ -1067,13 +1052,13 @@ export default {
     // NOTE: this function is called when component is mounted IMPORTANT!
     async loaded() {
       // polygon
-      console.log("loaded called");
+      console.log("Loaded called");
       if (
         typeof this.currentTask.info !== "undefined" &&
         typeof this.currentTask.info.tags !== "undefined" &&
         this.currentTask.info.tags.length > 0
       ) {
-        // NOTE: Define how the map is loaded, whit center or polygon or line, according to the tag
+        // NOTE: Define how the map is Loaded, whit center or polygon or line, according to the tag
         for (let tag of this.currentTask.info.tags) {
           // NOTE: get the map polygon based on this tag name
           if (tag.name === "CIME_geolocation_geojson") {
