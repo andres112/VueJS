@@ -15,17 +15,13 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ArticlesPage',
-  asyncData () {
+  data () {
     return {
-      articles: [
-        { id: 1, title: 'Article 1' },
-        { id: 2, title: 'Article 2' },
-        { id: 3, title: 'Article 3' },
-        { id: 4, title: 'Article 4' },
-        { id: 5, title: 'Article 5' }
-      ]
+      articles: []
     }
   },
   head: {
@@ -37,6 +33,16 @@ export default {
         content: 'The article list page'
       }
     ]
+  },
+  async created () {
+    try {
+      const res = await axios.get(
+        'https://jsonplaceholder.typicode.com/posts?_limit=10'
+      )
+      this.articles = res.data
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 </script>
