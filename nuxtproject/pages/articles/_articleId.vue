@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ article.title }}</h1>
-    <p class="small">{{ article.userId }}</p>
+    <p class="small">{{ article.userId }} - {{ user.name }}</p>
     <p>{{ article.body }}</p>
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
   layout: 'article',
   data () {
     return {
-      article: {}
+      article: {},
+      user: {}
     }
   },
   head () {
@@ -35,6 +36,10 @@ export default {
         `https://jsonplaceholder.typicode.com/posts/${this.$route.params.articleId}`
       )
       this.article = res.data
+      const resUser = await axios.get(
+        `https://jsonplaceholder.typicode.com/users/${this.article.userId}`
+      )
+      this.user = resUser.data
     } catch (error) {
       console.error(error)
     }

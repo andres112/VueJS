@@ -37,7 +37,7 @@ export default {
   async created () {
     try {
       const res = await axios.get(
-        'https://jsonplaceholder.typicode.com/posts?_limit=10'
+        'https://jsonplaceholder.typicode.com/posts?_limit=50'
       )
       this.articles = res.data
     } catch (error) {
