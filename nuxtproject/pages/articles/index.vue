@@ -28,13 +28,15 @@ export default {
       ]
     }
   },
-  title: 'Articles',
-  meta: [
-    {
-      hid: 'description',
-      name: 'Articles',
-      content: 'The article list page'
-    }
-  ]
+  head: {
+    title: 'Articles',
+    meta: [
+      {
+        hid: 'description',
+        name: 'Articles',
+        content: 'The article list page'
+      }
+    ]
+  }
 }
 </script>
