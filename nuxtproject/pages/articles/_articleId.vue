@@ -6,6 +6,19 @@
 
 <script>
 export default {
-  name: 'ArticlePage'
+  name: 'ArticlePage',
+  layout: 'article',
+  head () {
+    return {
+      title: 'Articles',
+      meta: [
+        {
+          hid: 'description',
+          name: 'Article',
+          content: `The article ${this.$route.params.articleId} description`
+        }
+      ]
+    }
+  }
 }
 </script>

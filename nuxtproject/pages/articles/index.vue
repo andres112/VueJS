@@ -2,7 +2,11 @@
   <div class="container">
     <h1>Articles</h1>
     <ul>
-      <li v-for="article in articles" :key="article.id" class="text-danger">
+      <li
+        v-for="article in articles"
+        :key="article.id"
+        class="text-danger article-link"
+      >
         <NuxtLink :to="`/articles/${article.id}`">
           {{ article.title }}
         </NuxtLink>
@@ -23,6 +27,14 @@ export default {
         { id: 5, title: 'Article 5' }
       ]
     }
-  }
+  },
+  title: 'Articles',
+  meta: [
+    {
+      hid: 'description',
+      name: 'Articles',
+      content: 'The article list page'
+    }
+  ]
 }
 </script>
