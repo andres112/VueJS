@@ -14,7 +14,7 @@
         </b-nav-text>
       </b-navbar-nav>
     </b-navbar>
-    <nuxt />
+    <nuxt/>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar class="d-flex aligng-items-center">
+    <b-navbar class="" type="dark" toggleable="lg" variant="dark">
       <b-navbar-brand>
         <NuxtLink to="/">
           <h3 class="no-decoration">

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container pt-4">
     <h1>Articles</h1>
     <ul>
       <li
@@ -19,10 +19,19 @@ import axios from 'axios'
 
 export default {
   name: 'ArticlesPage',
-  data () {
-    return {
-      articles: []
+  async asyncData () {
+    try {
+      const res = await axios.get(
+        'https://jsonplaceholder.typicode.com/posts?_limit=50'
+      )
+      const articles = res.data
+      return { articles }
+    } catch (error) {
+      console.error(error)
     }
+  },
+  data () {
+    return {}
   },
   head: {
     title: 'Articles',
@@ -33,16 +42,6 @@ export default {
         content: 'The article list page'
       }
     ]
-  },
-  async created () {
-    try {
-      const res = await axios.get(
-        'https://jsonplaceholder.typicode.com/posts?_limit=50'
-      )
-      this.articles = res.data
-    } catch (error) {
-      console.error(error)
-    }
   }
 }
 </script>

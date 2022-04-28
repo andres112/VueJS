@@ -12,6 +12,14 @@
 <script>
 export default {
   name: 'ErrorPage',
-  layout: 'error'
+  layout: 'error',
+  props: {
+    error: {
+      type: Object,
+      default: () => ({
+        statusCode: 404
+      })
+    }
+  }
 }
 </script>
