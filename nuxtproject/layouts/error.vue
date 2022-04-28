@@ -1,8 +1,14 @@
 <template>
-  <div class="flex items-top justify-center text-center">
-    <h1 v-if="error.statusCode === 404">
-      Page not found
-    </h1>
+  <div class="flex items-top justify-center text-center pt-5">
+    <div v-if="error.statusCode === 404">
+      <h1>Page not found</h1>
+      <h1>404</h1>
+      <b-img
+        src="/img/404.gif"
+        alt="Page not found"
+        class="w-full"
+      />
+    </div>
     <h1 v-else>
       An error occurred
     </h1>
