@@ -1,8 +1,17 @@
 <template>
-  <div class="container">
-    <h1>Hello Andres</h1>
+  <div class="container pt-4">
+    <h1 class="pb-2">
+      Some Implementations with Nuxt
+    </h1>
     <nuxt-link to="/articles">
-      Articles
+      <b-button variant="outline-primary">
+        Articles
+      </b-button>
+    </nuxt-link>
+    <nuxt-link to="/todolist">
+      <b-button variant="outline-secondary">
+        Todo List
+      </b-button>
     </nuxt-link>
   </div>
 </template>

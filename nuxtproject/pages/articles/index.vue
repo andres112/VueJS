@@ -1,6 +1,8 @@
 <template>
   <div class="container pt-4">
-    <h1>Articles</h1>
+    <h1 class="sticky-top float-right">
+      Articles
+    </h1>
     <ul>
       <li
         v-for="article in articles"
@@ -22,7 +24,7 @@ export default {
   async asyncData () {
     try {
       const res = await axios.get(
-        'https://jsonplaceholder.typicode.com/posts?_limit=50'
+        'https://jsonplaceholder.typicode.com/posts?_limit=100'
       )
       const articles = res.data
       return { articles }

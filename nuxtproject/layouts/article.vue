@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar class="d-flex aligng-items-center">
+    <b-navbar class="d-flex align-items-center">
       <b-navbar-brand>
         <NuxtLink to="/">
           <h3>Logo</h3>
@@ -14,7 +14,7 @@
         </b-nav-text>
       </b-navbar-nav>
     </b-navbar>
-    <nuxt/>
+    <nuxt />
   </div>
 </template>
 
