@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, onValue } from 'firebase/database'
+import { getDatabase } from 'firebase/database'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,4 +20,4 @@ const app = initializeApp(firebaseConfig)
 // Get a reference to the database service
 const db = getDatabase(app)
 
-export default { db, ref, onValue }
+export default { db }
