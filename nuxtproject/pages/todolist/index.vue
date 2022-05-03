@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid dark-mode full-height">
+  <div class="container-fluid dark-mode">
     <h1>List of ToDo's</h1>
     <b-card bg-variant="transparent">
       <label for="input-task">Task:</label>
