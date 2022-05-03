@@ -10,26 +10,34 @@
       <b-card-body>
         {{ todo }}
       </b-card-body>
+      <b-card-footer>
+        <b-button variant="danger">
+          Delete
+        </b-button>
+        <b-button variant="primary">
+          Update
+        </b-button>
+      </b-card-footer>
     </b-card>
   </div>
 </template>
 
 <script>
 // import { db, ref, onValue } from '@/plugins/firebase.js'
-import axios from 'axios'
-
+import { computed, useStore } from '@nuxtjs/composition-api'
 export default {
   name: 'TodoListPage',
-  data () {
+  setup () {
+    const store = useStore()
+    const todos = computed(() => {
+      return store.state.tasks
+    })
     return {
-      todos: []
+      todos
     }
   },
-  async fetch () {
-    const list = await axios.get(
-      'https://todo-listo-c4f34-default-rtdb.firebaseio.com/tasks.json'
-    )
-    this.todos = list.data
+  fetch ({ store }) {
+    return store.dispatch('fetchTasks')
   }
 }
 </script>
