@@ -13,7 +13,7 @@ import { useUserStore } from "../stores/user";
 const userStore = useUserStore();
 const username = ref("");
 
-username.value = userStore.userData;
+username.value = userStore.userEmail;
 const updateUserData = () => {
   userStore.updateUserData(username.value);
   userStore.sendSignInEmail(username.value);

@@ -1,24 +1,24 @@
 import { defineStore } from "pinia";
 import { auth } from "../firebase.config";
-import { sendSignInLinkToEmail } from "firebase/auth";
-import { useRouter } from "vue-router";
+import { sendSignInLinkToEmail, signOut } from "firebase/auth";
+import router from "../router";
 
-const router = useRouter();
 const useUserStore = defineStore("userStore", {
   /* Defining the initial state of the store. */
   state: () => ({
-    userData: "andres.dorado90@gmail.com",
+    userEmail: "andres.dorado90@gmail.com",
+    userInfo: null,
   }),
   /* Getters that returns the email provider. */
   getters: {
     emailProvider(state) {
-      return state.userData.split("@")[1];
+      return state.userEmail.split("@")[1];
     },
   },
-  /* Actions that updates the userData state. */
+  /* Actions that updates the userEmail state. */
   actions: {
     updateUserData(payload) {
-      this.userData = payload;
+      this.userEmail = payload;
     },
     async sendSignInEmail(email) {
       const actionCodeSettings = {
@@ -32,6 +32,18 @@ const useUserStore = defineStore("userStore", {
         console.log(error);
       }
     },
+    async signOut() {
+      try {
+        await signOut(auth);
+        this.userInfo = null;
+        router.push("/login");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    setUserInfo(payload) {
+      this.userInfo = payload;
+    }
   },
 });
 
