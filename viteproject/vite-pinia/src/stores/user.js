@@ -1,6 +1,12 @@
 import { defineStore } from "pinia";
 import { auth } from "../firebase.config";
-import { sendSignInLinkToEmail, signOut } from "firebase/auth";
+import {
+  sendSignInLinkToEmail,
+  signOut,
+  onAuthStateChanged,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
+} from "firebase/auth";
 import router from "../router";
 
 const useUserStore = defineStore("userStore", {
@@ -41,9 +47,45 @@ const useUserStore = defineStore("userStore", {
         console.log(error);
       }
     },
+    getCurrentUser() {
+      return new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(
+          auth,
+          (user) => {
+            if (user) {
+              this.userInfo = user;
+            } else {
+              this.userInfo = null;
+            }
+            resolve(user);
+          },
+          (error) => reject(error)
+        );
+        unsubscribe();
+      });
+    },
+    isLinkEmail() {
+      return new Promise((resolve, reject) => {
+        if (isSignInWithEmailLink(auth, window.location.href)) {
+          let email = window.localStorage.getItem("emailForSignIn");
+          if (!email) {
+            email = window.prompt("Please provide your email for confirmation");
+          } // Clear email from storage.
+          signInWithEmailLink(auth, email, window.location.href)
+            .then((result) => {
+              window.localStorage.removeItem("emailForSignIn");
+              resolve(result)
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+        resolve();
+      });
+    },
     setUserInfo(payload) {
       this.userInfo = payload;
-    }
+    },
   },
 });
 
