@@ -1,10 +1,13 @@
 // import the hooks from vue-router
 import { createRouter, createWebHistory } from "vue-router";
 import { useUserStore } from "../stores/user";
+import { useSettingsStore } from "../stores/settings";
 
 // Navigation guard to check if the user is authenticated
 const requireAuth = async (to, from, next) => {
   const userStore = useUserStore();
+  const settingsStore = useSettingsStore();
+  settingsStore.setLoading(true);
   const user = await userStore.getCurrentUser();
   if (user) {
     next();
@@ -51,12 +54,16 @@ const router = createRouter({
 // validate if email link is signed in
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore();
-  if ("mode" in to.query && to.query.mode === "singIn") {
+  if ("mode" in to.query && to.query.mode === "signIn") {
     await userStore.isLinkEmail();
-    next("/");
+    await next("/");
   } else {
     next();
   }
+});
+router.afterEach(() => {
+  const settingsStore = useSettingsStore();
+  settingsStore.setLoading(false);
 });
 
 export default router;
