@@ -2,7 +2,7 @@
   <div>
     <h1>Login Without Password</h1>
     <input v-model.trim="username" />
-    <button @click="updateUserData()">Update Username</button>
+    <button @click="updateUserData()">Login</button>
   </div>
 </template>
 

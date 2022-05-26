@@ -54,6 +54,7 @@ const useUserStore = defineStore("userStore", {
           (user) => {
             if (user) {
               this.userInfo = user;
+              this.userEmail = user?.email;
             } else {
               this.userInfo = null;
             }
@@ -74,7 +75,7 @@ const useUserStore = defineStore("userStore", {
           signInWithEmailLink(auth, email, window.location.href)
             .then((result) => {
               window.localStorage.removeItem("emailForSignIn");
-              resolve(result)
+              resolve(result);
             })
             .catch((error) => {
               console.log(error);
@@ -82,9 +83,6 @@ const useUserStore = defineStore("userStore", {
         }
         resolve();
       });
-    },
-    setUserInfo(payload) {
-      this.userInfo = payload;
     },
   },
 });
