@@ -55,7 +55,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore();
   if ("mode" in to.query && to.query.mode === "signIn") {
-    await userStore.isLinkEmail()
+    await userStore.isLinkEmail();
     next("/");
   } else {
     next();

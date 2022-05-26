@@ -20,7 +20,7 @@ export const useDataBaseStore = defineStore("dataBaseStore", {
         );
         const docs = await getDocs(question);
         docs.forEach((doc) => {
-          this.documents.push({ id: doc.id, data: doc.data() });
+          this.documents.push({ id: doc.id, ...doc.data() });
         });
       } catch (error) {
         console.log(error);
