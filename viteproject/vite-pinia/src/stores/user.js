@@ -8,6 +8,7 @@ import {
   signInWithEmailLink,
 } from "firebase/auth";
 import router from "../router";
+import { useDataBaseStore } from "./database";
 
 const useUserStore = defineStore("userStore", {
   /* Defining the initial state of the store. */
@@ -40,6 +41,8 @@ const useUserStore = defineStore("userStore", {
     },
     async signOut() {
       try {
+        const dbStore = useDataBaseStore();
+        dbStore.$reset(); // Reset the database store states. $reset() is provided by pinia.
         await signOut(auth);
         this.userInfo = null;
         router.push("/login");

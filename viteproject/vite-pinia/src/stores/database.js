@@ -1,8 +1,16 @@
 import { defineStore } from "pinia";
-import { collection, getDocs, query, where } from "firebase/firestore/lite";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore/lite";
 import { db } from "../firebase.config";
 
 import { useUserStore } from "../stores/user";
+
+import { nanoid } from "nanoid";
 
 export const useDataBaseStore = defineStore("dataBaseStore", {
   state: () => ({
@@ -24,7 +32,21 @@ export const useDataBaseStore = defineStore("dataBaseStore", {
         });
       } catch (error) {
         console.log(error);
-      } finally {
+      }
+    },
+    async addUrl(longUrl) {
+      try {
+        const userStore = useUserStore();
+        const data = {
+          longUrl,
+          shortUrl: nanoid(6),
+          uid: userStore.userInfo.uid,
+        };
+        const res = await addDoc(collection(db, "urls"), data);
+        console.log(res);
+        this.documents.push({ id: res.id, ...data });
+      } catch (error) {
+        console.log(error);
       }
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login Without Password</h1>
-    <input v-model.trim="username" />
+    <input v-model.trim="username" style="min-width:30vw ;"/>
     <button @click="updateUserData()">Login</button>
   </div>
 </template>
