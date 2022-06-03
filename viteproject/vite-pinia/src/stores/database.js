@@ -2,9 +2,12 @@ import { defineStore } from "pinia";
 import {
   addDoc,
   collection,
+  deleteDoc,
   getDocs,
   query,
   where,
+  doc,
+  getDoc,
 } from "firebase/firestore/lite";
 import { db } from "../firebase.config";
 
@@ -43,10 +46,27 @@ export const useDataBaseStore = defineStore("dataBaseStore", {
           uid: userStore.userInfo.uid,
         };
         const res = await addDoc(collection(db, "urls"), data);
-        console.log(res);
         this.documents.push({ id: res.id, ...data });
       } catch (error) {
         console.log(error);
+      }
+    },
+    async deleteUrl(id) {
+      try {
+        const userStore = useUserStore();
+        const reference = doc(collection(db, "urls"), id);
+        //Firs validate the document
+        const docSnap = await getDoc(reference);
+        if (!docSnap.exists) {
+          throw new Error("Document does not exist");
+        }
+        if (docSnap.data().uid !== userStore.userInfo.uid) {
+          throw new Error("Document does not belong to the user");
+        }
+        await deleteDoc(reference);
+        this.documents = this.documents.filter((doc) => doc.id !== id);
+      } catch (error) {
+        console.log(error?.message);
       }
     },
   },

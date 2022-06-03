@@ -54,5 +54,6 @@ const handleForm = () => {
 };
 const deleteUrl = () => {
   dbStore.deleteUrl(urlId.value);
+  urlId.value = "";
 };
 </script>
