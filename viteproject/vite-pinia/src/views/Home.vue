@@ -1,35 +1,40 @@
 <template>
   <div>
     <!-- Computed function -->
-    <h1>Hello {{ username }}</h1>
+    <a-typography-title>Hello {{ username }}</a-typography-title>
     <!-- Call to state from store directly -->
-    <h2>email: {{ userStore.userEmail }}</h2>
+    <a-typography-title :level="3">
+      email: {{ userStore.userEmail }}
+    </a-typography-title>
     <!-- Call to getter from store directly -->
-    <h3>provider: {{ userStore.emailProvider }}</h3>
+    <a-typography-title :level="3">
+      provider: {{ userStore.emailProvider }}
+    </a-typography-title>
     <hr />
-    <h3>Url shortener</h3>
-    <form @submit.prevent="handleForm()">
-      <input
-        type="text"
+    <h3 style="color: greenyellow">Url shortener</h3>
+    <a-form @submit.prevent="handleForm()">
+      <a-input
         v-model="url"
         placeholder="Enter your long url"
-        style="min-width: 50vw"
+        auto-size
       />
-      <button type="submit">Convert</button>
-    </form>
+      <a-button type="submit">Convert</a-button>
+    </a-form>
     <hr />
-    <h3 style="color:red ;">Url Remover</h3>
-    <form @submit.prevent="deleteUrl()">
-      <input
-        type="text"
+    <h3 style="color: orangered">Url Remover</h3>
+    <a-form @submit.prevent="deleteUrl()">
+      <a-input
         v-model="urlId"
         placeholder="Enter Url id"
-        style="min-width: 50vw"
+        auto-size
       />
-      <button type="submit">Remove</button>
-    </form>
+      <a-button type="submit">Remove</a-button>
+    </a-form>
 
     <hr />
+    <pre>
+      {{ dbStore.documents }}
+    </pre>
     <pre>
       {{ dbStore.documents }}
     </pre>
