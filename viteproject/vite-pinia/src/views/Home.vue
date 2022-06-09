@@ -16,8 +16,12 @@
       <a-form-item
         name="value"
         :rules="[
-          { required: true, message: 'This field is required' },
-          { whitespace: true, message: 'Not a valid field' },
+          {
+            required: true,
+            message: 'This field is required',
+            whitespace: true,
+          },
+          { type: 'url', message: 'Not a valid url' },
         ]"
       >
         <a-input
