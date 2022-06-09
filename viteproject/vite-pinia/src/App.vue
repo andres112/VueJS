@@ -1,5 +1,5 @@
 <template>
-  <a-layout style="background-color: darkslategrey; min-height: 100vh;">
+  <a-layout style="background-color: darkslategrey; min-height: 100vh">
     <a-layout-header>
       <a-menu theme="dark" mode="horizontal" v-model="selectedTab">
         <a-menu-item key="home">
@@ -18,12 +18,10 @@
         </a-menu-item>
       </a-menu>
     </a-layout-header>
-    <a-layout-content
-      style="padding: 0 50px; color: azure;"
-    >
-      <a-typography-title :level="3" v-if="settingsStore.loading"
-        >Loading...</a-typography-title
-      >
+    <a-layout-content style="padding: 0 50px; color: azure">
+      <a-typography-title :level="3" v-if="settingsStore.loading">
+        Loading...
+      </a-typography-title>
       <router-view></router-view>
     </a-layout-content>
   </a-layout>
@@ -54,7 +52,7 @@ watchEffect(() => {
 </script>
 <style>
 .ant-input {
-  background: transparent;
+  background: transparent !important;
   color: azure;
 }
 </style>

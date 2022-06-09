@@ -12,29 +12,28 @@
     </a-typography-title>
     <hr />
     <h3 style="color: greenyellow">Url shortener</h3>
-    <a-form @submit.prevent="handleForm()">
-      <a-input
-        v-model="url"
-        placeholder="Enter your long url"
-        auto-size
-      />
-      <a-button type="submit">Convert</a-button>
+    <a-form @finish="handleForm" :model="url">
+      <a-form-item
+        name="value"
+        :rules="[
+          { required: true, message: 'This field is required' },
+          { whitespace: true, message: 'Not a valid field' },
+        ]"
+      >
+        <a-input
+          v-model:value="url.value"
+          placeholder="Enter your long url"
+          auto-size
+        />
+      </a-form-item>
+      <a-button html-type="submit">Convert</a-button>
     </a-form>
     <hr />
     <h3 style="color: orangered">Url Remover</h3>
-    <a-form @submit.prevent="deleteUrl()">
-      <a-input
-        v-model="urlId"
-        placeholder="Enter Url id"
-        auto-size
-      />
-      <a-button type="submit">Remove</a-button>
-    </a-form>
+    <a-input v-model:value="urlId" placeholder="Enter Url id" auto-size />
+    <a-button type="submit" @click="deleteUrl()">Remove</a-button>
 
     <hr />
-    <pre>
-      {{ dbStore.documents }}
-    </pre>
     <pre>
       {{ dbStore.documents }}
     </pre>
@@ -42,20 +41,24 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useUserStore } from "../stores/user";
 import { useDataBaseStore } from "../stores/database";
 
 const userStore = useUserStore();
 const dbStore = useDataBaseStore();
 
-const url = ref("");
+const url = reactive({
+  value: "",
+});
 const urlId = ref("");
 
 dbStore.getUrls();
 const username = computed(() => userStore.userEmail.split("@")[0]);
 const handleForm = () => {
-  dbStore.addUrl(url.value);
+  debugger;
+  dbStore.addUrl(url.value.trim());
+  url.value = "";
 };
 const deleteUrl = () => {
   dbStore.deleteUrl(urlId.value);

@@ -1,10 +1,14 @@
 <template>
   <div>
     <a-typography-title>Login Without Password</a-typography-title>
-    <a-space>
-      <a-input v-model.trim="username" style="min-width: 30vw"/>
-      <a-button type="dashed" @click="updateUserData()">Login</a-button>
-    </a-space>
+    <a-row>
+      <a-col :xs="{ span: 24}" :md="{ span: 12, offset: 6 }">
+        <a-space>
+          <a-input v-model:value="username" style="min-width: 30vw" />
+          <a-button type="dashed" @click="updateUserData()">Login</a-button>
+        </a-space>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
