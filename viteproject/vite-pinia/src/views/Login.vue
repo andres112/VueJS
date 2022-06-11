@@ -9,29 +9,26 @@
         </a-space>
       </a-col>
     </a-row>
-    <a-row style="padding-top: 2rem" v-if="alertMsg">
-      <a-col span="24">
-        <a-alert message="Info Text" type="info" show-icon />
-      </a-col>
-    </a-row>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useUserStore } from "../stores/user";
+// those plugins should be imported with the corresponding css
+import { message } from "ant-design-vue";
+import "ant-design-vue/es/message/style/css";
 
 const userStore = useUserStore();
 const username = ref("");
-const alertMsg = ref(false);
 
 username.value = userStore.userEmail;
 const updateUserData = () => {
   userStore.updateUserData(username.value);
   userStore.sendSignInEmail(username.value);
-  alertMsg.value = true;
-  setTimeout(() => {
-    alertMsg.value = false;
-  }, 5000);
+  message.info({
+    content: "Please check your email to verify your account.",
+    duration: 3,
+  });
 };
 </script>

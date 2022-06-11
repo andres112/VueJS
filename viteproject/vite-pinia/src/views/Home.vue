@@ -12,26 +12,7 @@
     </a-typography-title>
     <hr />
     <h3 style="color: greenyellow">Url shortener</h3>
-    <a-form @finish="handleForm" :model="url">
-      <a-form-item
-        name="value"
-        :rules="[
-          {
-            required: true,
-            message: 'This field is required',
-            whitespace: true,
-          },
-          { type: 'url', message: 'Not a valid url' },
-        ]"
-      >
-        <a-input
-          v-model:value="url.value"
-          placeholder="Enter your long url"
-          auto-size
-        />
-      </a-form-item>
-      <a-button html-type="submit">Convert</a-button>
-    </a-form>
+    <UrlForm></UrlForm>
     <hr />
     <h3 style="color: orangered">Url Remover</h3>
     <a-input v-model:value="urlId" placeholder="Enter Url id" auto-size />
@@ -45,25 +26,19 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, ref } from "vue";
 import { useUserStore } from "../stores/user";
 import { useDataBaseStore } from "../stores/database";
+import UrlForm from "../components/UrlForm.vue";
 
 const userStore = useUserStore();
 const dbStore = useDataBaseStore();
 
-const url = reactive({
-  value: "",
-});
 const urlId = ref("");
 
 dbStore.getUrls();
 const username = computed(() => userStore.userEmail.split("@")[0]);
-const handleForm = () => {
-  debugger;
-  dbStore.addUrl(url.value.trim());
-  url.value = "";
-};
+
 const deleteUrl = () => {
   dbStore.deleteUrl(urlId.value);
   urlId.value = "";
