@@ -42,7 +42,7 @@ export const useDataBaseStore = defineStore("dataBaseStore", {
         const userStore = useUserStore();
         const data = {
           longUrl,
-          shortUrl: nanoid(6),
+          shortUrl: nanoid(10),
           uid: userStore.userInfo.uid,
         };
         const res = await addDoc(collection(db, "urls"), data);

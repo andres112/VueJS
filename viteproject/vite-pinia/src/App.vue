@@ -1,5 +1,5 @@
 <template>
-  <a-layout style="background-color: darkslategrey; min-height: 100vh">
+  <a-layout style="background-color: #d86c00; min-height: 100vh">
     <a-layout-header>
       <a-menu theme="dark" mode="horizontal" v-model="selectedTab">
         <a-menu-item key="home">

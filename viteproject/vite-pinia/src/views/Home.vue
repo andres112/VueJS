@@ -14,9 +14,18 @@
     <h3 style="color: greenyellow">Url shortener</h3>
     <UrlForm></UrlForm>
     <hr />
-    <h3 style="color: orangered">Url Remover</h3>
-    <a-input v-model:value="urlId" placeholder="Enter Url id" auto-size />
-    <a-button type="submit" @click="deleteUrl()">Remove</a-button>
+    <h3 style="color: cyan">Url Remover</h3>
+    <a-space direction="vertical" style="width: 100%">
+      <a-input v-model:value="urlId" placeholder="Enter Url id" auto-size />
+      <a-popconfirm
+        title="Are you sure delete this url?"
+        ok-text="Yes"
+        cancel-text="No"
+        @confirm="deleteUrl()"
+      >
+        <a-button type="submit" :disabled="!urlId">Remove</a-button>
+      </a-popconfirm>
+    </a-space>
 
     <hr />
     <pre>
