@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <p>This is an example component.</p>
-  </div>
+	<div>
+		<p>This is an example component.</p>
+	</div>
 </template>
 
 <script setup lang="ts">
